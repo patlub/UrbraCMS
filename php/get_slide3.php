@@ -8,8 +8,8 @@
 include('../classes/HomePage.php');
 
 $homePage = new HomePage();
-$slide_image1 = $homePage->async_get_slide_image(1);
+$slide_image3 = $homePage->async_get_slide_image(3);
 
-$path = $slide_image1['imagename'];
-$caption = $slide_image1['caption'];
+$path = $slide_image3['imagename'];
+$caption = $slide_image3['caption'];
 echo $path.' '.$caption;

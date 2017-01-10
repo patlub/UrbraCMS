@@ -157,19 +157,25 @@ class HomePage
         return $return_code;
     }
 
-    public function get_slide_image($position)
-    {
-        $image_det = $this->fetch_slide_image($position);
-        $this->_slide_image_name = $image_det['imagename'];
-        $this->_slide_image_caption = $image_det['caption'];
-
-    }
+//    public function get_slide_image($position)
+//    {
+//        $image_det = $this->fetch_slide_image($position);
+//        $this->_slide_image_name = $image_det['imagename'];
+//        $this->_slide_image_caption = $image_det['caption'];
+//
+//    }
 
     public function async_get_slide_image($position)
     {
         $image_det = $this->fetch_slide_image($position);
         return $image_det;
 
+    }
+
+    public function async_get_section($position)
+    {
+        $image_det = $this->fetch_section($position);
+        return $image_det;
     }
 
     public function get_section($position)

@@ -33,6 +33,8 @@
 
         .sec-image {
             text-align: center;
+            align-items: center;
+            align-content: center;
         }
 
         .sec-box {
@@ -44,51 +46,11 @@
             margin-top: 5%;
         }
 
-        .img-rsv {
-            max-width: 100%;,
-        height : auto;
-            display: block;
-        }
     </style>
 </head>
 <body>
 <div class="container-fluid">
-<?php
-
-include_once 'menu.php';
-
-$homePage = new HomePage();
-$homePage->get_slide_image(1);
-$slide_name_1 = $homePage->get_slide_image_name();
-$slide_caption_1 = $homePage->get_slide_image_caption();
-
-$homePage->get_slide_image(2);
-$slide_name_2 = $homePage->get_slide_image_name();
-$slide_caption_2 = $homePage->get_slide_image_caption();
-
-$homePage->get_slide_image(3);
-$slide_name_3 = $homePage->get_slide_image_name();
-$slide_caption_3 = $homePage->get_slide_image_caption();
-
-$homePage->get_section(1);
-$sec_image_1 = $homePage->get_sec_image_name();
-$sec_heading_1 = $homePage->get_sec_heading();
-$sec_text_1 = $homePage->get_sec_text();
-
-$homePage->get_section(2);
-$sec_image_2 = $homePage->get_sec_image_name();
-$sec_heading_2 = $homePage->get_sec_heading();
-$sec_text_2 = $homePage->get_sec_text();
-
-$homePage->get_section(3);
-$sec_image_3 = $homePage->get_sec_image_name();
-$sec_heading_3 = $homePage->get_sec_heading();
-$sec_text_3 = $homePage->get_sec_text();
-
-$path = "img/slideshowimgs/";
-$serv_path = "img/home_services/";
-
-?>
+<?php include_once 'menu.php';?>
 <script src="js/forms.js"></script>
 <div class="col-md-12">
     <div class="success-alert row" align="center">Slide Image has been updated</div>
@@ -98,9 +60,9 @@ $serv_path = "img/home_services/";
     <!--Get image from server -->
     <div class="col-md-4">
         <div class="col-md-12 sec-box">
-            <img id="sec_image1" src="<?php //echo $path . $slide_name_1; ?>" class="img-responsive">
+            <img id="slide_image1" src="" class="img-responsive">
 
-            <div class="caption"><?php echo $slide_caption_1; ?></div>
+            <div id="slide_caption1" class="caption"></div>
         </div>
         <form id="update_slide1_form" role="form" enctype="multipart/form-data">
             <div class="form-group col-md-12">
@@ -109,7 +71,7 @@ $serv_path = "img/home_services/";
             </div>
             <div class="form-group col-md-12">
                 <label for="caption1">Caption</label>
-                <input type="text" id="caption1" name="caption1" class="form-control" value="<?php echo $slide_caption_1; ?>" required>
+                <input type="text" id="caption1" name="caption1" class="form-control" value="" required>
                 <input type="hidden" value="1" name="position1" id="position1">
             </div>
             <div class="form-group col-md-12">
@@ -122,9 +84,9 @@ $serv_path = "img/home_services/";
 
     <div class="col-md-4">
         <div class="col-md-12 sec-box">
-            <img src="<?php echo $path . $slide_name_2; ?>">
+            <img id="slide_image2" src="" class="img-responsive">
 
-            <div class="caption"><?php echo $slide_caption_2; ?></div>
+            <div id="slide_caption2" class="caption"></div>
         </div>
         <form id="update_slide2_form" role="form" enctype="multipart/form-data">
             <div class="form-group col-md-12">
@@ -133,7 +95,7 @@ $serv_path = "img/home_services/";
             </div>
             <div class="form-group col-md-12">
                 <label for="caption2">Caption</label>
-                <input type="text" id="caption2" name="caption2" class="form-control" value="<?php echo $slide_caption_2; ?>" required>
+                <input type="text" id="caption2" name="caption2" class="form-control" value="" required>
                 <input type="hidden" value="2" name="position2" id="position2">
             </div>
             <div class="form-group col-md-12">
@@ -146,9 +108,9 @@ $serv_path = "img/home_services/";
     <div class="col-md-4">
         <div class="col-md-12 sec-box">
             <div class="sec-image">
-                <img src="<?php echo $path . $slide_name_3; ?>">
+                <img id="slide_image3" src="" class="img-responsive">
             </div>
-            <div class="caption"><?php echo $slide_caption_3; ?></div>
+            <div id="slide_caption3" class="caption"></div>
         </div>
         <form id="update_slide3_form" role="form" enctype="multipart/form-data">
             <div class="form-group col-md-12">
@@ -157,7 +119,7 @@ $serv_path = "img/home_services/";
             </div>
             <div class="form-group col-md-12">
                 <label for="caption3">Caption</label>
-                <input type="text" id="caption3" name="caption3" class="form-control" value="<?php echo $slide_caption_3; ?>" required>
+                <input type="text" id="caption3" name="caption3" class="form-control" value="" required>
                 <input type="hidden" value="3" name="position3" id="position3">
             </div>
             <div class="form-group col-md-12">
@@ -172,14 +134,14 @@ $serv_path = "img/home_services/";
 
     <div class="col-md-4">
         <div class="row sec-box">
-            <div class="sec-image">
-                <img src="<?php echo $serv_path . $sec_image_1; ?>" class="img-responsive">
+            <div class="sec-image" align="center">
+                <img id="sec_image1" src="" class="img-responsive">
             </div>
 
-            <div class="sec-head"><?php echo $sec_heading_1; ?></div>
-            <div class="sec_text"><?php echo $sec_text_1; ?></div>
+            <div id="sec_head1" class="sec-head"></div>
+            <div id="sec_text1" class="sec_text"></div>
             <div class="row service-btn">
-                <input type="button" value="<?php echo $sec_heading_1; ?>" class="btn btn-warning btn-lg">
+                <input id="sec_btn1" type="button" value="" class="btn btn-warning btn-lg">
             </div>
         </div>
         <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
@@ -223,12 +185,14 @@ $serv_path = "img/home_services/";
 
     <div class="col-md-4">
         <div class="row sec-box">
-            <div class="sec-image"><img src="<?php echo $serv_path . $sec_image_2; ?>"></div>
+            <div class="sec-image" align="center">
+                <img id="sec_image2" src="" class="img-responsive">
+            </div>
 
-            <div class="sec-head"><?php echo $sec_heading_2; ?></div>
-            <div class="sec_text"><?php echo $sec_text_2; ?></div>
+            <div id="sec_head2" class="sec-head"></div>
+            <div id="sec_text2" class="sec_text"></div>
             <div class="row service-btn">
-                <input type="button" value="<?php echo $sec_heading_2; ?>" class="btn btn-warning btn-lg">
+                <input id="sec_btn2" type="button" value="" class="btn btn-warning btn-lg">
             </div>
         </div>
         <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
@@ -272,12 +236,14 @@ $serv_path = "img/home_services/";
 
     <div class="col-md-4">
         <div class="row sec-box">
-            <div class="sec-image"><img src="<?php echo $serv_path . $sec_image_3; ?>"></div>
+            <div class="sec-image" align="center">
+                <img id="sec_image3" src="" class="img-responsive">
+            </div>
 
-            <div class="sec-head"><?php echo $sec_heading_3; ?></div>
-            <div class="sec_text"><?php echo $sec_text_3; ?></div>
+            <div id="sec_head3" class="sec-head"></div>
+            <div id="sec_text3" class="sec_text"></div>
             <div class="row service-btn">
-                <input type="button" value="<?php echo $sec_heading_3; ?>" class="btn btn-warning btn-lg">
+                <input id="sec_btn3" type="button" value="" class="btn btn-warning btn-lg">
             </div>
         </div>
         <div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
