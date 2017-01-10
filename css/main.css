@@ -1,0 +1,145 @@
+div {
+    /*border: 1px solid red;*/
+}
+
+#home-box {
+    background-color: rgba(33, 121, 241, 1);
+    background-repeat: no-repeat;
+    height: 500px;
+}
+
+#home-box:hover {
+    background-color: rgba(33, 121, 241, 0.7);
+}
+
+#serv-pro-box {
+    background-repeat: no-repeat;
+    color: #2179f1;
+    height: 250px;
+    padding-top: 15px;
+    border: 1px solid #eff3f3;
+}
+
+#serv-pro-box:hover {
+    border: 1px solid #646c6c;
+    font-size: 120%;
+}
+
+#serv-pro-box p {
+    text-align: center;
+    font-size: 115%;
+    margin-top: 10%;
+}
+
+#serv-pro-box img {
+    padding-left: 40% !important;
+}
+
+#trustees-box {
+    background-repeat: no-repeat;
+}
+
+#trustees-box:hover {
+    border: 3px solid #eff3f3;
+}
+
+#rbs-box {
+    background-repeat: no-repeat;
+}
+
+#rbs-box:hover {
+    border: 3px solid #eff3f3;
+}
+
+.short-tab-box {
+    background-color: rgba(239, 243, 243, 1);
+    border: 1px solid white;
+    height: 250px;
+    padding-top: 5%;
+}
+
+.short-tab-box img {
+    padding-left: 37%;
+}
+
+.short-tab-box:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: red !important;
+    font-size: 120%;
+}
+
+#resource-box {
+    background-repeat: no-repeat;
+}
+
+#resource-box:hover {
+    border: 3px solid #eff3f3;
+}
+
+#vacancy-box {
+    background-repeat: no-repeat;
+}
+
+#tenders-box {
+    background-repeat: no-repeat;
+}
+
+#about-box {
+    background-repeat: no-repeat;
+}
+
+.box-shell {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.tab-text {
+    text-align: center;
+    font-size: 115%;
+    margin-top: 18%;
+    color: #2179f1;
+}
+
+.values {
+    font-size: 200%;
+    color: #aeb6bf;
+    text-transform: uppercase;
+}
+
+#slide-section {
+    margin-bottom: 3%;
+}
+
+.success-alert {
+    display: none;
+    z-index: 1000;
+    background-color: #1fa142;
+    color: #ffffff;
+    padding: 2%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.error {
+    display: none;
+    z-index: 1000;
+    background-color: #FF0000;
+    color: #ffffff;
+    padding: 2%;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.loader {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, .8) url('http://localhost/UrbraCMS/img/ajax-loader.gif') 50% 50% no-repeat;
+}
