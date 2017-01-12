@@ -13,4 +13,4 @@ $section1 = $homePage->async_get_section(1);
 $path = $section1['imagename'];
 $heading = $section1['heading'];
 $text = $section1['text'];
-echo $path.' '.$heading.' '.$text;
+echo $path.'-'.$heading.'-'.$text;

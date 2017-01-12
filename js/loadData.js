@@ -92,6 +92,7 @@ $(document).ready(function (e) {
                 $('.loader').hide();
                 if (data == true) {
                     $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    async_get_sec_1();
                 } else {
                     $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 }
@@ -114,6 +115,7 @@ $(document).ready(function (e) {
                 $('.loader').hide();
                 if (data == true) {
                     $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    async_get_sec_2();
                 } else {
                     $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 }
@@ -136,6 +138,7 @@ $(document).ready(function (e) {
                 $('.loader').hide();
                 if (data == true) {
                     $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    async_get_sec_3();
                 } else {
                     $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 }
@@ -155,12 +158,15 @@ $(document).ready(function (e) {
                 var caption = data[1];
 
                 $("#slide_caption1").text(caption);
+                $("#prv_caption1").text(caption);
                 $("#caption1").val(caption);
 
                 var $image = $("#slide_image1");
+                var $img1 = $("#img1");
                 var $downloadingImage = $("<img>");
                 $downloadingImage.load(function(){
                     $image.attr("src", $(this).attr("src"));
+                    $img1.attr("src", $(this).attr("src"));
                 });
                 $downloadingImage.attr("src", img_url);
             }
@@ -178,12 +184,16 @@ $(document).ready(function (e) {
                 var caption = data[1];
 
                 $("#slide_caption2").text(caption);
+                $("#prv_caption2").text(caption);
                 $("#caption2").val(caption);
 
                 var $image = $("#slide_image2");
+                var $img2 = $("#img2");
+
                 var $downloadingImage = $("<img>");
                 $downloadingImage.load(function(){
                     $image.attr("src", $(this).attr("src"));
+                    $img2.attr("src", $(this).attr("src"));
                 });
                 $downloadingImage.attr("src", img_url);
             }
@@ -202,12 +212,16 @@ $(document).ready(function (e) {
                 var caption = data[1];
 
                 $("#slide_caption3").text(caption);
+                $("#prv_caption3").text(caption);
                 $("#caption3").val(caption);
 
                 var $image = $("#slide_image3");
+                var $img3 = $("#img3");
+
                 var $downloadingImage = $("<img>");
                 $downloadingImage.load(function(){
                     $image.attr("src", $(this).attr("src"));
+                    $img3.attr("src", $(this).attr("src"));
                 });
                 $downloadingImage.attr("src", img_url);
             }
@@ -220,8 +234,7 @@ $(document).ready(function (e) {
             url: "php/get_sec1.php",
             success: function (data) {
 
-                data = data.split(" ");
-                //alert(data);
+                data = data.split("-");
                 var img_url = 'img/home_services/'+data[0];
                 var heading = data[1];
                 var text = data[2];
@@ -229,6 +242,8 @@ $(document).ready(function (e) {
                 $("#sec_head1").text(heading);
                 $("#sec_text1").text(text);
                 $("#sec_btn1").val(heading);
+                $("#sub1").val(heading);
+                $("#sub-text1").val(text);
 
                 var $image = $("#sec_image1");
                 var $downloadingImage = $("<img>");
@@ -246,8 +261,7 @@ $(document).ready(function (e) {
             url: "php/get_sec2.php",
             success: function (data) {
 
-                data = data.split(" ");
-                //alert(data);
+                data = data.split("-");
                 var img_url = 'img/home_services/'+data[0];
                 var heading = data[1];
                 var text = data[2];
@@ -255,6 +269,8 @@ $(document).ready(function (e) {
                 $("#sec_head2").text(heading);
                 $("#sec_text2").text(text);
                 $("#sec_btn2").val(heading);
+                $("#sub2").val(heading);
+                $("#sub-text2").val(text);
 
                 var $image = $("#sec_image2");
                 var $downloadingImage = $("<img>");
@@ -272,8 +288,7 @@ $(document).ready(function (e) {
             url: "php/get_sec3.php",
             success: function (data) {
 
-                data = data.split(" ");
-                //alert(data);
+                data = data.split("-");
                 var img_url = 'img/home_services/'+data[0];
                 var heading = data[1];
                 var text = data[2];
@@ -281,6 +296,8 @@ $(document).ready(function (e) {
                 $("#sec_head3").text(heading);
                 $("#sec_text3").text(text);
                 $("#sec_btn3").val(heading);
+                $("#sub3").val(heading);
+                $("#sub-text3").val(text);
 
                 var $image = $("#sec_image3");
                 var $downloadingImage = $("<img>");

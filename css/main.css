@@ -107,7 +107,7 @@ div {
 }
 
 #slide-section {
-    margin-bottom: 3%;
+    border: 1px solid #A57F30;
 }
 
 .success-alert {
@@ -142,4 +142,61 @@ div {
     height: 100%;
     width: 100%;
     background: rgba(255, 255, 255, .8) url('http://localhost/UrbraCMS/img/ajax-loader.gif') 50% 50% no-repeat;
+}
+
+.caption {
+    text-align: center;
+}
+
+.sec_text {
+    text-align: center;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.sec-head {
+    font-size: 180%;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2%;
+    margin-top: 4%;
+}
+
+.sec-image {
+    padding-left: 5%;
+}
+
+.sec-box {
+    margin-bottom: 10%;
+}
+
+.service-btn {
+    text-align: center;
+    margin-top: 5%;
+}
+
+#carousel-box {
+    padding-left: 25%;
+}
+
+.service-image {
+    width: 250px;
+    height: 150px;
+}
+
+.title-box {
+    font-size: 350%;
+    text-align: center;
+    /*margin-bottom: 4%;*/
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: lightgrey;
+}
+
+#lower-section {
+    border: 1px solid #A57F30;
+}
+
+.modal-backdrop {
+    z-index: 0!important;
 }

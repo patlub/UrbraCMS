@@ -71,6 +71,8 @@ class HomePage
             if (in_array($imgExt, $valid_extensions)) {
                 // Check file size '5MB'
                 if ($imgSize < 5000000) {
+
+//                    $img = resize_image();
                     move_uploaded_file($tmp_dir, $upload_dir . $image);
                 } else {
                     $errMSG = "Sorry, your file is too large.";
@@ -106,7 +108,6 @@ class HomePage
         if (empty($imgFile)) {
             $dbh = $this->connectDB();
             $stmt = $dbh->prepare('UPDATE home_services SET heading=:heading, text=:text  WHERE position=:position');
-            $stmt->bindParam(':imagename', $image);
             $stmt->bindParam(':heading', $heading);
             $stmt->bindParam(':text', $text);
             $stmt->bindParam(':position', $position);
@@ -130,7 +131,10 @@ class HomePage
             if (in_array($imgExt, $valid_extensions)) {
                 // Check file size '5MB'
                 if ($imgSize < 5000000) {
+
+                    $tmp_dir = $this->resize_image($tmp_dir, 838, 464);
                     move_uploaded_file($tmp_dir, $upload_dir . $image);
+
                 } else {
                     $errMSG = "Sorry, your file is too large.";
                 }
@@ -156,14 +160,6 @@ class HomePage
         // if no error occured, continue ....
         return $return_code;
     }
-
-//    public function get_slide_image($position)
-//    {
-//        $image_det = $this->fetch_slide_image($position);
-//        $this->_slide_image_name = $image_det['imagename'];
-//        $this->_slide_image_caption = $image_det['caption'];
-//
-//    }
 
     public function async_get_slide_image($position)
     {
@@ -213,6 +209,32 @@ class HomePage
         return false;
     }
 
+    function resize_image($file, $w, $h, $crop=FALSE) {
+        list($width, $height) = getimagesize($file);
+        $r = $width / $height;
+        if ($crop) {
+            if ($width > $height) {
+                $width = ceil($width-($width*abs($r-$w/$h)));
+            } else {
+                $height = ceil($height-($height*abs($r-$w/$h)));
+            }
+            $newwidth = $w;
+            $newheight = $h;
+        } else {
+            if ($w/$h > $r) {
+                $newwidth = $h*$r;
+                $newheight = $h;
+            } else {
+                $newheight = $w/$r;
+                $newwidth = $w;
+            }
+        }
+        $src = imagecreatefromjpeg($file);
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+        return $dst;
+    }
 
     public function connectDB()
     {

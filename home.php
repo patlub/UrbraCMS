@@ -8,54 +8,59 @@
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <title>Home Page</title>
-    <style type="text/css">
-        div {
-            /*border: 1px solid #FF0000;*/
-        }
-
-        .caption {
-            text-align: center;
-        }
-
-        .sec_text {
-            text-align: center;
-            padding-left: 2%;
-            padding-right: 2%;
-        }
-
-        .sec-head {
-            font-size: 180%;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 2%;
-            margin-top: 4%;
-        }
-
-        .sec-image {
-            text-align: center;
-            align-items: center;
-            align-content: center;
-        }
-
-        .sec-box {
-            margin-bottom: 10%;
-        }
-
-        .service-btn {
-            text-align: center;
-            margin-top: 5%;
-        }
-
-    </style>
 </head>
 <body>
 <div class="container-fluid">
 <?php include_once 'menu.php';?>
-<script src="js/forms.js"></script>
+<script src="js/loadData.js"></script>
 <div class="col-md-12">
     <div class="success-alert row" align="center">Slide Image has been updated</div>
     <div class="error row" align="center">Network Error</div>
 </div>
+<div class="row title-box">SlideShow Preview</div>
+
+<div id="carousel-box" class="row" align="center" style="">
+<div class="col-md-8">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <a href="#"><img id="img1" src="" alt="..."></a>
+
+                <div class="carousel-caption">
+                    <span id="prv_caption1" style="font-size: 150%;background-color: #222222;"></span>
+                </div>
+            </div>
+            <div class="item">
+                <a href="#"><img id="img2" src="" alt="..."></a>
+
+                <div class="carousel-caption">
+                    <span id="prv_caption2" style="font-size: 150%;background-color: #222222;"></span>
+
+                </div>
+            </div>
+            <div class="item">
+                <a href="#"><img id="img3" src="" alt="..."></a>
+
+                <div class="carousel-caption">
+                    <span id="prv_caption3" style="font-size: 150%;background-color: #222222;"></span>
+                </div>
+            </div>
+            <!--...-->
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="row title-box">SlideShow Section</div>
+
 <div id="slide-section" class="col-md-12">
     <!--Get image from server -->
     <div class="col-md-4">
@@ -75,7 +80,7 @@
                 <input type="hidden" value="1" name="position1" id="position1">
             </div>
             <div class="form-group col-md-12">
-                <input type="submit" id="upslide" name="upslide" value="Update Image 1"
+                <input type="submit" id="upslide" name="upslide" value="Update Slide 1"
                        class="form-control btn btn-primary">
             </div>
 
@@ -99,7 +104,7 @@
                 <input type="hidden" value="2" name="position2" id="position2">
             </div>
             <div class="form-group col-md-12">
-                <input type="submit" id="upslide2" name="upslide2" value="Update Image 2"
+                <input type="submit" id="upslide2" name="upslide2" value="Update Slide 2"
                        class="form-control btn btn-primary"
                        required>
             </div>
@@ -123,19 +128,23 @@
                 <input type="hidden" value="3" name="position3" id="position3">
             </div>
             <div class="form-group col-md-12">
-                <input type="submit" id="upslide3" name="upslide3" value="Update Image 3"
+                <input type="submit" id="upslide3" name="upslide3" value="Update Slide 3"
                        class="form-control btn btn-primary"
                        required>
             </div>
         </form>
     </div>
 </div>
-<div class="col-md-12">
+
+<div class="row title-box">Lower Section</div>
+
+
+<div id="lower-section" class="col-md-12">
 
     <div class="col-md-4">
         <div class="row sec-box">
             <div class="sec-image" align="center">
-                <img id="sec_image1" src="" class="img-responsive">
+                <img id="sec_image1" src="" class="service-image img-responsive img-circle">
             </div>
 
             <div id="sec_head1" class="sec-head"></div>
@@ -163,12 +172,12 @@
                                 <input type="file" id="image" name="image" class="form-control">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="sub">Heading</label>
-                                <input type="text" id="sub" name="sub" class="form-control" required>
+                                <label for="sub1">Heading</label>
+                                <input type="text" id="sub1" name="sub" class="form-control" required>
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="sub-text">Text</label>
-                                <textarea id="sub-text" name="sub-text" class="form-control" required></textarea>
+                                <textarea id="sub-text1" name="sub-text" class="form-control" required></textarea>
                                 <input type="hidden" value="1" name="position" id="position">
                             </div>
                             <div class="form-group col-md-12">
@@ -186,7 +195,7 @@
     <div class="col-md-4">
         <div class="row sec-box">
             <div class="sec-image" align="center">
-                <img id="sec_image2" src="" class="img-responsive">
+                <img id="sec_image2" src="" class="service-image img-responsive img-circle">
             </div>
 
             <div id="sec_head2" class="sec-head"></div>
@@ -214,12 +223,12 @@
                                 <input type="file" id="image" name="image" class="form-control">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="sub">Heading</label>
-                                <input type="text" id="sub" name="sub" class="form-control" required>
+                                <label for="sub2">Heading</label>
+                                <input type="text" id="sub2" name="sub" class="form-control" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="sub-text">Text</label>
-                                <textarea id="sub-text" name="sub-text" class="form-control" required></textarea>
+                                <label for="sub-text2">Text</label>
+                                <textarea id="sub-text2" name="sub-text" class="form-control" required></textarea>
                                 <input type="hidden" value="2" name="position" id="position">
                             </div>
                             <div class="form-group col-md-12">
@@ -237,7 +246,7 @@
     <div class="col-md-4">
         <div class="row sec-box">
             <div class="sec-image" align="center">
-                <img id="sec_image3" src="" class="img-responsive">
+                <img id="sec_image3" src="" class="service-image img-responsive img-circle">
             </div>
 
             <div id="sec_head3" class="sec-head"></div>
@@ -260,18 +269,17 @@
                      aria-labelledby="sectionThree">
                     <div class="panel-body">
                         <form id="update_serv_sec3" role="form" action="" method="post" enctype="multipart/form-data">
-
                             <div class="form-group col-md-12">
                                 <label for="image">Image</label>
                                 <input type="file" id="image" name="image" class="form-control">
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="sub">Heading</label>
-                                <input type="text" id="sub" name="sub" class="form-control" required>
+                                <label for="sub3">Heading</label>
+                                <input type="text" id="sub3" name="sub" class="form-control" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="sub-text">Text</label>
-                                <textarea id="sub-text" name="sub-text" class="form-control" required></textarea>
+                                <label for="sub-text3">Text</label>
+                                <textarea id="sub-text3" name="sub-text" class="form-control" required></textarea>
                                 <input type="hidden" value="3" name="position" id="position">
                             </div>
                             <div class="form-group col-md-12">
