@@ -1,16 +1,16 @@
-<div class="modal fade" id="addCustodianModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal fade" id="addNewsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      style="margin-top: 5%;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Custodian</h4>
+                <h4 class="modal-title" id="myModalLabel">Add News</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <form id="add-custodian-form" role="form" enctype="multipart/form-data">
+                        <form id="add-news-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="name">Name</label><input type="text" id="name" name="name"
                                                                      class="form-control"

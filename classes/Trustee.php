@@ -6,7 +6,7 @@
  * Time: 5:14 PM
  */
 
-class Custodian {
+class Trustee {
     protected $name;
     protected $category;
     protected $address;
@@ -45,23 +45,23 @@ class Custodian {
         $this->web_link = $web_link;
     }
 
-    public static function new_custodian($name, $category, $address, $web_link){
+    public static function new_trustee($name, $category, $address, $web_link){
         $instance = new self();
-        $instance->load_new_custodian($name, $category, $address, $web_link);
+        $instance->load_new_trustee($name, $category, $address, $web_link);
         return $instance;
     }
 
-    public function load_new_custodian($name, $category, $address, $web_link){
+    public function load_new_trustee($name, $category, $address, $web_link){
         $this->name = $name;
         $this->category = $category;
         $this->address = $address;
         $this->web_link = $web_link;
     }
 
-    public function add_custodian(){
+    public function add_trustee(){
         $return_code = false;
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('INSERT INTO custodians VALUES(:id, :name, :category, :address, :web_link)');
+        $stmt = $dbh->prepare('INSERT INTO trustees VALUES(:id, :name, :category, :address, :web_link)');
 
         $id = '';
         $stmt->bindParam(':id', $id);

@@ -1,19 +1,45 @@
 $(document).ready(function (e) {
-
-    async_get_slide_1();
-    async_get_slide_2();
-    async_get_slide_3();
+    var slides_changed = false;
+    var slides_img_url = 'img/slideshowimgs/';
+    var no_of_slides;
+    del_tmp_slideshow();
+    async_get_slide_show();
     async_get_sec_1();
     async_get_sec_2();
     async_get_sec_3();
+    preview_slide();
 
-    $("#update_slide1_form").on('submit', (function (e) {
+    $(window).bind('beforeunload', function(){
+        if(slides_changed) {
+            return 'Are you sure you want to leave the page ?';
+        }
+    });
+
+    $(window).bind('unload', function(){
+        if(slides_changed) {
+           del_tmp_slideshow();
+        }
+    });
+
+
+    function del_tmp_slideshow(){
+        $.ajax({
+            url: "php/delete_tmp_slide.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false        // To send DOMDocument or non processed data file it is set to false
+
+        });
+    }
+
+    $("#update-slide").on('click', (function (e) {
         e.preventDefault();
         $('.loader').show();
+
         $.ajax({
-            url: "php/update_slide1.php", // Url to which the request is send
+            url: "php/add_slide.php", // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
             contentType: false,       // The content type used when sending data to the server.
             cache: false,             // To unable request pages to be cached
             processData: false,        // To send DOMDocument or non processed data file it is set to false
@@ -22,59 +48,13 @@ $(document).ready(function (e) {
                 $('.loader').hide();
                 if (data == true) {
                     $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
-                    async_get_slide_1();
+                    location.reload(true);
                 } else {
                     $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 }
             }
         });
 
-    }));
-
-    $("#update_slide2_form").on('submit', (function (e) {
-        e.preventDefault();
-        $('.loader').show();
-        $.ajax({
-            url: "php/update_slide2.php", // Url to which the request is send
-            type: "POST",             // Type of request to be send, called as method
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false,       // The content type used when sending data to the server.
-            cache: false,             // To unable request pages to be cached
-            processData: false,        // To send DOMDocument or non processed data file it is set to false
-            success: function (data)   // A function to be called if request succeeds
-            {
-                $('.loader').hide();
-                if (data == true) {
-                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
-                    async_get_slide_2();
-                } else {
-                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
-                }
-            }
-        });
-    }));
-
-    $("#update_slide3_form").on('submit', (function (e) {
-        e.preventDefault();
-        $('.loader').show();
-        $.ajax({
-            url: "php/update_slide3.php", // Url to which the request is send
-            type: "POST",             // Type of request to be send, called as method
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false,       // The content type used when sending data to the server.
-            cache: false,             // To unable request pages to be cached
-            processData: false,        // To send DOMDocument or non processed data file it is set to false
-            success: function (data)   // A function to be called if request succeeds
-            {
-                $('.loader').hide();
-                if (data == true) {
-                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
-                    async_get_slide_3();
-                } else {
-                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
-                }
-            }
-        });
     }));
 
     $("#update_serv_sec1").on('submit', (function (e) {
@@ -89,6 +69,7 @@ $(document).ready(function (e) {
             processData: false,        // To send DOMDocument or non processed data file it is set to false
             success: function (data)   // A function to be called if request succeeds
             {
+                //alert(data);
                 $('.loader').hide();
                 if (data == true) {
                     $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
@@ -146,96 +127,103 @@ $(document).ready(function (e) {
         });
     }));
 
-    function async_get_slide_1(){
+    function async_get_slide_show() {
         $.ajax({
             type: "POST",
-            url: "php/get_slide1.php",
+            url: "php/get_slide_show.php",
             success: function (data) {
 
-                data = data.split(" ");
-                //alert(data);
-                var img_url = 'img/slideshowimgs/'+data[0];
-                var caption = data[1];
-
-                $("#slide_caption1").text(caption);
-                $("#prv_caption1").text(caption);
-                $("#caption1").val(caption);
-
-                var $image = $("#slide_image1");
-                var $img1 = $("#img1");
-                var $downloadingImage = $("<img>");
-                $downloadingImage.load(function(){
-                    $image.attr("src", $(this).attr("src"));
-                    $img1.attr("src", $(this).attr("src"));
-                });
-                $downloadingImage.attr("src", img_url);
+                var json_obj = JSON.parse(data);
+                set_up_slide_show(json_obj);
             }
         });
     }
 
-    function async_get_slide_2(){
-        $.ajax({
-            type: "POST",
-            url: "php/get_slide2.php",
-            success: function (data) {
+    function set_up_slide_show(json) {
+        no_of_slides = json.length;
+        for (i = 0; i < no_of_slides; i++) {
+            var image_name = slides_img_url + json[i].imagename;
+            var link = json[i].link;
+            var caption = json[i].caption;
 
-                data = data.split(" ");
-                var img_url = 'img/slideshowimgs/'+data[0];
-                var caption = data[1];
-
-                $("#slide_caption2").text(caption);
-                $("#prv_caption2").text(caption);
-                $("#caption2").val(caption);
-
-                var $image = $("#slide_image2");
-                var $img2 = $("#img2");
-
-                var $downloadingImage = $("<img>");
-                $downloadingImage.load(function(){
-                    $image.attr("src", $(this).attr("src"));
-                    $img2.attr("src", $(this).attr("src"));
-                });
-                $downloadingImage.attr("src", img_url);
+            if (i == 0) {
+                $('#indicators').append('<li data-target="#carousel-example-generic" data-slide-to="' + i + '" class="active"></li>');
+            } else {
+                $('#indicators').append('<li data-target="#carousel-example-generic" data-slide-to="' + i + '"></li>');
             }
-        });
+
+            if (i == 0) {
+                $('#carousel-inner').append('<div  class="item active">' +
+                '<a href="' + link + '"><img src="' + image_name + '" alt="Slide image"></a>' +
+                '<div class="carousel-caption">' +
+                '<span class="caption-text">' + caption + '</span>' +
+                '</div>' +
+                '</div>');
+            }
+            else {
+
+                $('#carousel-inner').append('<div class="item">' +
+                '<a href="' + link + '"><img src="' + image_name + '" alt="slide image"></a>' +
+                '<div class="carousel-caption">' +
+                '<span class="caption-text">' + caption + '</span>' +
+                '</div>' +
+                '</div>');
+            }
+        }
     }
 
-    function async_get_slide_3(){
-        $.ajax({
-            type: "POST",
-            url: "php/get_slide3.php",
-            success: function (data) {
+    function preview_slide() {
+        $("#add-slide-form").on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
 
-                data = data.split(" ");
-                //alert(data);
-                var img_url = 'img/slideshowimgs/'+data[0];
-                var caption = data[1];
+            var caption = $('#caption').val();
+            var link = $('#link').val();
 
-                $("#slide_caption3").text(caption);
-                $("#prv_caption3").text(caption);
-                $("#caption3").val(caption);
+            $.ajax({
+                url: "php/tmp_add_slide.php", // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                contentType: false,       // The content type used when sending data to the server.
+                cache: false,             // To unable request pages to be cached
+                processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    var img_url = slides_img_url + data;
 
-                var $image = $("#slide_image3");
-                var $img3 = $("#img3");
+                    if (data != false) {
+                        //var i = parseInt(no_of_slides) + 1;
+                        $('#indicators').append('<li data-target="#carousel-example-generic" data-slide-to=""></li>');
 
-                var $downloadingImage = $("<img>");
-                $downloadingImage.load(function(){
-                    $image.attr("src", $(this).attr("src"));
-                    $img3.attr("src", $(this).attr("src"));
-                });
-                $downloadingImage.attr("src", img_url);
-            }
-        });
+                        $('#carousel-inner').append('<div class="item">' +
+                        '<a href="' + link + '"><img src="' + img_url + '" alt="slide image"></a>' +
+                        '<div class="carousel-caption">' +
+                        '<span class="caption-text">' + caption + '</span>' +
+                        '</div>' +
+                        '</div>');
+
+                        $('.loader').hide();
+                        $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        slides_changed = true;
+
+                    } else {
+                        $('.loader').hide();
+                        $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                }
+            });
+
+        }));
     }
 
-    function async_get_sec_1(){
+    function async_get_sec_1() {
         $.ajax({
             type: "POST",
             url: "php/get_sec1.php",
             success: function (data) {
 
                 data = data.split("-");
-                var img_url = 'img/home_services/'+data[0];
+                var img_url = 'img/home_services/' + data[0];
                 var heading = data[1];
                 var text = data[2];
 
@@ -247,7 +235,7 @@ $(document).ready(function (e) {
 
                 var $image = $("#sec_image1");
                 var $downloadingImage = $("<img>");
-                $downloadingImage.load(function(){
+                $downloadingImage.load(function () {
                     $image.attr("src", $(this).attr("src"));
                 });
                 $downloadingImage.attr("src", img_url);
@@ -255,14 +243,14 @@ $(document).ready(function (e) {
         });
     }
 
-    function async_get_sec_2(){
+    function async_get_sec_2() {
         $.ajax({
             type: "POST",
             url: "php/get_sec2.php",
             success: function (data) {
 
                 data = data.split("-");
-                var img_url = 'img/home_services/'+data[0];
+                var img_url = 'img/home_services/' + data[0];
                 var heading = data[1];
                 var text = data[2];
 
@@ -274,7 +262,7 @@ $(document).ready(function (e) {
 
                 var $image = $("#sec_image2");
                 var $downloadingImage = $("<img>");
-                $downloadingImage.load(function(){
+                $downloadingImage.load(function () {
                     $image.attr("src", $(this).attr("src"));
                 });
                 $downloadingImage.attr("src", img_url);
@@ -282,14 +270,14 @@ $(document).ready(function (e) {
         });
     }
 
-    function async_get_sec_3(){
+    function async_get_sec_3() {
         $.ajax({
             type: "POST",
             url: "php/get_sec3.php",
             success: function (data) {
 
                 data = data.split("-");
-                var img_url = 'img/home_services/'+data[0];
+                var img_url = 'img/home_services/' + data[0];
                 var heading = data[1];
                 var text = data[2];
 
@@ -301,11 +289,172 @@ $(document).ready(function (e) {
 
                 var $image = $("#sec_image3");
                 var $downloadingImage = $("<img>");
-                $downloadingImage.load(function(){
+                $downloadingImage.load(function () {
                     $image.attr("src", $(this).attr("src"));
                 });
                 $downloadingImage.attr("src", img_url);
             }
         });
     }
+
+    $("#add-custodian-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_custodian.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
+
+    $("#add-admin-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_administrator.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
+
+    $("#add-fund-manager-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_fund_manager.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
+
+    $("#add-trustee-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_trustee.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
+
+    $("#add-scheme-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_scheme.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
+
+    $("#add-tender-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_tender.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
+
+    $("#add-vacancy-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_vacancy.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
 });

@@ -8,8 +8,4 @@
 include('../classes/HomePage.php');
 
 $homePage = new HomePage();
-$slide_image2 = $homePage->async_get_slide_image(2);
-
-$path = $slide_image2['imagename'];
-$caption = $slide_image2['caption'];
-echo $path.' '.$caption;
+$result = $homePage->del_tmp_slideshow();

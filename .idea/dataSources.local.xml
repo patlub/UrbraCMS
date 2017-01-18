@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - urbra@localhost" uuid="66c894a5-7a57-4779-926b-a8811fd86606">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>urbra.*</schema-pattern>
+      <default-schemas>urbra.*</default-schemas>
+    </data-source>
+  </component>
+</project>
+

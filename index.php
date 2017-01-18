@@ -13,7 +13,7 @@
 <div class="container-fluid">
     <?php include_once 'menu.php'; ?>
     <div class="row">
-        <a href="home.php">
+        <a href="home.php" target="_blank">
             <div id="home-box" class="col-md-2 col-sm-2">
                 <img src="img/home.png" width="50" height="70" style="margin-top: 90%;margin-left: 35%">
 
@@ -29,14 +29,14 @@
                     <p class="">Service Providers</p>
                 </div>
             </a>
-            <a href="#">
+            <a href="trustees.php" target="_blank">
                 <div id="trustees-box" class="col-md-6 col-sm-6 short-tab-box">
                     <img src="img/trustee.png">
 
                     <p class="tab-text">Trustees</p>
                 </div>
             </a>
-            <a href="#">
+            <a href="schemes.php" target="_blank">
                 <div id="rbs-box" class="col-md-6 col-sm-6 short-tab-box">
                     <img src="img/scheme.png">
 
@@ -53,7 +53,7 @@
                     <p class="tab-text">Downloads</p>
                 </div>
             </a>
-            <a href="#">
+            <a href="vacancies.php">
                 <div id="vacancy-box" class="col-md-6 col-sm-6 short-tab-box">
                     <img src="img/vacancy.png">
 
@@ -62,7 +62,7 @@
             </a>
         </div>
         <div class="col-md-5 col-sm-5 box-shell">
-            <a href="#">
+            <a href="tenders.php">
                 <div id="tenders-box" class="col-md-6 col-sm-6 short-tab-box">
                     <img src="img/tender.png">
 

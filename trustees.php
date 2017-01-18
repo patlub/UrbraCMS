@@ -16,12 +16,12 @@ require_once 'classes/DatabaseHelper.php';
     <?php include_once 'menu.php'; ?>
     <script src="js/loadData.js"></script>
     <div class="col-md-12">
-        <div class="success-alert row" align="center">Custodian has been added</div>
+        <div class="success-alert row" align="center">Trustee has been added</div>
         <div class="error row" align="center">Network Error</div>
     </div>
     <div class="row">
-        <div class="col-md-2 add-btn-box"><a href="#" data-toggle="modal" data-target="#addCustodianModal">
-                <button class="btn btn-primary btn-lg" value="">Add Custodian +</button>
+        <div class="col-md-2 add-btn-box"><a href="#" data-toggle="modal" data-target="#addTrusteeModal">
+                <button class="btn btn-primary btn-lg" value="">Add Trustee +</button>
             </a></div>
     </div>
     <div id="table-box" class="row" align="center">
@@ -42,7 +42,7 @@ require_once 'classes/DatabaseHelper.php';
             <?php
 
             $db_helper = new DatabaseHelper();
-            $db_helper->get_custodians();
+            $db_helper->get_trustees();
 
             ?>
             </tbody>
@@ -51,7 +51,7 @@ require_once 'classes/DatabaseHelper.php';
 
     <div class="loader"><!-- Place at bottom of page --></div>
     <div class="row">
-        <?php include_once 'imports/add_custodian.php'; ?>
+        <?php include_once 'imports/add_trustee.php'; ?>
     </div>
 </div>
 </body>

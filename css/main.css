@@ -112,7 +112,7 @@ div {
 
 .success-alert {
     display: none;
-    z-index: 1000;
+    z-index: 10000;
     background-color: #1fa142;
     color: #ffffff;
     padding: 2%;
@@ -199,4 +199,13 @@ div {
 
 .modal-backdrop {
     z-index: 0!important;
+}
+
+.add-btn-box {
+    margin-bottom: 1%;
+}
+
+.caption-text {
+    font-size: 150%;
+    background-color: #222222;
 }

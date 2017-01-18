@@ -1,34 +1,32 @@
-<div class="modal fade" id="addCustodianModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+
+<div class="modal fade" id="addVacancyModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      style="margin-top: 5%;">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Add Custodian</h4>
+                <h4 class="modal-title" id="myModalLabel">Add Vacancy</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <form id="add-custodian-form" role="form" enctype="multipart/form-data">
+                        <form id="add-vacancy-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="name">Name</label><input type="text" id="name" name="name"
                                                                      class="form-control"
                                                                      required>
                             </div>
                             <div class="form-group">
-                                <label for="category">Category</label>
-                                <select id="category" name="category" class="form-control">
-                                    <option value="corporate">Corporate</option>
-                                    <option value="individual">Individual</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label><input type="text" id="address" name="address"
+                                <label for="datepicker">Date</label><input type="text" id="datepicker" name="date"
                                                                            class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="link">Web Link</label><input type="text" id="link" name="link"
+                                <label for="details">Details</label><textarea id="details" name="details"
+                                                                           class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="pdf">PDF</label><input type="file" id="pdf" name="pdf"
                                                                          class="form-control">
                             </div>
                             <div class="form-group">

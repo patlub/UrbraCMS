@@ -8,8 +8,7 @@
 include('../classes/HomePage.php');
 
 $homePage = new HomePage();
-$slide_image1 = $homePage->async_get_slide_image(1);
 
-$path = $slide_image1['imagename'];
-$caption = $slide_image1['caption'];
-echo $path.' '.$caption;
+
+$result = $homePage->add_slideshow();
+echo $result;

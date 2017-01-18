@@ -1,4 +1,7 @@
-<?php require_once('classes/HomePage.php'); ?>
+<?php
+require_once('classes/HomePage.php');
+require_once('classes/DatabaseHelper.php');
+?>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -23,118 +26,153 @@
 <div class="col-md-8">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>
+        <ol id="indicators" class="carousel-indicators"></ol>
 
         <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <a href="#"><img id="img1" src="" alt="..."></a>
-
-                <div class="carousel-caption">
-                    <span id="prv_caption1" style="font-size: 150%;background-color: #222222;"></span>
-                </div>
-            </div>
-            <div class="item">
-                <a href="#"><img id="img2" src="" alt="..."></a>
-
-                <div class="carousel-caption">
-                    <span id="prv_caption2" style="font-size: 150%;background-color: #222222;"></span>
-
-                </div>
-            </div>
-            <div class="item">
-                <a href="#"><img id="img3" src="" alt="..."></a>
-
-                <div class="carousel-caption">
-                    <span id="prv_caption3" style="font-size: 150%;background-color: #222222;"></span>
-                </div>
-            </div>
-            <!--...-->
-        </div>
+        <div id="carousel-inner" class="carousel-inner" role="listbox"></div>
     </div>
 </div>
 </div>
 
 <div class="row title-box">SlideShow Section</div>
-
-<div id="slide-section" class="col-md-12">
-    <!--Get image from server -->
-    <div class="col-md-4">
-        <div class="col-md-12 sec-box">
-            <img id="slide_image1" src="" class="img-responsive">
-
-            <div id="slide_caption1" class="caption"></div>
+<div class="row">
+    <form id="add-slide-form" role="form" enctype="multipart/form-data">
+        <div class="form-group col-md-2">
+            <label for="slideimage">Slideshow Image</label>
+            <input type="file" id="slideimage" name="slideimage" class="form-control" required>
         </div>
-        <form id="update_slide1_form" role="form" enctype="multipart/form-data">
-            <div class="form-group col-md-12">
-                <label for="slideimage1">Slideshow Image 1</label>
-                <input type="file" id="slideimage1" name="slideimage1" class="form-control">
-            </div>
-            <div class="form-group col-md-12">
-                <label for="caption1">Caption</label>
-                <input type="text" id="caption1" name="caption1" class="form-control" value="" required>
-                <input type="hidden" value="1" name="position1" id="position1">
-            </div>
-            <div class="form-group col-md-12">
-                <input type="submit" id="upslide" name="upslide" value="Update Slide 1"
-                       class="form-control btn btn-primary">
-            </div>
-
-        </form>
-    </div>
-
-    <div class="col-md-4">
-        <div class="col-md-12 sec-box">
-            <img id="slide_image2" src="" class="img-responsive">
-
-            <div id="slide_caption2" class="caption"></div>
+        <div class="form-group col-md-2">
+            <label for="caption">Caption</label><input type="text" id="caption" name="caption"
+                                                       class="form-control" required>
         </div>
-        <form id="update_slide2_form" role="form" enctype="multipart/form-data">
-            <div class="form-group col-md-12">
-                <label for="slideimage2">Slideshow Image 2</label>
-                <input type="file" id="slideimage2" name="slideimage2" class="form-control">
-            </div>
-            <div class="form-group col-md-12">
-                <label for="caption2">Caption</label>
-                <input type="text" id="caption2" name="caption2" class="form-control" value="" required>
-                <input type="hidden" value="2" name="position2" id="position2">
-            </div>
-            <div class="form-group col-md-12">
-                <input type="submit" id="upslide2" name="upslide2" value="Update Slide 2"
-                       class="form-control btn btn-primary"
-                       required>
-            </div>
-        </form>
-    </div>
-    <div class="col-md-4">
-        <div class="col-md-12 sec-box">
-            <div class="sec-image">
-                <img id="slide_image3" src="" class="img-responsive">
-            </div>
-            <div id="slide_caption3" class="caption"></div>
+        <div class="form-group col-md-2">
+            <label for="link">Web Link</label><input type="text" id="link" name="link"
+                                                     class="form-control">
         </div>
-        <form id="update_slide3_form" role="form" enctype="multipart/form-data">
-            <div class="form-group col-md-12">
-                <label for="slideimage3">Slideshow Image 3</label>
-                <input type="file" id="slideimage3" name="slideimage3" class="form-control">
-            </div>
-            <div class="form-group col-md-12">
-                <label for="caption3">Caption</label>
-                <input type="text" id="caption3" name="caption3" class="form-control" value="" required>
-                <input type="hidden" value="3" name="position3" id="position3">
-            </div>
-            <div class="form-group col-md-12">
-                <input type="submit" id="upslide3" name="upslide3" value="Update Slide 3"
-                       class="form-control btn btn-primary"
-                       required>
-            </div>
-        </form>
-    </div>
+        <div class="form-group col-md-2" style="margin-top: 2%;">
+            <input id="add-slide" type="submit" name="add-slide" value="ADD SLIDE+" class="form-control btn btn-primary">
+        </div>
+        <div class="form-group col-md-2" style="margin-top: 2%;">
+            <input id="update-slide" type="button" name="submit" value="UPDATE" class="form-control btn btn-success">
+        </div>
+    </form>
+<!--    <div class="col-md-2 add-btn-box"><a href="#" data-toggle="modal" data-target="#addSlideModal">-->
+<!--            <button class="btn btn-primary btn-lg" value="">Add Slide +</button>-->
+<!--        </a></div>-->
 </div>
+<div id="table-box" class="row" align="center">
+
+    <table id="table" cellpadding="0" cellspacing="0" border="0"
+           class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Caption</th>
+            <th>Link</th>
+            <th>Image</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+
+        $db_helper = new DatabaseHelper();
+        $db_helper->get_slides();
+
+        ?>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="slide-section" class="col-md-12">-->
+<!--    <!--Get image from server -->-->
+<!--    <div class="col-md-4">-->
+<!--        <div class="col-md-12 sec-box">-->
+<!--            <img id="slide_image1" src="" class="img-responsive">-->
+<!---->
+<!--            <div id="slide_caption1" class="caption"></div>-->
+<!--        </div>-->
+<!--        <form id="update_slide1_form" role="form" enctype="multipart/form-data">-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <label for="slideimage1">Slideshow Image 1</label>-->
+<!--                <input type="file" id="slideimage1" name="slideimage1" class="form-control">-->
+<!--            </div>-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <label for="caption1">Caption</label>-->
+<!--                <input type="text" id="caption1" name="caption1" class="form-control" value="" required>-->
+<!--                <input type="hidden" value="1" name="position1" id="position1">-->
+<!--            </div>-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <input type="submit" id="upslide" name="upslide" value="Update Slide 1"-->
+<!--                       class="form-control btn btn-primary">-->
+<!--            </div>-->
+<!---->
+<!--        </form>-->
+<!--    </div>-->
+<!---->
+<!--    <div class="col-md-4">-->
+<!--        <div class="col-md-12 sec-box">-->
+<!--            <img id="slide_image2" src="" class="img-responsive">-->
+<!---->
+<!--            <div id="slide_caption2" class="caption"></div>-->
+<!--        </div>-->
+<!--        <form id="update_slide2_form" role="form" enctype="multipart/form-data">-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <label for="slideimage2">Slideshow Image 2</label>-->
+<!--                <input type="file" id="slideimage2" name="slideimage2" class="form-control">-->
+<!--            </div>-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <label for="caption2">Caption</label>-->
+<!--                <input type="text" id="caption2" name="caption2" class="form-control" value="" required>-->
+<!--                <input type="hidden" value="2" name="position2" id="position2">-->
+<!--            </div>-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <input type="submit" id="upslide2" name="upslide2" value="Update Slide 2"-->
+<!--                       class="form-control btn btn-primary"-->
+<!--                       required>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <div class="col-md-4">-->
+<!--        <div class="col-md-12 sec-box">-->
+<!--            <div class="sec-image">-->
+<!--                <img id="slide_image3" src="" class="img-responsive">-->
+<!--            </div>-->
+<!--            <div id="slide_caption3" class="caption"></div>-->
+<!--        </div>-->
+<!--        <form id="update_slide3_form" role="form" enctype="multipart/form-data">-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <label for="slideimage3">Slideshow Image 3</label>-->
+<!--                <input type="file" id="slideimage3" name="slideimage3" class="form-control">-->
+<!--            </div>-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <label for="caption3">Caption</label>-->
+<!--                <input type="text" id="caption3" name="caption3" class="form-control" value="" required>-->
+<!--                <input type="hidden" value="3" name="position3" id="position3">-->
+<!--            </div>-->
+<!--            <div class="form-group col-md-12">-->
+<!--                <input type="submit" id="upslide3" name="upslide3" value="Update Slide 3"-->
+<!--                       class="form-control btn btn-primary"-->
+<!--                       required>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="row title-box">Lower Section</div>
 
@@ -293,6 +331,9 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row">
+    <?php include_once 'imports/add_slide.php'; ?>
 </div>
 </div>
 <div class="loader"><!-- Place at bottom of page --></div>

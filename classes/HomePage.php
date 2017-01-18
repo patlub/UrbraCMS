@@ -40,63 +40,91 @@ class HomePage
         return $this->_sec_text;
     }
 
-    public function update_slideshow($imgFile, $caption, $position, $tmp_dir, $imgSize)
+    public function tmp_add_slideshow($imgFile, $caption, $link, $tmp_dir, $imgSize)
     {
         $return_code = false;
         $image = null;
         error_reporting(~E_NOTICE); // avoid notice
 
-        if (empty($imgFile)) {
+        $upload_dir = '../img/slideshowimgs/'; // upload directory
+
+        $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
+
+        // valid image extensions
+        $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+
+        // rename uploading image
+        $image = rand(1000, 1000000) . "." . $imgExt;
+
+        // allow valid image file formats
+        if (in_array($imgExt, $valid_extensions)) {
+            // Check file size '5MB'
+            if ($imgSize < 5000000) {
+
+//                    $img = resize_image();
+                move_uploaded_file($tmp_dir, $upload_dir . $image);
+            } else {
+                $errMSG = "Sorry, your file is too large.";
+            }
+        } else {
+            $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        }
+
+        if (!isset($errMSG)) {
             $dbh = $this->connectDB();
-            $stmt = $dbh->prepare('UPDATE slideshow SET caption=:caption WHERE position=:position');
+            $stmt = $dbh->prepare('INSERT INTO tmp_slideshow VALUES(:id, :imagename, :caption, :link)');
+
+            $id = '';
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':imagename', $image);
             $stmt->bindParam(':caption', $caption);
-            $stmt->bindParam(':position', $position);
+            $stmt->bindParam(':link', $link);
             $result = $stmt->execute();
 
             if ($result) {
-                $return_code = true;
-            }
-        } else {
-            $upload_dir = '../img/slideshowimgs/'; // upload directory
-
-            $imgExt = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION)); // get image extension
-
-            // valid image extensions
-            $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
-
-            // rename uploading image
-            $image = rand(1000, 1000000) . "." . $imgExt;
-
-            // allow valid image file formats
-            if (in_array($imgExt, $valid_extensions)) {
-                // Check file size '5MB'
-                if ($imgSize < 5000000) {
-
-//                    $img = resize_image();
-                    move_uploaded_file($tmp_dir, $upload_dir . $image);
-                } else {
-                    $errMSG = "Sorry, your file is too large.";
-                }
-            } else {
-                $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                return $image;
             }
 
-            if (!isset($errMSG)) {
-                $dbh = $this->connectDB();
-                $stmt = $dbh->prepare('UPDATE slideshow SET imagename=:imagename,caption=:caption WHERE position=:position');
-                $stmt->bindParam(':imagename', $image);
-                $stmt->bindParam(':caption', $caption);
-                $stmt->bindParam(':position', $position);
-                $result = $stmt->execute();
-
-                if ($result) {
-                    $return_code = true;
-                }
-            }
         }
-
         // if no error occured, continue ....
         return $return_code;
+    }
+
+    public function add_slideshow()
+    {
+        $result = false;
+        $id = '';
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('SELECT * FROM tmp_slideshow');
+        $sth->execute();
+        $statement_handler = $dbh->prepare('INSERT INTO slideshow VALUES(:id, :imagename, :caption, :link)');
+
+        if($sth->rowCount() > 0) {
+            while ($slide = $sth->fetch(PDO::FETCH_ASSOC)) {
+                $img_name = $slide['imagename'];
+                $caption = $slide['caption'];
+                $link = $slide['link'];
+
+                $statement_handler->bindParam(':id', $id);
+                $statement_handler->bindParam(':imagename', $img_name);
+                $statement_handler->bindParam(':caption', $caption);
+                $statement_handler->bindParam(':link', $link);
+                $result = $statement_handler->execute();
+            }
+            if ($result) {
+                $sth = $dbh->prepare('DELETE FROM tmp_slideshow');
+                $sth->execute();
+            }
+            return $result;
+        }
+        return $result;
+    }
+
+    public function del_tmp_slideshow(){
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM tmp_slideshow');
+        $result = $sth->execute();
+        return $result;
     }
 
     public function update_serv_sec($imgFile, $heading, $text, $position, $tmp_dir, $imgSize)
@@ -132,7 +160,7 @@ class HomePage
                 // Check file size '5MB'
                 if ($imgSize < 5000000) {
 
-                    $tmp_dir = $this->resize_image($tmp_dir, 838, 464);
+//                    $tmp_dir = $this->resize_image($tmp_dir, 838, 464);
                     move_uploaded_file($tmp_dir, $upload_dir . $image);
 
                 } else {
@@ -161,11 +189,19 @@ class HomePage
         return $return_code;
     }
 
-    public function async_get_slide_image($position)
+    public function async_get_slide_show()
     {
-        $image_det = $this->fetch_slide_image($position);
-        return $image_det;
-
+        $result = array();
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare('SELECT * FROM slideshow');
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            while ($slides = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                array_push($result, $slides);
+            }
+            return $result;
+        }
+        return false;
     }
 
     public function async_get_section($position)
@@ -183,19 +219,6 @@ class HomePage
 
     }
 
-    public function fetch_slide_image($position)
-    {
-        $dbh = $this->connectDB();
-        $statementHandler = $dbh->prepare('SELECT * FROM slideshow WHERE position = :position');
-        $statementHandler->bindParam(':position', $position, PDO::PARAM_STR);
-        $statementHandler->execute();
-        if ($statementHandler->rowCount() == 1) {
-            $image_det = $statementHandler->fetch(PDO::FETCH_ASSOC);
-            return $image_det;
-        }
-        return false;
-    }
-
     public function fetch_section($position)
     {
         $dbh = $this->connectDB();
@@ -209,23 +232,24 @@ class HomePage
         return false;
     }
 
-    function resize_image($file, $w, $h, $crop=FALSE) {
+    function resize_image($file, $w, $h, $crop = FALSE)
+    {
         list($width, $height) = getimagesize($file);
         $r = $width / $height;
         if ($crop) {
             if ($width > $height) {
-                $width = ceil($width-($width*abs($r-$w/$h)));
+                $width = ceil($width - ($width * abs($r - $w / $h)));
             } else {
-                $height = ceil($height-($height*abs($r-$w/$h)));
+                $height = ceil($height - ($height * abs($r - $w / $h)));
             }
             $newwidth = $w;
             $newheight = $h;
         } else {
-            if ($w/$h > $r) {
-                $newwidth = $h*$r;
+            if ($w / $h > $r) {
+                $newwidth = $h * $r;
                 $newheight = $h;
             } else {
-                $newheight = $w/$r;
+                $newheight = $w / $r;
                 $newwidth = $w;
             }
         }
