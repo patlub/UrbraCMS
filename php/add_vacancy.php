@@ -23,6 +23,6 @@ if(!empty($_FILES['pdf'])) {
 $date_array = explode('/', $date);
 $date = $date_array[2].'-'.$date_array[0].'-'.$date_array[1];
 
-$tender = Vacancy::new_vacancy($name, $date, $details, $pdfFile, $tmp_dir, $pdfSize);
-$result = $tender->add_vacancy();
+$vacancy = Vacancy::new_vacancy($name, $date, $details, $pdfFile, $tmp_dir, $pdfSize);
+$result = $vacancy->add_vacancy();
 echo $result;

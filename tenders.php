@@ -9,14 +9,14 @@ require_once 'classes/DatabaseHelper.php';
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 
     <link rel="stylesheet" href="css/main.css">
-<!--    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+    <!--    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 
     <script>
         $(function () {
-            $("#datepicker").datepicker();
+            $("#deadline, #date_awarded, #dop").datepicker();
         });
     </script>
     <title>Home Page</title>
@@ -42,9 +42,13 @@ require_once 'classes/DatabaseHelper.php';
                class="table table-striped table-bordered">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Date</th>
-                <th>PDF</th>
+                <th>Ref No.</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Deadline</th>
+                <th>Date Published</th>
+                <th>Date Awarded</th>
+                <th>Attachment</th>
             </tr>
             </thead>
             <tbody>

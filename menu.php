@@ -21,7 +21,7 @@
             <div id="value4" class="values">Integrity</div>
         </div>
     </div>
-    <div id="sub-heading" class="col-md-12 col-sm-12" align="center">URBRA Admin Panel<a href="https://www.google.com">google</a> </div>
+    <div id="sub-heading" class="col-md-12 col-sm-12" align="center">URBRA Admin Panel</div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {

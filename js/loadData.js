@@ -2,27 +2,27 @@ $(document).ready(function (e) {
     var slides_changed = false;
     var slides_img_url = 'img/slideshowimgs/';
     var no_of_slides;
-    del_tmp_slideshow();
+    del_tmp_slide_show();
     async_get_slide_show();
     async_get_sec_1();
     async_get_sec_2();
     async_get_sec_3();
     preview_slide();
+    del_slides();
 
-    $(window).bind('beforeunload', function(){
-        if(slides_changed) {
+    $(window).bind('beforeunload', function () {
+        if (slides_changed) {
             return 'Are you sure you want to leave the page ?';
         }
     });
 
-    $(window).bind('unload', function(){
-        if(slides_changed) {
-           del_tmp_slideshow();
+    $(window).bind('unload', function () {
+        if (slides_changed) {
+            del_tmp_slide_show();
         }
     });
 
-
-    function del_tmp_slideshow(){
+    function del_tmp_slide_show() {
         $.ajax({
             url: "php/delete_tmp_slide.php", // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
@@ -36,7 +36,7 @@ $(document).ready(function (e) {
     $("#update-slide").on('click', (function (e) {
         e.preventDefault();
         $('.loader').show();
-
+        slides_changed = false;
         $.ajax({
             url: "php/add_slide.php", // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
@@ -56,6 +56,33 @@ $(document).ready(function (e) {
         });
 
     }));
+
+    function del_slides() {
+        $("#slide-form").on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            $.ajax({
+                url: "php/delete_slides.php", // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                contentType: false,       // The content type used when sending data to the server.
+                cache: false,             // To unable request pages to be cached
+                processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#deleted-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                }
+            });
+
+        }));
+    }
 
     $("#update_serv_sec1").on('submit', (function (e) {
         e.preventDefault();
@@ -203,7 +230,7 @@ $(document).ready(function (e) {
                         '</div>');
 
                         $('.loader').hide();
-                        $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        $('#preview-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
                         slides_changed = true;
 
                     } else {
@@ -424,6 +451,7 @@ $(document).ready(function (e) {
             processData: false,        // To send DOMDocument or non processed data file it is set to false
             success: function (data)   // A function to be called if request succeeds
             {
+                alert(data);
                 $('.loader').hide();
                 if (data == true) {
                     $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
@@ -457,4 +485,31 @@ $(document).ready(function (e) {
         });
 
     }));
+
+    $("#add-article-form").on('submit', (function (e) {
+        e.preventDefault();
+        $('.loader').show();
+        $.ajax({
+            url: "php/add_article.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData: false,        // To send DOMDocument or non processed data file it is set to false
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                alert(data);
+                if (data == true) {
+                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                } else {
+                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                }
+            }
+        });
+
+    }));
+
+
+
 });

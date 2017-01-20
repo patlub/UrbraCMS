@@ -7,9 +7,10 @@
  */
 
 class Vacancy {
-    protected $name;
-    protected $date;
-    protected $details;
+    protected $title;
+    protected $start_date;
+    protected $end_date;
+    protected $description;
     protected $pdf;
     protected $tmp_dir;
     protected $size;
@@ -18,34 +19,44 @@ class Vacancy {
 
     }
 
-    public function get_name(){
-        return $this->name;
+    public function get_title(){
+        return $this->title;
     }
 
-    public function get_date(){
-        return $this->date;
+    public function get_start_date(){
+        return $this->start_date;
     }
+
+    public function get_end_date(){
+        return $this->start_date;
+    }
+
+    public function get_description(){
+        return $this->description;
+    }
+
     public function get_pdf(){
         return $this->pdf;
     }
-    public function get_details(){
-        return $this->details;
+
+    public function set_title($title){
+        $this->title = $title;
     }
 
-    public function set_name($name){
-        $this->name = $name;
+    public function set_start_date($start_date){
+        $this->start_date = $start_date;
     }
 
-    public function set_date($address){
-        $this->date = $address;
+    public function set_end_date($end_date){
+        $this->start_date = $end_date;
     }
 
-    public function set_pdf($pdf){
-        $this->pdf = $pdf;
+    public function set_description($description){
+        $this->description = $description;
     }
 
-    public function set_details($details){
-        $this->details = $details;
+    public function set_pdf($attachment){
+        $this->pdf = $attachment;
     }
 
     public static function new_vacancy($name, $date, $details, $pdf, $tmp_dir, $size){
@@ -55,10 +66,10 @@ class Vacancy {
     }
 
     public function load_new_vacancy($name, $date, $details, $pdf, $tmp_dir, $size){
-        $this->name = $name;
-        $this->date = $date;
+        $this->title = $name;
+        $this->start_date = $date;
         $this->pdf = $pdf;
-        $this->details = $details;
+        $this->description = $details;
         $this->tmp_dir = $tmp_dir;
         $this->size = $size;
     }
@@ -97,9 +108,9 @@ class Vacancy {
                 $stmt = $dbh->prepare('INSERT INTO vacancies VALUES (:id, :name, :details, :date, :filename)');
                 $id = '';
                 $stmt->bindParam(':id', $id);
-                $stmt->bindParam(':name', $this->name);
-                $stmt->bindParam(':date', $this->date);
-                $stmt->bindParam(':details', $this->details);
+                $stmt->bindParam(':name', $this->title);
+                $stmt->bindParam(':date', $this->start_date);
+                $stmt->bindParam(':details', $this->description);
                 $stmt->bindParam(':filename', $doc);
                 $result = $stmt->execute();
 

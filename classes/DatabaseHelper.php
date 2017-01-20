@@ -22,6 +22,9 @@ class DatabaseHelper
 
                 ?>
                 <tr>
+                    <td align="center">
+                        <label><input type="checkbox" name="slides[]" value="<?php echo $id; ?>"></label>
+                    </td>
                     <td>
                         <?php echo $caption; ?></td>
                     <td>
@@ -227,39 +230,6 @@ class DatabaseHelper
         }
     }
 
-    function get_articles()
-    {
-        $dbh = $this->connectDB();
-        $statementHandler = $dbh->prepare("SELECT * FROM news");
-        $statementHandler->execute();
-        if ($statementHandler->rowCount() > 0) {
-            while ($article = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
-                $id = $article['id'];
-                $head = $article['head'];
-                $story = $article['article'];
-                $date = $article['date'];
-
-                ?>
-                <tr>
-                    <td>
-                        <?php echo $head; ?>
-                    </td>
-                    <td>
-                        <?php echo $story; ?></td>
-                    <td>
-                        <?php echo $date; ?>
-                    </td>
-                    <td align="center">
-                        <a href="delete_disciple.php?id=<?php echo $id; ?>" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-            <?php
-            }
-        } else {
-            echo false;
-        }
-    }
-
     function get_tenders()
     {
         $dbh = $this->connectDB();
@@ -268,19 +238,36 @@ class DatabaseHelper
         if ($statementHandler->rowCount() > 0) {
             while ($article = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $article['id'];
-                $name = $article['name'];
-                $end_date = $article['end-date'];
-                $pdf = $article['pdf'];
+                $ref_no = $article['ref_no'];
+                $desc = $article['desc'];
+                $category = $article['category'];
+                $deadline = $article['deadline'];
+                $date_pub = $article['date_pub'];
+                $date_awarded = $article['date_awarded'];
+                $attachment = $article['attachment'];
 
                 ?>
                 <tr>
                     <td>
-                        <?php echo $name; ?>
+                        <?php echo $ref_no; ?>
                     </td>
                     <td>
-                        <?php echo $end_date; ?></td>
+                        <?php echo $desc; ?>
+                    </td>
                     <td>
-                        <a href="<?php echo 'docs/' . $pdf ?>" target="_blank"><img src="img/pdf.png"></a>
+                        <?php echo $category; ?>
+                    </td>
+                    <td>
+                        <?php echo $deadline; ?>
+                    </td>
+                    <td>
+                        <?php echo $date_pub; ?>
+                    </td>
+                    <td>
+                        <?php echo $date_awarded; ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo 'docs/' . $attachment ?>" target="_blank"><img src="img/pdf.png"></a>
                     </td>
                     <td align="center">
                         <a href="delete_disciple.php?id=<?php echo $id; ?>" class="btn btn-danger">Delete</a>
@@ -330,6 +317,60 @@ class DatabaseHelper
         }
     }
 
+    function get_articles(){
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM articles");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            while ($article = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $article['id'];
+                $title = $article['title'];
+                $details = $article['article'];
+                $date = $article['date'];
+                $pdf = $article['resource'];
+
+                ?>
+                <tr>
+                    <td>
+                        <?php echo $date; ?></td>
+                    <td>
+                        <?php echo $title; ?>
+                    </td>
+
+                    <td>
+                        <?php echo $details; ?></td>
+                    <td>
+                        <a href="<?php echo 'docs/' . $pdf ?>" target="_blank"><img src="img/pdf.png"></a>
+                    </td>
+                    <td align="center">
+                        <a href="delete_disciple.php?id=<?php echo $id; ?>" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+
+    }
+
+    function load_hours(){
+        for($i = 0; $i < 24;$i++){
+            if($i < 10){
+                $i = '0'.$i;
+            }
+            echo'<option value="'.$i.'">'.$i.'</option>';
+        }
+    }
+
+    function load_minutes(){
+        for($i = 0; $i < 60;$i++){
+            if($i < 10){
+                $i = '0'.$i;
+            }
+            echo'<option value="'.$i.'">'.$i.'</option>';
+        }
+    }
 
     public function connectDB()
     {
