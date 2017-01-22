@@ -17,6 +17,8 @@ require_once 'classes/DatabaseHelper.php';
     <script src="js/loadData.js"></script>
     <div class="col-md-12">
         <div class="success-alert row" align="center">Administrator has been added</div>
+        <div id="deleted-alert" class="row" align="center">Administrators have been deleted</div>
+
         <div class="error row" align="center">Network Error</div>
     </div>
     <div class="row">
@@ -24,31 +26,35 @@ require_once 'classes/DatabaseHelper.php';
                 <button class="btn btn-primary btn-lg" value="">Add Administrator +</button>
             </a></div>
     </div>
-    <div id="table-box" class="row" align="center">
-        <script src="js/searchfilter.js" type="text/javascript"></script>
-        <input type="text" id="search" onkeyup="Search()" placeholder="Search name" class="form-control">
+    <form id="admins-form" role="form" enctype="multipart/form-data">
 
-        <table id="table" cellpadding="0" cellspacing="0" border="0"
-               class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Address</th>
-                <th>Web link</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
+        <div id="table-box" class="row" align="center">
+            <script src="js/searchfilter.js" type="text/javascript"></script>
+            <input type="text" id="search" onkeyup="Search()" placeholder="Search name" class="form-control">
 
-            $db_helper = new DatabaseHelper();
-            $db_helper->get_administrators();
+            <table id="table" cellpadding="0" cellspacing="0" border="0"
+                   class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Address</th>
+                    <th>Web link</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
 
-            ?>
-            </tbody>
-        </table>
-    </div>
+                $db_helper = new DatabaseHelper();
+                $db_helper->get_administrators();
 
+                ?>
+                </tbody>
+            </table>
+        </div>
+        <div id="delete"><input type="submit" value="Delete" class="btn btn-danger"></div>
+    </form>
     <div class="loader"><!-- Place at bottom of page --></div>
     <div class="row">
         <?php include_once 'imports/add_administrator.php'; ?>

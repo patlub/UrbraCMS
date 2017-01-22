@@ -5,11 +5,10 @@
  * Date: 1/5/2017
  * Time: 3:37 PM
  */
-include('../classes/HomePage.php');
+include('../classes/DatabaseHelper.php');
 
-$homePage = new HomePage();
-
+$dbh = new DatabaseHelper();
 $slides = $_POST['slides'];
 
-$result = $homePage->del_slides($slides);
+$result = $dbh->del_slides($slides);
 echo $result;

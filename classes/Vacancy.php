@@ -11,7 +11,7 @@ class Vacancy {
     protected $start_date;
     protected $end_date;
     protected $description;
-    protected $pdf;
+    protected $attachment;
     protected $tmp_dir;
     protected $size;
 
@@ -35,8 +35,8 @@ class Vacancy {
         return $this->description;
     }
 
-    public function get_pdf(){
-        return $this->pdf;
+    public function get_attachment(){
+        return $this->attachment;
     }
 
     public function set_title($title){
@@ -55,21 +55,22 @@ class Vacancy {
         $this->description = $description;
     }
 
-    public function set_pdf($attachment){
-        $this->pdf = $attachment;
+    public function set_attachment($attachment){
+        $this->attachment = $attachment;
     }
 
-    public static function new_vacancy($name, $date, $details, $pdf, $tmp_dir, $size){
+    public static function new_vacancy($title, $start_date, $end_date, $description, $attachment, $tmp_dir, $size){
         $instance = new self();
-        $instance->load_new_vacancy($name, $date, $details, $pdf, $tmp_dir, $size);
+        $instance->load_new_vacancy($title, $start_date, $end_date, $description, $attachment, $tmp_dir, $size);
         return $instance;
     }
 
-    public function load_new_vacancy($name, $date, $details, $pdf, $tmp_dir, $size){
-        $this->title = $name;
-        $this->start_date = $date;
-        $this->pdf = $pdf;
-        $this->description = $details;
+    public function load_new_vacancy($title, $start_date, $end_date, $description, $attachment, $tmp_dir, $size){
+        $this->title = $title;
+        $this->start_date = $start_date;
+        $this->end_date = $end_date;
+        $this->description = $description;
+        $this->attachment = $attachment;
         $this->tmp_dir = $tmp_dir;
         $this->size = $size;
     }
@@ -81,7 +82,7 @@ class Vacancy {
 
             $upload_dir = '../docs/'; // upload directory
 
-            $fileExt = strtolower(pathinfo($this->pdf, PATHINFO_EXTENSION)); // get image extension
+            $fileExt = strtolower(pathinfo($this->attachment, PATHINFO_EXTENSION)); // get image extension
 
             // valid image extensions
             $valid_extensions = array('pdf'); // valid extensions
@@ -105,12 +106,13 @@ class Vacancy {
 
             if (!isset($errMSG)) {
                 $dbh = $this->connectDB();
-                $stmt = $dbh->prepare('INSERT INTO vacancies VALUES (:id, :name, :details, :date, :filename)');
+                $stmt = $dbh->prepare('INSERT INTO vacancies VALUES (:id, :title, :start_date, :end_date, :description, :filename)');
                 $id = '';
                 $stmt->bindParam(':id', $id);
-                $stmt->bindParam(':name', $this->title);
-                $stmt->bindParam(':date', $this->start_date);
-                $stmt->bindParam(':details', $this->description);
+                $stmt->bindParam(':title', $this->title);
+                $stmt->bindParam(':start_date', $this->start_date);
+                $stmt->bindParam(':end_date', $this->end_date);
+                $stmt->bindParam(':description', $this->description);
                 $stmt->bindParam(':filename', $doc);
                 $result = $stmt->execute();
 
@@ -121,6 +123,16 @@ class Vacancy {
         // if no error occured, continue ....
         return $return_code;
     }
+
+    public function del_vacancy($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM vacancies WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
 
     public function connectDB()
     {
@@ -134,4 +146,6 @@ class Vacancy {
             echo "Connection Error: " . $e->getMessage();
         }
     }
+
+
 } 

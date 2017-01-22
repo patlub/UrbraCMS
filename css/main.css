@@ -110,7 +110,7 @@ div {
     border: 1px solid #A57F30;
 }
 
-.success-alert {
+.success-alert, #deleted-alert{
     display: none;
     z-index: 10000;
     background-color: #1fa142;
@@ -187,7 +187,6 @@ div {
 .title-box {
     font-size: 350%;
     text-align: center;
-    /*margin-bottom: 4%;*/
     padding-top: 20px;
     padding-bottom: 20px;
     color: lightgrey;
@@ -209,3 +208,10 @@ div {
     font-size: 150%;
     background-color: #222222;
 }
+.icon-edit{
+    color: green;
+}
+.icon-delete{
+    color: red;
+}
+

@@ -1,64 +1,80 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: PATRICK
  * Date: 1/11/2017
  * Time: 5:14 PM
  */
-
-class Administrator {
+class Administrator
+{
     protected $name;
     protected $category;
     protected $address;
     protected $web_link;
 
-    public function __construct(){
+    public function __construct()
+    {
 
     }
 
-    public function get_name(){
+    public function get_name()
+    {
         return $this->name;
     }
-    public function get_category(){
+
+    public function get_category()
+    {
         return $this->category;
     }
-    public function get_address(){
+
+    public function get_address()
+    {
         return $this->address;
     }
-    public function get_web_link(){
+
+    public function get_web_link()
+    {
         return $this->web_link;
     }
 
-    public function set_name($name){
+    public function set_name($name)
+    {
         $this->name = $name;
     }
 
-    public function set_category($category){
+    public function set_category($category)
+    {
         $this->category = $category;
     }
 
-    public function set_address($address){
+    public function set_address($address)
+    {
         $this->address = $address;
     }
 
-    public function set_web_link($web_link){
+    public function set_web_link($web_link)
+    {
         $this->web_link = $web_link;
     }
 
-    public static function new_administrator($name, $category, $address, $web_link){
+    public static function new_administrator($name, $category, $address, $web_link)
+    {
         $instance = new self();
         $instance->load_new_administrator($name, $category, $address, $web_link);
         return $instance;
     }
 
-    public function load_new_administrator($name, $category, $address, $web_link){
+    public function load_new_administrator($name, $category, $address, $web_link)
+    {
         $this->name = $name;
         $this->category = $category;
         $this->address = $address;
         $this->web_link = $web_link;
     }
 
-    public function add_administrator(){
+    public function add_administrator()
+    {
         $return_code = false;
         $dbh = $this->connectDB();
         $stmt = $dbh->prepare('INSERT INTO administrators VALUES(:id, :name, :category, :address, :web_link)');
@@ -77,6 +93,15 @@ class Administrator {
         return $return_code;
     }
 
+    public function del_admin($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM administrators WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";
@@ -89,4 +114,6 @@ class Administrator {
             echo "Connection Error: " . $e->getMessage();
         }
     }
+
+
 } 

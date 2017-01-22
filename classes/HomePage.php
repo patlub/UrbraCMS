@@ -127,18 +127,7 @@ class HomePage
         return $result;
     }
 
-    public function del_slides($slides){
-        $result = false;
-        $dbh = $this->connectDB();
-        $length = count($slides);
-        $sth = $dbh->prepare('DELETE FROM slideshow WHERE id = :ids');
 
-        for ($i = 0; $i < $length; $i++) {
-            $sth->bindParam(':ids', $slides[$i]);
-            $result = $sth->execute();
-        }
-        return $result;
-    }
 
 
     public function update_serv_sec($imgFile, $heading, $text, $position, $tmp_dir, $imgSize)

@@ -77,6 +77,16 @@ class Custodian {
         return $return_code;
     }
 
+    public function del_custodian($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM custodians WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
+
     public function connectDB()
     {
         $DB_HOST = "localhost";

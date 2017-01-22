@@ -18,7 +18,7 @@ require_once('classes/DatabaseHelper.php');
 <script src="js/loadData.js"></script>
 <div class="col-md-12">
     <div class="success-alert row" align="center">Slide Image has been updated</div>
-    <div id="deleted-alert" class="success-alert row" align="center">Slides have been deleted</div>
+    <div id="deleted-alert" class=" row" align="center">Slides have been deleted</div>
     <div id="preview-alert" class="success-alert row" align="center">Preview Updated</div>
     <div class="error row" align="center">Network Error</div>
 </div>

@@ -26,7 +26,7 @@ if(!empty($_FILES['resource'])) {
 $date_array = explode('/', $date);
 $date = $date_array[2].'-'.$date_array[0].'-'.$date_array[1];
 
-$expiry_date_array = explode('/', $expiry);
+$date_array = explode('/', $expiry);
 $expiry = $date_array[2].'-'.$date_array[0].'-'.$date_array[1];
 
 $expiry = $expiry.' '.$hour.':'.$minute.':'.'00';

@@ -77,6 +77,15 @@ class Trustee {
         return $return_code;
     }
 
+    public function del_trustee($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM trustees WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";

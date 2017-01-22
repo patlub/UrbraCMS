@@ -25,14 +25,14 @@ if(!empty($_FILES['attachment'])) {
     $attachmentSize = $_FILES['attachment']['size'];
 }
 
-$deadline_array = explode('/', $deadline);
-$deadline = $deadline_array[2].'-'.$deadline_array[0].'-'.$deadline_array[1];
+$date_array = explode('/', $deadline);
+$deadline = $date_array[2].'-'.$date_array[0].'-'.$date_array[1];
 
-$date_awarded_array = explode('/', $date_awarded);
-$date_awarded = $date_awarded_array[2].'-'.$date_awarded_array[0].'-'.$date_awarded_array[1];
+$date_array = explode('/', $date_awarded);
+$date_awarded = $date_array[2].'-'.$date_array[0].'-'.$date_array[1];
 
-$dop_array = explode('/', $dop);
-$dop = $dop_array[2].'-'.$dop_array[0].'-'.$dop_array[1];
+$date_array = explode('/', $dop);
+$dop = $date_array[2].'-'.$date_array[0].'-'.$date_array[1];
 
 $tender = Tender::new_tender($ref_no, $desc, $category, $deadline, $dop, $date_awarded,$attachedFile, $tmp_dir, $attachmentSize);
 $result = $tender->add_tender();

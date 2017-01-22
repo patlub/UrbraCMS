@@ -77,6 +77,15 @@ class FundManager {
         return $return_code;
     }
 
+    public function del_fund_manager($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM fund_managers WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";

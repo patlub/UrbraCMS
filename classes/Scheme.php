@@ -77,6 +77,15 @@ class Scheme {
         return $return_code;
     }
 
+    public function del_scheme($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM rbs WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";

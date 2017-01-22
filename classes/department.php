@@ -57,6 +57,15 @@ class Department {
         return $return_code;
     }
 
+    public function del_department($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM departments WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";

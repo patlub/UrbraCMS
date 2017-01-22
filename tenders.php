@@ -27,6 +27,8 @@ require_once 'classes/DatabaseHelper.php';
     <script src="js/loadData.js"></script>
     <div class="col-md-12">
         <div class="success-alert row" align="center">Tender has been added</div>
+        <div id="deleted-alert" class=" row" align="center">Tenders have been deleted</div>
+
         <div class="error row" align="center">Network Error</div>
     </div>
     <div class="row">
@@ -34,6 +36,7 @@ require_once 'classes/DatabaseHelper.php';
                 <button class="btn btn-primary btn-lg" value="">Add Tender +</button>
             </a></div>
     </div>
+    <form id="tenders-form" role="form" enctype="multipart/form-data">
     <div id="table-box" class="row" align="center">
         <script src="js/searchfilter.js" type="text/javascript"></script>
         <input type="text" id="search" onkeyup="Search()" placeholder="Search name" class="form-control">
@@ -42,6 +45,7 @@ require_once 'classes/DatabaseHelper.php';
                class="table table-striped table-bordered">
             <thead>
             <tr>
+                <th></th>
                 <th>Ref No.</th>
                 <th>Description</th>
                 <th>Category</th>
@@ -61,7 +65,8 @@ require_once 'classes/DatabaseHelper.php';
             </tbody>
         </table>
     </div>
-
+    <div id="delete"><input type="submit" value="Delete" class="btn btn-danger"></div>
+</form>
     <div class="loader"><!-- Place at bottom of page --></div>
     <div class="row">
         <?php include_once 'imports/add_tender.php'; ?>

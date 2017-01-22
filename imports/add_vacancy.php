@@ -13,20 +13,60 @@
                     <div class="col-md-7">
                         <form id="add-vacancy-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="name">Name</label><input type="text" id="name" name="name"
+                                <label for="title">Title</label><input type="text" id="title" name="title"
                                                                      class="form-control"
                                                                      required>
                             </div>
                             <div class="form-group">
-                                <label for="datepicker">Date</label><input type="text" id="datepicker" name="date"
+                                <label for="start_date">Start Date</label><input type="text" id="start_date" name="start_date"
                                                                            class="form-control">
                             </div>
+                            <div class="form-group col-md-6">
+                                <label for="s-hour">Hours</label>
+                                <select id="s-hour" name="s-hour" class="form-control">
+                                    <?php
+                                    $dbh = new DatabaseHelper();
+                                    $dbh->load_hours();
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="s-minute">Minutes</label>
+                                <select id="s-minute" name="s-minute" class="form-control">
+                                    <?php
+                                    $dbh = new DatabaseHelper();
+                                    $dbh->load_minutes();
+                                    ?>
+                                </select>
+                            </div>
                             <div class="form-group">
-                                <label for="details">Details</label><textarea id="details" name="details"
+                                <label for="end_date">End Date</label><input type="text" id="end_date" name="end_date"
+                                                                                 class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="e-hour">Hours</label>
+                                <select id="e-hour" name="e-hour" class="form-control">
+                                    <?php
+                                    $dbh = new DatabaseHelper();
+                                    $dbh->load_hours();
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="e-minute">Minutes</label>
+                                <select id="e-minute" name="e-minute" class="form-control">
+                                    <?php
+                                    $dbh = new DatabaseHelper();
+                                    $dbh->load_minutes();
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label><textarea id="description" name="description"
                                                                            class="form-control"></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="pdf">PDF</label><input type="file" id="pdf" name="pdf"
+                                <label for="attachment">Attachment</label><input type="file" id="attachment" name="attachment"
                                                                          class="form-control">
                             </div>
                             <div class="form-group">

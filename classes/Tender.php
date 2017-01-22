@@ -166,6 +166,15 @@ class Tender
 //        return $this->name.' '.$this->date.' '.$doc;
     }
 
+    public function del_tender($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('DELETE FROM tenders WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $result = $sth->execute();
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";
@@ -178,4 +187,6 @@ class Tender
             echo "Connection Error: " . $e->getMessage();
         }
     }
+
+
 } 

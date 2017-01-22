@@ -9,7 +9,7 @@ require_once 'classes/DatabaseHelper.php';
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 
     <link rel="stylesheet" href="css/main.css">
-<!--    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
+    <!--    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
@@ -29,6 +29,7 @@ require_once 'classes/DatabaseHelper.php';
     <script src="js/loadData.js"></script>
     <div class="col-md-12">
         <div class="success-alert row" align="center">Article has been added</div>
+        <div id="deleted-alert" class=" row" align="center">Articles have been deleted</div>
         <div class="error row" align="center">Network Error</div>
     </div>
     <div class="row">
@@ -36,30 +37,35 @@ require_once 'classes/DatabaseHelper.php';
                 <button class="btn btn-primary btn-lg" value="">Add Article +</button>
             </a></div>
     </div>
-    <div id="table-box" class="row" align="center">
-        <script src="js/searchfilter.js" type="text/javascript"></script>
-        <input type="text" id="search" onkeyup="Search()" placeholder="Search name" class="form-control">
+    <form id="articles-form" role="form" enctype="multipart/form-data">
 
-        <table id="table" cellpadding="0" cellspacing="0" border="0"
-               class="table table-striped table-bordered">
-            <thead>
-            <tr>
-                <th>Date</th>
-                <th>Title</th>
-                <th>Article</th>
-                <th>Resource</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php
+        <div id="table-box" class="row" align="center">
+            <script src="js/searchfilter.js" type="text/javascript"></script>
+            <input type="text" id="search" onkeyup="Search()" placeholder="Search name" class="form-control">
 
-            $db_helper = new DatabaseHelper();
-            $db_helper->get_articles();
+            <table id="table" cellpadding="0" cellspacing="0" border="0"
+                   class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Article</th>
+                    <th>Resource</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
 
-            ?>
-            </tbody>
-        </table>
-    </div>
+                $db_helper = new DatabaseHelper();
+                $db_helper->get_articles();
+
+                ?>
+                </tbody>
+            </table>
+        </div>
+        <div id="delete"><input type="submit" value="Delete" class="btn btn-danger"></div>
+    </form>
 
     <div class="loader"><!-- Place at bottom of page --></div>
     <div class="row">
