@@ -102,6 +102,38 @@ class Administrator
         return $result;
     }
 
+    public function fetch_admin($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('SELECT * FROM administrators WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $sth->execute();
+        if($sth->rowCount() == 1){
+            $admin = $sth->fetch(PDO::FETCH_ASSOC);
+            return $admin;
+        }
+        return null;
+    }
+
+    public function edit_admin($id)
+    {
+        $return_code = false;
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('UPDATE administrators SET name =  :name, category = :category, address = :address, web_link = :web_link WHERE id = :id');
+
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':category', $this->category);
+        $stmt->bindParam(':address', $this->address);
+        $stmt->bindParam(':web_link', $this->web_link);
+        $result = $stmt->execute();
+
+        if ($result) {
+            $return_code = true;
+        }
+        return $return_code;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";
@@ -113,6 +145,35 @@ class Administrator
         } catch (PDOException $e) {
             echo "Connection Error: " . $e->getMessage();
         }
+    }
+
+    public function admin_import($file)
+    {
+        $return_code = false;
+        $handle = fopen($file, "r");
+        $dbh = $this->connectDB();
+
+        while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
+            $name = $filesop[0];
+            $category = $filesop[1];
+            $address = $filesop[2];
+            $web_link = $filesop[3];
+
+            $stmt = $dbh->prepare('INSERT INTO administrators VALUES (:id, :name, :category, :address, :web_link)');
+
+            $id = '';
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':category', $category);
+            $stmt->bindParam(':address', $address);
+            $stmt->bindParam(':web_link', $web_link);
+            $result = $stmt->execute();
+
+            if ($result) {
+                $return_code = true;
+            }
+        }
+        return $return_code;
     }
 
 

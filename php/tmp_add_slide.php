@@ -12,6 +12,10 @@ $homePage = new HomePage();
 $caption = $_POST['caption'];
 $link = $_POST['link'];
 
+$imgFile = null;
+$tmp_dir = null;
+$imgSize = null;
+
 if(!empty($_FILES['slideimage'])) {
     $imgFile = $_FILES['slideimage']['name'];
     $tmp_dir = $_FILES['slideimage']['tmp_name'];

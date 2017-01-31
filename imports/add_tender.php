@@ -13,8 +13,7 @@
                         <form id="add-tender-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label for="ref_no">Ref No.</label><input type="text" id="ref_no" name="ref_no"
-                                                                          class="form-control"
-                                                                          required>
+                                                                          class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="desc">Description</label><textarea id="desc" name="desc"
@@ -29,25 +28,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="deadline">Deadline</label><input type="text" id="deadline" name="deadline"
-                                                                             class="form-control"
-                                                                             required>
+                                                                             class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="date_awarded">Date Awarded</label><input type="text" id="date_awarded"
                                                                                      name="date_awarded"
-                                                                                     class="form-control"
-                                                                                     required>
+                                                                                     class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="dop">Dead of Publication</label><input type="text" id="dop" name="dop"
-                                                                                   class="form-control"
-                                                                                   required>
+                                                                                   class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="attachment">Attachment</label><input type="file" id="attachment"
                                                                                  name="attachment"
-                                                                                 class="form-control"
-                                                                                 required>
+                                                                                 class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-success">

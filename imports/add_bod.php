@@ -12,12 +12,16 @@
                     <div class="col-md-7">
                         <form id="add-BoD-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="name">Name</label><input type="text" id="name" name="name"
+                                <label for="image">Image</label><input type="file" id="image" name="image"
                                                                        class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="image">Image</label><input type="file" id="image" name="image"
-                                                                       class="form-control" required>
+                                <label for="name">Name</label><input type="text" id="name" name="name"
+                                                                     class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="details">Details</label><input type="text" id="details" name="details"
+                                                                     class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-success">

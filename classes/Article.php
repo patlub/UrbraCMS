@@ -120,6 +120,86 @@ class Article {
 
         return $return_code;
     }
+    public function edit_article($id){
+        $return_code = false;
+        $doc = null;
+        error_reporting(~E_NOTICE); // avoid notice
+
+        $upload_dir = '../docs/'; // upload directory
+
+        if ($this->resource == null) {
+            if (!isset($errMSG)) {
+                $dbh = $this->connectDB();
+                $stmt = $dbh->prepare('UPDATE articles SET title = :head, article = :article, date = :date, expiry = :expiry WHERE id = :id');
+
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':head', $this->head);
+                $stmt->bindParam(':article', $this->article);
+                $stmt->bindParam(':date', $this->date);
+                $stmt->bindParam(':expiry', $this->expiry);
+                $result = $stmt->execute();
+
+                if ($result) {
+                    $return_code = true;
+                }
+            }
+        }
+        else {
+
+            $fileExt = strtolower(pathinfo($this->resource, PATHINFO_EXTENSION)); // get image extension
+
+            // valid image extensions
+            $valid_extensions = array('pdf', 'jpeg', 'jpg', 'png', 'gif'); // valid extensions
+
+            // rename uploading image
+            $doc = rand(1000, 1000000) . "." . $fileExt;
+
+            // allow valid image file formats
+            if (in_array($fileExt, $valid_extensions)) {
+                // Check file size '5MB'
+                if ($this->size < 5000000) {
+
+//                    $img = resize_image();
+                    move_uploaded_file($this->tmp_dir, $upload_dir . $doc);
+                } else {
+                    $errMSG = "Sorry, your file is too large.";
+                }
+            } else {
+                $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            }
+
+
+            if (!isset($errMSG)) {
+                $dbh = $this->connectDB();
+                $stmt = $dbh->prepare('UPDATE articles SET title = :head, article = :article, date = :date, resource = :resource, expiry = :expiry WHERE id = :id');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':head', $this->head);
+                $stmt->bindParam(':article', $this->article);
+                $stmt->bindParam(':date', $this->date);
+                $stmt->bindParam(':resource', $doc);
+                $stmt->bindParam(':expiry', $this->expiry);
+                $result = $stmt->execute();
+
+                if ($result) {
+                    $return_code = true;
+                }
+            }
+        }
+        return $return_code;
+    }
+
+    public function fetch_article($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('SELECT * FROM articles WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $sth->execute();
+        if($sth->rowCount() == 1){
+            $article = $sth->fetch(PDO::FETCH_ASSOC);
+            return $article;
+        }
+        return null;
+    }
 
     public function del_article($id)
     {

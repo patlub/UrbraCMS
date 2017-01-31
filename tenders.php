@@ -19,20 +19,25 @@ require_once 'classes/DatabaseHelper.php';
             $("#deadline, #date_awarded, #dop").datepicker();
         });
     </script>
-    <title>Home Page</title>
+    <title>Tenders</title>
 </head>
 <body>
 <div class="container-fluid">
-    <?php include_once 'menu.php'; ?>
     <script src="js/loadData.js"></script>
-    <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-3 side-menu">
+            <?php include_once 'side_menu.php'; ?>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-12">
+                <?php include_once 'menu.php'; ?>
         <div class="success-alert row" align="center">Tender has been added</div>
-        <div id="deleted-alert" class=" row" align="center">Tenders have been deleted</div>
-
-        <div class="error row" align="center">Network Error</div>
+        <div id="deleted-alert" class="error row" align="center">Tender have been deleted</div>
+        <div id="update-alert" class="success-alert row" align="center">Tender has been Updated</div>
+        <div id="network-error" class="error row" align="center">Network Error</div>
     </div>
     <div class="row">
-        <div class="col-md-2 add-btn-box"><a href="#" data-toggle="modal" data-target="#addTenderModal">
+        <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addTenderModal">
                 <button class="btn btn-primary btn-lg" value="">Add Tender +</button>
             </a></div>
     </div>
@@ -46,6 +51,7 @@ require_once 'classes/DatabaseHelper.php';
             <thead>
             <tr>
                 <th></th>
+                <th>#</th>
                 <th>Ref No.</th>
                 <th>Description</th>
                 <th>Category</th>
@@ -65,11 +71,14 @@ require_once 'classes/DatabaseHelper.php';
             </tbody>
         </table>
     </div>
-    <div id="delete"><input type="submit" value="Delete" class="btn btn-danger"></div>
+    <div id="delete"><input type="submit" value="Delete" class="btn btn-danger" onclick="return(confirm('Are you sure you want to delete these items'))"></div>
 </form>
+            </div>
+        </div>
     <div class="loader"><!-- Place at bottom of page --></div>
     <div class="row">
         <?php include_once 'imports/add_tender.php'; ?>
+        <?php include_once 'imports/edit_tender.php'; ?>
     </div>
 </div>
 </body>

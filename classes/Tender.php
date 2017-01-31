@@ -134,7 +134,6 @@ class Tender
             // Check file size '5MB'
             if ($this->size < 5000000) {
 
-//                    $img = resize_image();
                 move_uploaded_file($this->tmp_dir, $upload_dir . $doc);
             } else {
                 $errMSG = "Sorry, your file is too large.";
@@ -163,7 +162,74 @@ class Tender
         }
         // if no error occured, continue ....
         return $return_code;
-//        return $this->name.' '.$this->date.' '.$doc;
+    }
+
+
+    public function edit_tender($id)
+    {
+        $return_code = false;
+        $doc = null;
+        error_reporting(~E_NOTICE); // avoid notice
+        $upload_dir = '../docs/'; // upload directory
+
+        if ($this->pdf == null) {
+            $dbh = $this->connectDB();
+            $stmt = $dbh->prepare('UPDATE tenders SET ref_no = :ref_no, `desc` = :desc, category = :category, deadline = :deadline, date_pub = :date_published, date_awarded = :date_awarded WHERE id = :id');
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':ref_no', $this->ref_no);
+            $stmt->bindParam(':desc', $this->desc);
+            $stmt->bindParam(':category', $this->category);
+            $stmt->bindParam(':deadline', $this->deadline);
+            $stmt->bindParam(':date_published', $this->date_published);
+            $stmt->bindParam(':date_awarded', $this->date_published);
+            $result = $stmt->execute();
+
+            if ($result) {
+                $return_code = true;
+            }
+        } else {
+            $fileExt = strtolower(pathinfo($this->pdf, PATHINFO_EXTENSION)); // get image extension
+
+            // valid image extensions
+            $valid_extensions = array('pdf'); // valid extensions
+
+            // rename uploading image
+            $doc = rand(1000, 1000000) . "." . $fileExt;
+
+            // allow valid image file formats
+            if (in_array($fileExt, $valid_extensions)) {
+                // Check file size '5MB'
+                if ($this->size < 5000000) {
+
+                    move_uploaded_file($this->tmp_dir, $upload_dir . $doc);
+                } else {
+                    $errMSG = "Sorry, your file is too large.";
+                }
+            } else {
+                $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            }
+
+            if (!isset($errMSG)) {
+                $dbh = $this->connectDB();
+                $stmt = $dbh->prepare('UPDATE tenders SET ref_no = :ref_no, `desc` = :desc, category = :category, deadline = :deadline, date_pub = :date_published, date_awarded = :date_awarded, attachment =  :attachment WHERE id = :id');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':ref_no', $this->ref_no);
+                $stmt->bindParam(':desc', $this->desc);
+                $stmt->bindParam(':category', $this->category);
+                $stmt->bindParam(':deadline', $this->deadline);
+                $stmt->bindParam(':date_published', $this->date_published);
+                $stmt->bindParam(':date_awarded', $this->date_published);
+                $stmt->bindParam(':attachment', $doc);
+                $result = $stmt->execute();
+
+                if ($result) {
+                    $return_code = true;
+                }
+            }
+            // if no error occured, continue ....
+        }
+
+        return $return_code;
     }
 
     public function del_tender($id)
@@ -173,6 +239,19 @@ class Tender
         $sth->bindParam(':ids', $id);
         $result = $sth->execute();
         return $result;
+    }
+
+    public function fetch_tender($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('SELECT * FROM tenders WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $sth->execute();
+        if ($sth->rowCount() == 1) {
+            $tender = $sth->fetch(PDO::FETCH_ASSOC);
+            return $tender;
+        }
+        return null;
     }
 
     public function connectDB()
@@ -187,6 +266,5 @@ class Tender
             echo "Connection Error: " . $e->getMessage();
         }
     }
-
 
 } 

@@ -10,6 +10,7 @@ class BoD
 {
     protected $image;
     protected $name;
+    protected $details;
     protected $tmp_dir;
     protected $size;
 
@@ -28,6 +29,11 @@ class BoD
         return $this->name;
     }
 
+    public function get_details()
+    {
+        return $this->details;
+    }
+
     public function set_image($name)
     {
         $this->image = $name;
@@ -38,22 +44,26 @@ class BoD
         $this->name = $name;
     }
 
+    public function set_details($details)
+    {
+        $this->details = $details;
+    }
 
-    public static function new_BoD($name, $image, $tmp_dir, $size)
+
+    public static function new_BoD($name, $image, $tmp_dir, $size, $details)
     {
         $instance = new self();
-        $instance->load_new_BoD($name, $image, $tmp_dir, $size);
+        $instance->load_new_BoD($name, $image, $tmp_dir, $size, $details);
         return $instance;
     }
 
-    public function load_new_BoD($name, $image, $tmp_dir, $size)
+    public function load_new_BoD($name, $image, $tmp_dir, $size, $details)
     {
         $this->name = $name;
         $this->image = $image;
-        $this->resource = $image;
         $this->tmp_dir = $tmp_dir;
         $this->size = $size;
-
+        $this->details = $details;
     }
 
     public function add_Bod()
@@ -62,7 +72,7 @@ class BoD
         $doc = null;
         error_reporting(~E_NOTICE); // avoid notice
 
-        $upload_dir = '../imgs/'; // upload directory
+        $upload_dir = '../img/'; // upload directory
 
         $fileExt = strtolower(pathinfo($this->image, PATHINFO_EXTENSION)); // get image extension
 
@@ -89,11 +99,12 @@ class BoD
 
         if (!isset($errMSG)) {
             $dbh = $this->connectDB();
-            $stmt = $dbh->prepare('INSERT INTO bod VALUES(:id, :name, :image)');
+            $stmt = $dbh->prepare('INSERT INTO bod VALUES(:id, :name, :image, :details)');
 
             $id = '';
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':name', $this->name);
+            $stmt->bindParam(':details', $this->details);
             $stmt->bindParam(':image', $doc);
             $result = $stmt->execute();
 
@@ -105,6 +116,84 @@ class BoD
         return $return_code;
     }
 
+    public function edit_Bod($id)
+    {
+        $return_code = false;
+        $doc = null;
+        error_reporting(~E_NOTICE); // avoid notice
+
+        $upload_dir = '../img/'; // upload directory
+
+        if($this->image == null){
+            if (!isset($errMSG)) {
+                $dbh = $this->connectDB();
+                $stmt = $dbh->prepare('UPDATE bod SET name = :name, details = :details WHERE id = :id');
+
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':name', $this->name);
+                $stmt->bindParam(':details', $this->details);
+                $stmt->bindParam(':image', $doc);
+                $result = $stmt->execute();
+
+                if ($result) {
+                    $return_code = true;
+                }
+                return $return_code;
+            }
+        }else {
+            $fileExt = strtolower(pathinfo($this->image, PATHINFO_EXTENSION)); // get image extension
+
+            // valid image extensions
+            $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+
+            // rename uploading image
+            $doc = rand(1000, 1000000) . "." . $fileExt;
+
+            // allow valid image file formats
+            if (in_array($fileExt, $valid_extensions)) {
+                // Check file size '5MB'
+                if ($this->size < 5000000) {
+
+//                    $img = resize_image();
+                    move_uploaded_file($this->tmp_dir, $upload_dir . $doc);
+                } else {
+                    $errMSG = "Sorry, your file is too large.";
+                }
+            } else {
+                $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            }
+
+
+            if (!isset($errMSG)) {
+                $dbh = $this->connectDB();
+                $stmt = $dbh->prepare('UPDATE bod SET name = :name, details = :details, image = :image WHERE id = :id');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':name', $this->name);
+                $stmt->bindParam(':details', $this->details);
+                $stmt->bindParam(':image', $doc);
+                $result = $stmt->execute();
+
+                if ($result) {
+                    $return_code = true;
+                }
+                return $return_code;
+            }
+        }
+        return $return_code;
+    }
+
+    public function fetch_BoD($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('SELECT * FROM bod WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $sth->execute();
+        if($sth->rowCount() == 1){
+            $bod = $sth->fetch(PDO::FETCH_ASSOC);
+            return $bod;
+        }
+        return null;
+    }
     public function del_bod($id)
     {
         $dbh = $this->connectDB();

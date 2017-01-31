@@ -34,9 +34,9 @@ class DatabaseHelper
                         <img src="<?php echo "img/slideshowimgs/" . $image_name; ?>" height="70" width="100">
                     </td>
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="delete_disciple.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
+                        <a href="delete_slide.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
                 </tr>
@@ -53,6 +53,7 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM rbs");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
+            $i = 1;
             while ($scheme = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $scheme['id'];
                 $name = $scheme['name'];
@@ -62,8 +63,12 @@ class DatabaseHelper
 
                 ?>
                 <tr>
+
                     <td align="center">
                         <label><input type="checkbox" name="schemes[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $name; ?>
@@ -77,8 +82,8 @@ class DatabaseHelper
                         <?php echo $web_link; ?>
                     </td>
                     <td align="center">
-                        <a href="<?php echo $id; ?>" id="edit-scheme[]" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_scheme.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
@@ -96,6 +101,7 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM trustees");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
+            $i = 1;
             while ($trustee = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $trustee['id'];
                 $name = $trustee['name'];
@@ -105,8 +111,12 @@ class DatabaseHelper
 
                 ?>
                 <tr>
+
                     <td align="center">
                         <label><input type="checkbox" name="trustees[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $name; ?>
@@ -120,10 +130,11 @@ class DatabaseHelper
                         <?php echo $web_link; ?>
                     </td>
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="php/remove_trustee.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
-                                class="glyphicon glyphicon-remove"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
+<!--                        <span id="--><?php //echo $id; ?><!--" class="delete" ><span-->
+<!--                                class="glyphicon glyphicon-remove icon-delete" ></span></span>-->
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
                     </td>
                 </tr>
             <?php
@@ -139,6 +150,7 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM custodians");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
+            $i = 1;
             while ($custodian = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $custodian['id'];
                 $name = $custodian['name'];
@@ -150,6 +162,9 @@ class DatabaseHelper
                 <tr>
                     <td align="center">
                         <label><input type="checkbox" name="custodians[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $name; ?>
@@ -182,16 +197,20 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM departments");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
-            while ($custodian = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
-                $id = $custodian['id'];
-                $name = $custodian['name'];
-                $head = $custodian['head'];
+            $i = 1;
+            while ($department = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $department['id'];
+                $name = $department['name'];
+                $head = $department['head'];
 
 
                 ?>
                 <tr>
                     <td align="center">
                         <label><input type="checkbox" name="departments[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $name; ?>
@@ -201,8 +220,8 @@ class DatabaseHelper
                     </td>
 
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_department.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
@@ -220,10 +239,12 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM bod");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
-            while ($custodian = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
-                $id = $custodian['id'];
-                $name = $custodian['name'];
-                $image = $custodian['image'];
+            $i = 1;
+            while ($BoD = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $BoD['id'];
+                $name = $BoD['name'];
+                $details = $BoD['details'];
+                $image = $BoD['image'];
 
                 ?>
                 <tr>
@@ -231,15 +252,21 @@ class DatabaseHelper
                         <label><input type="checkbox" name="BoDs[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
                         <?php echo $name; ?>
                     </td>
                     <td>
-                        <img src="<?php echo "imgs/" . $image; ?>" height="100" width="100">
+                        <?php echo $details; ?>
+                    </td>
+                    <td>
+                        <img src="<?php echo "img/" . $image; ?>" height="100" width="100">
                     </td>
 
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_bod.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
@@ -257,17 +284,21 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM administrators");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
-            while ($custodian = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
-                $id = $custodian['id'];
-                $name = $custodian['name'];
-                $category = $custodian['category'];
-                $address = $custodian['address'];
-                $web_link = $custodian['web_link'];
+            $i = 1;
+            while ($admin = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $admin['id'];
+                $name = $admin['name'];
+                $category = $admin['category'];
+                $address = $admin['address'];
+                $web_link = $admin['web_link'];
 
                 ?>
                 <tr>
                     <td align="center">
                         <label><input type="checkbox" name="administrators[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $name; ?>
@@ -281,8 +312,8 @@ class DatabaseHelper
                         <?php echo $web_link; ?>
                     </td>
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_admin.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
@@ -300,6 +331,7 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM fund_managers");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
+            $i = 1;
             while ($fund_managers = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $fund_managers['id'];
                 $name = $fund_managers['name'];
@@ -313,6 +345,9 @@ class DatabaseHelper
                         <label><input type="checkbox" name="fund_managers[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
                         <?php echo $name; ?>
                     </td>
                     <td>
@@ -324,8 +359,8 @@ class DatabaseHelper
                         <?php echo $web_link; ?>
                     </td>
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_fund_manager.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
@@ -343,20 +378,24 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM tenders");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
-            while ($article = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
-                $id = $article['id'];
-                $ref_no = $article['ref_no'];
-                $desc = $article['desc'];
-                $category = $article['category'];
-                $deadline = $article['deadline'];
-                $date_pub = $article['date_pub'];
-                $date_awarded = $article['date_awarded'];
-                $attachment = $article['attachment'];
+            $i = 1;
+            while ($tender = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $tender['id'];
+                $ref_no = $tender['ref_no'];
+                $desc = $tender['desc'];
+                $category = $tender['category'];
+                $deadline = $tender['deadline'];
+                $date_pub = $tender['date_pub'];
+                $date_awarded = $tender['date_awarded'];
+                $attachment = $tender['attachment'];
 
                 ?>
                 <tr>
                     <td align="center">
                         <label><input type="checkbox" name="tenders[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $ref_no; ?>
@@ -380,8 +419,8 @@ class DatabaseHelper
                         <a href="<?php echo 'docs/' . $attachment ?>" target="_blank"><img src="img/pdf.png"></a>
                     </td>
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_tender.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
@@ -399,18 +438,22 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM vacancies");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
-            while ($article = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
-                $id = $article['id'];
-                $title = $article['title'];
-                $start_date = $article['start_date'];
-                $end_date = $article['end_date'];
-                $description = $article['description'];
-                $attachment = $article['attachment'];
+            $i = 1;
+            while ($vacancy = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $vacancy['id'];
+                $title = $vacancy['title'];
+                $start_date = $vacancy['start_date'];
+                $end_date = $vacancy['end_date'];
+                $description = $vacancy['description'];
+                $attachment = $vacancy['attachment'];
 
                 ?>
                 <tr>
                     <td align="center">
                         <label><input type="checkbox" name="vacancies[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $title; ?>
@@ -428,8 +471,8 @@ class DatabaseHelper
                         <a href="<?php echo 'docs/' . $attachment ?>" target="_blank"><img src="img/pdf.png"></a>
                     </td>
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_vacancy.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
@@ -447,17 +490,22 @@ class DatabaseHelper
         $statementHandler = $dbh->prepare("SELECT * FROM articles");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
+            $i = 1;
             while ($article = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $article['id'];
                 $title = $article['title'];
                 $details = $article['article'];
                 $date = $article['date'];
                 $pdf = $article['resource'];
+                $expiry = $article['expiry'];
 
                 ?>
                 <tr>
                     <td align="center">
                         <label><input type="checkbox" name="articles[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
                     </td>
                     <td>
                         <?php echo $date; ?></td>
@@ -470,12 +518,16 @@ class DatabaseHelper
                     <td>
                         <a href="<?php echo 'docs/' . $pdf ?>" target="_blank"><img src="img/pdf.png"></a>
                     </td>
+                    <td>
+                        <?php echo $expiry; ?>
+                    </td>
                     <td align="center">
-                        <a href="edit_disciple.php?id=<?php echo $id; ?>" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil"></span></a>
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
                         <a href="php/remove_article.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
                                 class="glyphicon glyphicon-remove"></span></a>
                     </td>
+
                 </tr>
             <?php
             }
@@ -484,6 +536,53 @@ class DatabaseHelper
         }
 
     }
+
+    public function get_resources()
+    {
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM resources");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($resource = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $resource['id'];
+                $title = $resource['name'];
+                $expiry = $resource['end_date'];
+                $pdf = $resource['pdf'];
+
+                ?>
+                <tr>
+                    <td align="center">
+                        <label><input type="checkbox" name="resources[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $title; ?>
+                    </td>
+
+                    <td>
+                        <?php echo $expiry; ?></td>
+                    <td>
+                        <a href="<?php echo 'docs/' . $pdf ?>" target="_blank"><img src="img/pdf.png"></a>
+                    </td>
+                    <td align="center">
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
+                        <a href="php/remove_resource.php?id=<?php echo $id; ?>" onclick="return(confirm('Are you sure you want to delete this item'))"><span
+                                class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+
+    }
+
 
     public function load_hours()
     {
@@ -528,6 +627,20 @@ class DatabaseHelper
 
         for ($i = 0; $i < $length; $i++) {
             $sth->bindParam(':ids', $articles[$i]);
+            $result = $sth->execute();
+        }
+        return $result;
+    }
+
+    public function del_resources($resources)
+    {
+        $result = false;
+        $dbh = $this->connectDB();
+        $length = count($resources);
+        $sth = $dbh->prepare('DELETE FROM resources WHERE id = :ids');
+
+        for ($i = 0; $i < $length; $i++) {
+            $sth->bindParam(':ids', $resources[$i]);
             $result = $sth->execute();
         }
         return $result;
@@ -660,6 +773,47 @@ class DatabaseHelper
         return $result;
     }
 
+    public function del($ids, $path)
+    {
+        $sth = null;
+        $result = false;
+        $dbh = $this->connectDB();
+        $length = count($ids);
+        if($path == 'trustees') {
+            $sth = $dbh->prepare('DELETE FROM trustees WHERE id = :ids');
+        }elseif($path == 'custodians'){
+            $sth = $dbh->prepare('DELETE FROM custodians WHERE id = :ids');
+        }elseif($path == 'schemes'){
+            $sth = $dbh->prepare('DELETE FROM rbs WHERE id = :ids');
+        }elseif($path == 'custodians'){
+            $sth = $dbh->prepare('DELETE FROM custodians WHERE id = :ids');
+        }elseif($path == 'administrators'){
+            $sth = $dbh->prepare('DELETE FROM administrators WHERE id = :ids');
+        }elseif($path == 'fund_managers'){
+            $sth = $dbh->prepare('DELETE FROM fund_managers WHERE id = :ids');
+        }elseif($path == 'vacancies'){
+            $sth = $dbh->prepare('DELETE FROM vacancies WHERE id = :ids');
+        }elseif($path == 'tenders'){
+            $sth = $dbh->prepare('DELETE FROM tenders WHERE id = :ids');
+        }elseif($path == 'articles'){
+            $sth = $dbh->prepare('DELETE FROM articles WHERE id = :ids');
+        }elseif($path == 'resources'){
+            $sth = $dbh->prepare('DELETE FROM resources WHERE id = :ids');
+        }elseif($path == 'BoDs'){
+            $sth = $dbh->prepare('DELETE FROM bod WHERE id = :ids');
+        }elseif($path == 'departments'){
+            $sth = $dbh->prepare('DELETE FROM departments WHERE id = :ids');
+        }elseif($path == 'users'){
+            $sth = $dbh->prepare('DELETE FROM users WHERE id = :ids');
+        }
+
+        for ($i = 0; $i < $length; $i++) {
+            $sth->bindParam(':ids', $ids[$i]);
+            $result = $sth->execute();
+        }
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";
@@ -672,4 +826,6 @@ class DatabaseHelper
             echo "Connection Error: " . $e->getMessage();
         }
     }
+
+
 } 

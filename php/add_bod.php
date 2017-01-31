@@ -8,6 +8,7 @@
 include('../classes/Bod.php');
 
 $name = $_POST['name'];
+$details = $_POST['details'];
 
 $image = null;
 $tmp_dir = null;
@@ -19,6 +20,6 @@ if(!empty($_FILES['image'])) {
     $imageSize = $_FILES['image']['size'];
 }
 
-$bod = BoD::new_BoD($name, $image, $tmp_dir, $imageSize);
+$bod = BoD::new_BoD($name, $image, $tmp_dir, $imageSize, $details);
 $result = $bod->add_Bod();
 echo $result;

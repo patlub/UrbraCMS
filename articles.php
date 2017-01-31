@@ -17,25 +17,42 @@ require_once 'classes/DatabaseHelper.php';
     <script>
         $(function () {
             $("#datepicker").datepicker();
+            $("#edit-datepicker").datepicker();
             $("#expiry").datepicker();
+            $("#edit-expiry").datepicker();
         });
-
     </script>
-    <title>Home Page</title>
+    <title>Articles</title>
 </head>
 <body>
 <div class="container-fluid">
-    <?php include_once 'menu.php'; ?>
     <script src="js/loadData.js"></script>
+    <div class="row">
+    <div class="col-md-3 side-menu">
+        <?php include_once 'side_menu.php'; ?>
+    </div>
+
+    <div class="col-md-9">
+
     <div class="col-md-12">
-        <div class="success-alert row" align="center">Article has been added</div>
-        <div id="deleted-alert" class=" row" align="center">Articles have been deleted</div>
-        <div class="error row" align="center">Network Error</div>
+        <?php include_once 'menu.php'; ?>
+        <div id="success-alert" class="success-alert row" align="center">Article has been added</div>
+        <div id="deleted-alert" class="error row" align="center">Article have been deleted</div>
+        <div id="update-alert" class="success-alert row" align="center">Article has been updated</div>
+        <div id="network-error" class="error row" align="center">Network Error</div>
     </div>
     <div class="row">
-        <div class="col-md-2 add-btn-box"><a href="#" data-toggle="modal" data-target="#addArticleModal">
+        <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addArticleModal">
                 <button class="btn btn-primary btn-lg" value="">Add Article +</button>
             </a></div>
+<!--        <form role="form" id="import-dep-form" enctype="multipart/form-data">-->
+<!--            <div class="col-md-3 form-group">-->
+<!--                <input type="file" value="import" id="csv_file" class="form-control col-md-6" name="csv_file" required="">-->
+<!--            </div>-->
+<!--            <div class="col-md-3 form-group">-->
+<!--                <input type="submit" value="import" class="btn btn-success btn-md col-md-6" name="submit" id="submit">-->
+<!--            </div>-->
+<!--        </form>-->
     </div>
     <form id="articles-form" role="form" enctype="multipart/form-data">
 
@@ -48,10 +65,12 @@ require_once 'classes/DatabaseHelper.php';
                 <thead>
                 <tr>
                     <th></th>
+                    <th>#</th>
                     <th>Date</th>
                     <th>Title</th>
                     <th>Article</th>
                     <th>Resource</th>
+                    <th>Expiry</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,12 +83,14 @@ require_once 'classes/DatabaseHelper.php';
                 </tbody>
             </table>
         </div>
-        <div id="delete"><input type="submit" value="Delete" class="btn btn-danger"></div>
+        <div id="delete"><input type="submit" value="Delete" class="btn btn-danger" onclick="return(confirm('Are you sure you want to delete these items'))"></div>
     </form>
-
+</div>
+    </div>
     <div class="loader"><!-- Place at bottom of page --></div>
     <div class="row">
         <?php include_once 'imports/add_article.php'; ?>
+        <?php include_once 'imports/edit_article.php'; ?>
     </div>
 </div>
 </body>
