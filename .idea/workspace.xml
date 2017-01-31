@@ -59,73 +59,69 @@
       <file leaf-file-name="loadData.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/loadData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3602" max-vertical-offset="15113">
-              <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="372" max-vertical-offset="15334">
+              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="delete_admins.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/delete_admins.php">
+      <file leaf-file-name="tmp_slides_del.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/tmp_slides_del.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="323">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="289">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="delete_articles.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/php/delete_articles.php">
+      <file leaf-file-name="DatabaseHelper.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/classes/DatabaseHelper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="567">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tmp_del.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/tmp_del.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="391">
-              <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tmp_trustees_del.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/tmp_trustees_del.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="289">
-              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/User.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.307692" vertical-offset="1547" max-vertical-offset="3672">
-              <caret line="119" column="31" selection-start-line="119" selection-start-column="31" selection-end-line="119" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.8158845" vertical-offset="12825" max-vertical-offset="13379">
+              <caret line="832" column="2" selection-start-line="832" selection-start-column="2" selection-end-line="832" selection-end-column="2" />
               <folding>
-                <marker date="1485887175058" expanded="true" signature="3838:3878" placeholder="SELECT * FRO..users..." />
-                <marker date="1485887175058" expanded="true" signature="4671:4877" placeholder="INSERT INTO ..." />
-                <marker date="1485887175058" expanded="true" signature="5960:6014" placeholder="UPDATE users..." />
+                <element signature="n#get_articles#0;n#DatabaseHelper#0;n#!!top" expanded="false" />
+                <marker date="1485892686373" expanded="true" signature="232:255" placeholder="SELECT * FRO..slideshow..." />
+                <marker date="1485892686373" expanded="true" signature="1876:1893" placeholder="SELECT * FRO..rbs..." />
+                <marker date="1485892686373" expanded="true" signature="3710:3732" placeholder="SELECT * FRO..trustees..." />
+                <marker date="1485892686373" expanded="true" signature="5635:5659" placeholder="SELECT * FRO..custodians..." />
+                <marker date="1485892686373" expanded="true" signature="7514:7539" placeholder="SELECT * FRO..departments..." />
+                <marker date="1485892686373" expanded="true" signature="9091:9108" placeholder="SELECT * FRO..bod..." />
+                <marker date="1485892686373" expanded="true" signature="10819:10847" placeholder="SELECT * FRO..administrators..." />
+                <marker date="1485892686373" expanded="true" signature="12668:12695" placeholder="SELECT * FRO..fund_managers..." />
+                <marker date="1485892686373" expanded="true" signature="14564:14585" placeholder="SELECT * FRO..tenders..." />
+                <marker date="1485892686373" expanded="true" signature="16948:16971" placeholder="SELECT * FRO..vacancies..." />
+                <marker date="1485892686373" expanded="true" signature="19057:19079" placeholder="SELECT * FRO..articles..." />
+                <marker date="1485892686373" expanded="true" signature="21074:21097" placeholder="SELECT * FRO..resources..." />
+                <marker date="1485892686373" expanded="true" signature="23373:23415" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="23777:23813" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="24172:24209" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="24572:24610" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="24983:25024" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="25383:25414" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="25763:25800" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="26151:26186" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="26541:26577" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="26936:26973" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="27339:27378" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="27725:27756" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28155:28191" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28269:28307" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28382:28413" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28491:28529" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28611:28653" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28734:28775" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28852:28889" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="28964:28999" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="29075:29111" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="29188:29225" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="29297:29328" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="29407:29446" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="29519:29552" placeholder="DELETE FROM ..." />
+                <marker date="1485892686373" expanded="true" signature="29625:29662" placeholder="DELETE FROM ..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="trustees.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/trustees.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5384617" vertical-offset="612" max-vertical-offset="1513">
-              <caret line="46" column="85" selection-start-line="46" selection-start-column="85" selection-end-line="46" selection-end-column="85" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -133,68 +129,69 @@
       <file leaf-file-name="del.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/php/del.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="374">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="374">
+              <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multi_del.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/php/multi_del.php">
+      <file leaf-file-name="tmp_resources_del.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/tmp_resources_del.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="374">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="289">
+              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseHelper.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/classes/DatabaseHelper.php">
+      <file leaf-file-name="tmp_departments_del.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/tmp_departments_del.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.461538" vertical-offset="1962" max-vertical-offset="13345">
-              <caret line="136" column="54" selection-start-line="136" selection-start-column="54" selection-end-line="136" selection-end-column="54" />
-              <folding>
-                <element signature="n#get_articles#0;n#DatabaseHelper#0;n#!!top" expanded="false" />
-                <marker date="1485869163474" expanded="true" signature="232:255" placeholder="SELECT * FRO..slideshow..." />
-                <marker date="1485869163474" expanded="true" signature="1876:1893" placeholder="SELECT * FRO..rbs..." />
-                <marker date="1485869163474" expanded="true" signature="3710:3732" placeholder="SELECT * FRO..trustees..." />
-                <marker date="1485869163474" expanded="true" signature="5635:5659" placeholder="SELECT * FRO..custodians..." />
-                <marker date="1485869163474" expanded="true" signature="7514:7539" placeholder="SELECT * FRO..departments..." />
-                <marker date="1485869163474" expanded="true" signature="9091:9108" placeholder="SELECT * FRO..bod..." />
-                <marker date="1485869163474" expanded="true" signature="10819:10847" placeholder="SELECT * FRO..administrators..." />
-                <marker date="1485869163474" expanded="true" signature="12668:12695" placeholder="SELECT * FRO..fund_managers..." />
-                <marker date="1485869163474" expanded="true" signature="14564:14585" placeholder="SELECT * FRO..tenders..." />
-                <marker date="1485869163474" expanded="true" signature="16948:16971" placeholder="SELECT * FRO..vacancies..." />
-                <marker date="1485869163474" expanded="true" signature="19057:19079" placeholder="SELECT * FRO..articles..." />
-                <marker date="1485869163474" expanded="true" signature="21074:21097" placeholder="SELECT * FRO..resources..." />
-                <marker date="1485869163474" expanded="true" signature="23373:23415" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="23777:23813" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="24172:24209" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="24572:24610" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="24983:25024" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="25383:25414" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="25763:25800" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="26151:26186" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="26541:26577" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="26936:26973" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="27339:27378" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="27725:27756" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28155:28191" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28269:28307" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28382:28413" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28491:28529" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28611:28653" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28734:28775" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28852:28889" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="28964:28999" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="29075:29111" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="29188:29225" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="29297:29328" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="29407:29446" placeholder="DELETE FROM ..." />
-                <marker date="1485869163474" expanded="true" signature="29519:29552" placeholder="DELETE FROM ..." />
-              </folding>
+            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="289">
+              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tmp_bods_del.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/php/tmp_bods_del.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="administrators.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/administrators.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.692307" vertical-offset="289" max-vertical-offset="1513">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="articles.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/articles.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.461538" vertical-offset="510" max-vertical-offset="1598">
+              <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BoDs.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BoDs.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1326">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -209,21 +206,8 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/classes/Trustee.php" />
-        <option value="$PROJECT_DIR$/php/import_trustee.php" />
-        <option value="$PROJECT_DIR$/php/import_scheme.php" />
-        <option value="$PROJECT_DIR$/articles.php" />
-        <option value="$PROJECT_DIR$/page.php" />
-        <option value="$PROJECT_DIR$/php/tmp_add_slide.php" />
-        <option value="$PROJECT_DIR$/imports/add_slide.php" />
-        <option value="$PROJECT_DIR$/php/fetch_slide.php" />
-        <option value="$PROJECT_DIR$/imports/edit_slide.php" />
-        <option value="$PROJECT_DIR$/php/edit_slide.php" />
-        <option value="$PROJECT_DIR$/departments.php" />
-        <option value="$PROJECT_DIR$/classes/BoD.php" />
         <option value="$PROJECT_DIR$/php/add_bod.php" />
         <option value="$PROJECT_DIR$/imports/add_bod.php" />
-        <option value="$PROJECT_DIR$/BoDs.php" />
         <option value="$PROJECT_DIR$/imports/edit_bod.php" />
         <option value="$PROJECT_DIR$/php/fetch_bod.php" />
         <option value="$PROJECT_DIR$/php/edit_bod.php" />
@@ -252,14 +236,27 @@
         <option value="$PROJECT_DIR$/tenders.php" />
         <option value="$PROJECT_DIR$/classes/HomePage.php" />
         <option value="$PROJECT_DIR$/php/tmp_del.php" />
-        <option value="$PROJECT_DIR$/classes/DatabaseHelper.php" />
         <option value="$PROJECT_DIR$/php/del.php" />
         <option value="$PROJECT_DIR$/js/searchfilter.js" />
         <option value="$PROJECT_DIR$/php/tmp_multi_del.php" />
         <option value="$PROJECT_DIR$/classes/User.php" />
         <option value="$PROJECT_DIR$/php/multi_del.php" />
         <option value="$PROJECT_DIR$/trustees.php" />
+        <option value="$PROJECT_DIR$/php/tmp_admins_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_schemes_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_custodians_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_fund_managers_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_articles_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_vacancies_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_tenders_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_resources_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_departments_del.php" />
+        <option value="$PROJECT_DIR$/php/tmp_bods_del.php" />
+        <option value="$PROJECT_DIR$/BoDs.php" />
+        <option value="$PROJECT_DIR$/articles.php" />
         <option value="$PROJECT_DIR$/js/loadData.js" />
+        <option value="$PROJECT_DIR$/php/tmp_slides_del.php" />
+        <option value="$PROJECT_DIR$/classes/DatabaseHelper.php" />
       </list>
     </option>
   </component>
@@ -436,7 +433,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="776" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -444,7 +441,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21197411" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26860842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26860842" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -484,76 +481,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imports/edit_bod.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="816">
-          <caret line="24" column="123" selection-start-line="24" selection-start-column="123" selection-end-line="24" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/BoD.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="695" max-vertical-offset="3791">
-          <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/edit_bod.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="544">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imports/edit_tender.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="262" max-vertical-offset="1139">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/add_tender.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="765">
-          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/edit_tender.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="782">
-          <caret line="38" column="21" selection-start-line="38" selection-start-column="21" selection-end-line="38" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/Tender.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2652" max-vertical-offset="4675">
-          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/get_slide_show.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="306">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/custodians.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1479">
-          <caret line="37" column="62" selection-start-line="37" selection-start-column="62" selection-end-line="37" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fund_managers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="262" max-vertical-offset="1479">
-          <caret line="37" column="59" selection-start-line="37" selection-start-column="59" selection-end-line="37" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/schemes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="1479">
@@ -627,13 +554,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/administrators.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231" vertical-offset="0" max-vertical-offset="1513">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/fetch_trustee.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="593">
@@ -646,14 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="340">
           <caret line="13" column="59" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/delete_tenders.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="323">
-          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
           <folding />
         </state>
       </provider>
@@ -796,14 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/delete_trustees.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="323">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/tmp_del.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="391">
@@ -817,18 +721,10 @@
         <state vertical-scroll-proportion="-18.307692" vertical-offset="1547" max-vertical-offset="3672">
           <caret line="119" column="31" selection-start-line="119" selection-start-column="31" selection-end-line="119" selection-end-column="31" />
           <folding>
-            <marker date="1485887175058" expanded="true" signature="3838:3878" placeholder="SELECT * FRO..users..." />
-            <marker date="1485887175058" expanded="true" signature="4671:4877" placeholder="INSERT INTO ..." />
-            <marker date="1485887175058" expanded="true" signature="5960:6014" placeholder="UPDATE users..." />
+            <marker date="1485887175058" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..users..." />
+            <marker date="1485887175058" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1485887175058" expanded="true" signature="-1:-1" placeholder="UPDATE users..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/del.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="374">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -836,61 +732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.461538" vertical-offset="0" max-vertical-offset="374">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/classes/DatabaseHelper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.461538" vertical-offset="1962" max-vertical-offset="13345">
-          <caret line="136" column="54" selection-start-line="136" selection-start-column="54" selection-end-line="136" selection-end-column="54" />
-          <folding>
-            <element signature="n#get_articles#0;n#DatabaseHelper#0;n#!!top" expanded="false" />
-            <marker date="1485869163474" expanded="true" signature="232:255" placeholder="SELECT * FRO..slideshow..." />
-            <marker date="1485869163474" expanded="true" signature="1876:1893" placeholder="SELECT * FRO..rbs..." />
-            <marker date="1485869163474" expanded="true" signature="3710:3732" placeholder="SELECT * FRO..trustees..." />
-            <marker date="1485869163474" expanded="true" signature="5635:5659" placeholder="SELECT * FRO..custodians..." />
-            <marker date="1485869163474" expanded="true" signature="7514:7539" placeholder="SELECT * FRO..departments..." />
-            <marker date="1485869163474" expanded="true" signature="9091:9108" placeholder="SELECT * FRO..bod..." />
-            <marker date="1485869163474" expanded="true" signature="10819:10847" placeholder="SELECT * FRO..administrators..." />
-            <marker date="1485869163474" expanded="true" signature="12668:12695" placeholder="SELECT * FRO..fund_managers..." />
-            <marker date="1485869163474" expanded="true" signature="14564:14585" placeholder="SELECT * FRO..tenders..." />
-            <marker date="1485869163474" expanded="true" signature="16948:16971" placeholder="SELECT * FRO..vacancies..." />
-            <marker date="1485869163474" expanded="true" signature="19057:19079" placeholder="SELECT * FRO..articles..." />
-            <marker date="1485869163474" expanded="true" signature="21074:21097" placeholder="SELECT * FRO..resources..." />
-            <marker date="1485869163474" expanded="true" signature="23373:23415" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="23777:23813" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="24172:24209" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="24572:24610" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="24983:25024" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="25383:25414" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="25763:25800" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="26151:26186" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="26541:26577" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="26936:26973" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="27339:27378" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="27725:27756" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28155:28191" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28269:28307" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28382:28413" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28491:28529" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28611:28653" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28734:28775" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28852:28889" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="28964:28999" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="29075:29111" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="29188:29225" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="29297:29328" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="29407:29446" placeholder="DELETE FROM ..." />
-            <marker date="1485869163474" expanded="true" signature="29519:29552" placeholder="DELETE FROM ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/tmp_trustees_del.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="289">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -903,27 +744,187 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_trustees_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617" vertical-offset="0" max-vertical-offset="289">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_admins_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="289">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_schemes_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="289">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_custodians_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769" vertical-offset="0" max-vertical-offset="289">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_fund_managers_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="289">
+          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_articles_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="289">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_vacancies_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="289">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_tenders_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="289">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_resources_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923" vertical-offset="0" max-vertical-offset="289">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_departments_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="289">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/tmp_bods_del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="289">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/articles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538" vertical-offset="510" max-vertical-offset="1598">
+          <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BoDs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/loadData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3602" max-vertical-offset="15113">
-          <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="372" max-vertical-offset="15334">
+          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/delete_admins.php">
+    <entry file="file://$PROJECT_DIR$/administrators.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="593">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-15.692307" vertical-offset="289" max-vertical-offset="1513">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/delete_articles.php">
+    <entry file="file://$PROJECT_DIR$/php/tmp_slides_del.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="593">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="289">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/del.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="374">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/classes/DatabaseHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8158845" vertical-offset="12825" max-vertical-offset="13379">
+          <caret line="832" column="2" selection-start-line="832" selection-start-column="2" selection-end-line="832" selection-end-column="2" />
+          <folding>
+            <element signature="n#get_articles#0;n#DatabaseHelper#0;n#!!top" expanded="false" />
+            <marker date="1485892686373" expanded="true" signature="232:255" placeholder="SELECT * FRO..slideshow..." />
+            <marker date="1485892686373" expanded="true" signature="1876:1893" placeholder="SELECT * FRO..rbs..." />
+            <marker date="1485892686373" expanded="true" signature="3710:3732" placeholder="SELECT * FRO..trustees..." />
+            <marker date="1485892686373" expanded="true" signature="5635:5659" placeholder="SELECT * FRO..custodians..." />
+            <marker date="1485892686373" expanded="true" signature="7514:7539" placeholder="SELECT * FRO..departments..." />
+            <marker date="1485892686373" expanded="true" signature="9091:9108" placeholder="SELECT * FRO..bod..." />
+            <marker date="1485892686373" expanded="true" signature="10819:10847" placeholder="SELECT * FRO..administrators..." />
+            <marker date="1485892686373" expanded="true" signature="12668:12695" placeholder="SELECT * FRO..fund_managers..." />
+            <marker date="1485892686373" expanded="true" signature="14564:14585" placeholder="SELECT * FRO..tenders..." />
+            <marker date="1485892686373" expanded="true" signature="16948:16971" placeholder="SELECT * FRO..vacancies..." />
+            <marker date="1485892686373" expanded="true" signature="19057:19079" placeholder="SELECT * FRO..articles..." />
+            <marker date="1485892686373" expanded="true" signature="21074:21097" placeholder="SELECT * FRO..resources..." />
+            <marker date="1485892686373" expanded="true" signature="23373:23415" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="23777:23813" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="24172:24209" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="24572:24610" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="24983:25024" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="25383:25414" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="25763:25800" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="26151:26186" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="26541:26577" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="26936:26973" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="27339:27378" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="27725:27756" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28155:28191" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28269:28307" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28382:28413" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28491:28529" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28611:28653" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28734:28775" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28852:28889" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="28964:28999" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="29075:29111" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="29188:29225" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="29297:29328" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="29407:29446" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="29519:29552" placeholder="DELETE FROM ..." />
+            <marker date="1485892686373" expanded="true" signature="29625:29662" placeholder="DELETE FROM ..." />
+          </folding>
         </state>
       </provider>
     </entry>

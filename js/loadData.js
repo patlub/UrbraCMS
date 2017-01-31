@@ -26,6 +26,7 @@ $(document).ready(function (e) {
     import_csv('import-scheme-form', 'php/import_scheme.php');
     import_csv('import-custodian-form', 'php/import_custodian.php');
     import_csv('import-fund-manager-form', 'php/import_custodian.php');
+
     //del('slide-form', 'php/delete_slides.php');
     //del('articles-form', 'php/delete_articles.php');
     //del('admins-form', 'php/delete_admins.php');
@@ -40,6 +41,18 @@ $(document).ready(function (e) {
     //del('resource-form', 'php/delete_resources.php');
 
     tmp_muliti_del('trustee-form','php/tmp_trustees_del.php');
+    tmp_muliti_del('articles-form','php/tmp_articles_del.php');
+    tmp_muliti_del('admins-form','php/tmp_admins_del.php');
+    tmp_muliti_del('custodians-form','php/tmp_custodians_del.php');
+    tmp_muliti_del('BoD-form','php/tmp_bods_del.php');
+    tmp_muliti_del('departments-form','php/tmp_departments_del.php');
+    tmp_muliti_del('fund_managers-form','php/tmp_fund_managers_del.php');
+    tmp_muliti_del('schemes-form','php/tmp_schemes_del.php');
+    tmp_muliti_del('tenders-form','php/tmp_tenders_del.php');
+    tmp_muliti_del('vacancies-form','php/tmp_vacancies_del.php');
+    tmp_muliti_del('resources-form','php/tmp_resources_del.php');
+    tmp_muliti_del('slide-form','php/tmp_slide_del.php');
+
     edit('edit-admin-form', 'php/edit_admin.php');
     edit('edit-custodian-form', 'php/edit_custodian.php');
     edit('edit-fund-manager-form', 'php/edit_fund_manager.php');

@@ -805,6 +805,8 @@ class DatabaseHelper
             $sth = $dbh->prepare('DELETE FROM departments WHERE id = :ids');
         }elseif($path == 'users'){
             $sth = $dbh->prepare('DELETE FROM users WHERE id = :ids');
+        }elseif($path == 'index'){
+            $sth = $dbh->prepare('DELETE FROM slideshow WHERE id = :ids');
         }
 
         for ($i = 0; $i < $length; $i++) {
