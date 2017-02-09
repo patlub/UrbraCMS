@@ -8,97 +8,148 @@
  */
 class Department
 {
-    protected $head;
-    protected $name;
+    protected $image;
+    protected $tmp_dir;
+    protected $size;
 
     public function __construct()
     {
 
     }
 
-    public function get_head()
+    public function get_image()
     {
-        return $this->head;
+        return $this->image;
     }
 
-    public function get_name()
+    public function set_image($name)
     {
-        return $this->name;
+        $this->image = $name;
     }
 
-    public function set_name($name)
-    {
-        $this->name = $name;
-    }
 
-    public function set_head($head)
-    {
-        $this->head = $head;
-    }
-
-    public static function new_department($head, $name)
+    public static function new_dep($image, $tmp_dir, $size)
     {
         $instance = new self();
-        $instance->load_new_department($head, $name);
+        $instance->load_new_dep($image, $tmp_dir, $size);
         return $instance;
     }
 
-    public function load_new_department($head, $name)
+    public function load_new_dep($image, $tmp_dir, $size)
     {
-        $this->head = $head;
-        $this->name = $name;
+        $this->image = $image;
+        $this->tmp_dir = $tmp_dir;
+        $this->size = $size;
     }
 
-    public function add_department()
+    public function add_dep()
     {
         $return_code = false;
-        $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('INSERT INTO departments VALUES(:id, :name, :head)');
+        $image = null;
+        error_reporting(~E_NOTICE); // avoid notice
 
-        $id = '';
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':head', $this->head);
-        $result = $stmt->execute();
+        $upload_dir = '../img/'; // upload directory
 
-        if ($result) {
-            $return_code = true;
+        $fileExt = strtolower(pathinfo($this->image, PATHINFO_EXTENSION)); // get image extension
+
+        // valid image extensions
+        $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+
+        // rename uploading image
+        $image = rand(1000, 1000000) . "." . $fileExt;
+
+        // allow valid image file formats
+        if (in_array($fileExt, $valid_extensions)) {
+            // Check file size '5MB'
+            if ($this->size < 5000000) {
+
+                $img = $this->resize_image($this->tmp_dir, 1000, 600);
+                imagejpeg($img,$upload_dir . $image);
+
+            } else {
+                $errMSG = "Sorry, your file is too large.";
+            }
+        } else {
+            $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        }
+
+
+        if (!isset($errMSG)) {
+            $dbh = $this->connectDB();
+            $stmt = $dbh->prepare('INSERT INTO departments VALUES(:id, :image)');
+
+            $id = '';
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':image', $image);
+            $result = $stmt->execute();
+
+            if ($result) {
+                $return_code = true;
+            }
+            return $return_code;
         }
         return $return_code;
     }
 
-    public function edit_department($id)
+    public function edit_dep($id)
     {
         $return_code = false;
-        $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('UPDATE departments SET name = :name, head = :head WHERE id = :id');
+        $image = null;
+        error_reporting(~E_NOTICE); // avoid notice
 
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':head', $this->head);
-        $result = $stmt->execute();
+        $upload_dir = '../img/'; // upload directory
 
-        if ($result) {
-            $return_code = true;
-        }
+            $fileExt = strtolower(pathinfo($this->image, PATHINFO_EXTENSION)); // get image extension
+
+            // valid image extensions
+            $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
+
+            // rename uploading image
+            $image = rand(1000, 1000000) . "." . $fileExt;
+
+            // allow valid image file formats
+            if (in_array($fileExt, $valid_extensions)) {
+                // Check file size '5MB'
+                if ($this->size < 5000000) {
+
+                    $img = $this->resize_image($this->tmp_dir, 1000, 600);
+                    imagejpeg($img,$upload_dir . $image);
+                } else {
+                    $errMSG = "Sorry, your file is too large.";
+                }
+            } else {
+                $errMSG = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            }
+
+
+            if (!isset($errMSG)) {
+                $dbh = $this->connectDB();
+                $stmt = $dbh->prepare('UPDATE departments SET image = :image WHERE id = :id');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':image', $image);
+                $result = $stmt->execute();
+
+                if ($result) {
+                    $return_code = true;
+                }
+                return $return_code;
+            }
         return $return_code;
     }
 
-
-    public function fetch_department($id)
+    public function fetch_dep($id)
     {
         $dbh = $this->connectDB();
         $sth = $dbh->prepare('SELECT * FROM departments WHERE id = :ids');
         $sth->bindParam(':ids', $id);
         $sth->execute();
-        if ($sth->rowCount() == 1) {
-            $department = $sth->fetch(PDO::FETCH_ASSOC);
-            return $department;
+        if($sth->rowCount() == 1){
+            $bod = $sth->fetch(PDO::FETCH_ASSOC);
+            return $bod;
         }
         return null;
     }
-
-    public function del_department($id)
+    public function del_bod($id)
     {
         $dbh = $this->connectDB();
         $sth = $dbh->prepare('DELETE FROM departments WHERE id = :ids');
@@ -107,30 +158,34 @@ class Department
         return $result;
     }
 
-    function dep_import($file)
+    function resize_image($file, $w, $h, $crop = FALSE)
     {
-        $return_code = false;
-        $handle = fopen($file, "r");
-        $dbh = $this->connectDB();
-
-        while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
-            $name = $filesop[0];
-            $head = $filesop[1];
-
-            $stmt = $dbh->prepare('INSERT INTO departments VALUES (:id, :name, :head)');
-
-            $id = '';
-            $stmt->bindParam(':id', $id);
-            $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':head', $head);
-            $result = $stmt->execute();
-
-            if ($result) {
-                $return_code = true;
+        list($width, $height) = getimagesize($file);
+        $r = $width / $height;
+        if ($crop) {
+            if ($width > $height) {
+                $width = ceil($width - ($width * abs($r - $w / $h)));
+            } else {
+                $height = ceil($height - ($height * abs($r - $w / $h)));
+            }
+            $newwidth = $w;
+            $newheight = $h;
+        } else {
+            if ($w / $h > $r) {
+                $newwidth = $h * $r;
+                $newheight = $h;
+            } else {
+                $newheight = $w / $r;
+                $newwidth = $w;
             }
         }
-        return $return_code;
+        $src = imagecreatefromjpeg($file);
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+        return $dst;
     }
+
 
     public function connectDB()
     {

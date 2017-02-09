@@ -13,14 +13,10 @@
                         <form id="edit-department-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="hidden" id="id" name="id">
-                                <label for="edit-name">Title</label><input type="text" id="edit-name" name="name"
-                                                                       class="form-control" required="">
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-head">Head of Department</label><input type="text" id="edit-head" name="head"
-                                                                       class="form-control" required="">
-                            </div>
-
+                                <div class="form-group">
+                                    <label for="image">Image</label><input type="file" id="image" name="image"
+                                                                           class="form-control" required>
+                                </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" value="UPDATE" class="form-control btn btn-success">
                             </div>

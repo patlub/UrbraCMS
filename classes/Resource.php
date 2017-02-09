@@ -8,7 +8,6 @@
 
 class Resource {
     protected $head;
-    protected $expiry;
     protected $category;
     protected $resource;
     protected $tmp_dir;
@@ -22,9 +21,6 @@ class Resource {
         return $this->head;
     }
 
-    public function get_expiry(){
-        return $this->expiry;
-    }
     public function get_resource(){
         return $this->resource;
     }
@@ -36,9 +32,6 @@ class Resource {
         $this->head = $haed;
     }
 
-    public function set_expiry($expiry){
-        $this->expiry = $expiry;
-    }
     public function set_resource($resource){
         $this->resource = $resource;
     }
@@ -46,15 +39,14 @@ class Resource {
         $this->category = $category;
     }
 
-    public static function new_resource($head, $expiry, $category, $resource, $tmp_dir, $size){
+    public static function new_resource($head, $category, $resource, $tmp_dir, $size){
         $instance = new self();
-        $instance->load_new_resource($head, $expiry, $category, $resource, $tmp_dir, $size);
+        $instance->load_new_resource($head, $category, $resource, $tmp_dir, $size);
         return $instance;
     }
 
-    public function load_new_resource($head, $expiry, $category, $resource, $tmp_dir, $size){
+    public function load_new_resource($head, $category, $resource, $tmp_dir, $size){
         $this->head = $head;
-        $this->expiry = $expiry;
         $this->category = $category;
         $this->resource = $resource;
         $this->tmp_dir = $tmp_dir;
@@ -92,13 +84,12 @@ class Resource {
 
         if (!isset($errMSG)) {
             $dbh = $this->connectDB();
-            $stmt = $dbh->prepare('INSERT INTO resources VALUES(:id, :head, :category, :expiry, :resource)');
+            $stmt = $dbh->prepare('INSERT INTO resources VALUES(:id, :head, :category, :resource)');
 
             $id = '';
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':head', $this->head);
             $stmt->bindParam(':category', $this->category);
-            $stmt->bindParam(':expiry', $this->expiry);
             $stmt->bindParam(':resource', $doc);
             $result = $stmt->execute();
 
@@ -120,12 +111,11 @@ class Resource {
         if ($this->resource == null) {
             if (!isset($errMSG)) {
                 $dbh = $this->connectDB();
-                $stmt = $dbh->prepare('UPDATE resources SET name = :head, end_date = :expiry, category = :category WHERE id = :id');
+                $stmt = $dbh->prepare('UPDATE resources SET name = :head, category = :category WHERE id = :id');
 
                 $stmt->bindParam(':id', $id);
                 $stmt->bindParam(':head', $this->head);
                 $stmt->bindParam(':category', $this->category);
-                $stmt->bindParam(':expiry', $this->expiry);
                 $result = $stmt->execute();
 
                 if ($result) {
@@ -160,11 +150,10 @@ class Resource {
 
             if (!isset($errMSG)) {
                 $dbh = $this->connectDB();
-                $stmt = $dbh->prepare('UPDATE resources SET name = :head, end_date = :expiry, category = :category, pdf = :resource WHERE id = :id');
+                $stmt = $dbh->prepare('UPDATE resources SET name = :head, category = :category, pdf = :resource WHERE id = :id');
                 $stmt->bindParam(':id', $id);
                 $stmt->bindParam(':head', $this->head);
                 $stmt->bindParam(':category', $this->category);
-                $stmt->bindParam(':expiry', $this->expiry);
                 $stmt->bindParam(':resource', $doc);
                 $result = $stmt->execute();
                 if ($result) {

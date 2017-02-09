@@ -20,25 +20,17 @@ $(document).ready(function (e) {
     add('add-department-form', 'php/add_department.php');
     add('add-resource-form', 'php/add_resource.php');
     add('add-BoD-form', 'php/add_bod.php');
+    add('add-workshop-form', 'php/add_workshop.php');
+    add('add-report-form', 'php/add_report.php');
+    add('add-user-form', 'php/add_user.php');
+    add('add-faq-form', 'php/add_faq.php');
+
     import_csv('import-dep-form', 'php/import_dep.php');
     import_csv('import-admin-form', 'php/import_admin.php');
     import_csv('import-trustee-form', 'php/import_trustee.php');
     import_csv('import-scheme-form', 'php/import_scheme.php');
     import_csv('import-custodian-form', 'php/import_custodian.php');
     import_csv('import-fund-manager-form', 'php/import_custodian.php');
-
-    //del('slide-form', 'php/delete_slides.php');
-    //del('articles-form', 'php/delete_articles.php');
-    //del('admins-form', 'php/delete_admins.php');
-    //del('custodians-form', 'php/delete_custodians.php');
-    //del('fund_managers-form', 'php/delete_fund_managers.php');
-    //del('schemes-form', 'php/delete_schemes.php');
-    //del('tenders-form', 'php/delete_tenders.php');
-    //del('trustees-form', 'php/delete_trustees.php');
-    //del('vacancies-form', 'php/delete_vacancies.php');
-    //del('departments-form', 'php/delete_departments.php');
-    //del('BoD-form', 'php/delete_bods.php');
-    //del('resource-form', 'php/delete_resources.php');
 
     tmp_muliti_del('trustee-form','php/tmp_trustees_del.php');
     tmp_muliti_del('articles-form','php/tmp_articles_del.php');
@@ -51,7 +43,11 @@ $(document).ready(function (e) {
     tmp_muliti_del('tenders-form','php/tmp_tenders_del.php');
     tmp_muliti_del('vacancies-form','php/tmp_vacancies_del.php');
     tmp_muliti_del('resources-form','php/tmp_resources_del.php');
-    tmp_muliti_del('slide-form','php/tmp_slide_del.php');
+    tmp_muliti_del('slide-form','php/tmp_slides_del.php');
+    tmp_muliti_del('users-form','php/tmp_users_del.php');
+    tmp_muliti_del('reports-form','php/tmp_reports_del.php');
+    tmp_muliti_del('faqs-form','php/tmp_faqs_del.php');
+    tmp_muliti_del('workshops-form','php/tmp_workshops_del.php');
 
     edit('edit-admin-form', 'php/edit_admin.php');
     edit('edit-custodian-form', 'php/edit_custodian.php');
@@ -64,6 +60,9 @@ $(document).ready(function (e) {
     edit('edit-tender-form', 'php/edit_tender.php');
     edit('edit-BoD-form', 'php/edit_bod.php');
     edit('edit-resource-form', 'php/edit_resource.php');
+    edit('edit-faq-form', 'php/edit_faq.php');
+    edit('edit-workshop-form', 'php/edit_workshop.php');
+    edit('edit-report-form', 'php/edit_report.php');
     edit('edit-slide-form', 'php/edit_slide.php');
     sign_in('sign-in-form', 'php/sign_in.php');
     update_serv_sec('update_serv_sec1', 'php/update_serv_sec1.php', async_get_sec_1());
@@ -108,13 +107,57 @@ $(document).ready(function (e) {
                 $('.loader').hide();
                 if (data == true) {
                     $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
-                    location.reload(true);
+                    //location.reload(true);
                 } else {
                     $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 }
             },
             error: function () {
                 $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                $('.loader').hide();
+            },
+            complete: function () {
+                $('.loader').hide();
+            }
+        });
+
+        var path = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
+        path = path.split('.')['0'];
+        var data = {path: path};
+
+        $.ajax({
+            url: "php/multi_del.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: data,
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    location.reload();
+                }
+            },
+            error: function () {
+                $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                $('.loader').hide();
+            },
+            complete: function () {
+                $('.loader').hide();
+            }
+        });
+
+        $.ajax({
+            url: "php/del.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: data,
+            success: function (data)   // A function to be called if request succeeds
+            {
+                $('.loader').hide();
+                if (data == true) {
+                    location.reload();
+                }
+            },
+            error: function () {
+                $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 $('.loader').hide();
             },
             complete: function () {
@@ -138,11 +181,13 @@ $(document).ready(function (e) {
                 processData: false,        // To send DOMDocument or non processed data file it is set to false
                 success: function (data)   // A function to be called if request succeeds
                 {
+                    alert(data);
                     $('.loader').hide();
                     if (data == true) {
                         $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
                     } else {
-                        $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                     }
                 },
                 error: function () {
@@ -172,7 +217,7 @@ $(document).ready(function (e) {
                 success: function (data)   // A function to be called if request succeeds
                 {
                     $('.loader').hide();
-                    if (data == true) {
+                    if (data) {
                         location.href = 'index.php';
                     } else {
                         $('#login-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
@@ -237,6 +282,7 @@ $(document).ready(function (e) {
                 processData: false,        // To send DOMDocument or non processed data file it is set to false
                 success: function (data)   // A function to be called if request succeeds
                 {
+                    alert(data);
                     $('.loader').hide();
                     if (data == true) {
                         $('#update-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
@@ -256,40 +302,6 @@ $(document).ready(function (e) {
 
         }));
     }
-
-    //function del(form, url) {
-    //    $("#" + form).on('submit', (function (e) {
-    //        e.preventDefault();
-    //        $('.loader').show();
-    //
-    //        $.ajax({
-    //            url: url, // Url to which the request is send
-    //            type: "POST",             // Type of request to be send, called as method
-    //            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-    //            contentType: false,       // The content type used when sending data to the server.
-    //            cache: false,             // To unable request pages to be cached
-    //            processData: false,        // To send DOMDocument or non processed data file it is set to false
-    //            success: function (data)   // A function to be called if request succeeds
-    //            {
-    //                $('.loader').hide();
-    //                if (data == true) {
-    //                    $('#deleted-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
-    //                    location.reload();
-    //                } else {
-    //                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
-    //                }
-    //            },
-    //            error: function () {
-    //                $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
-    //                $('.loader').hide();
-    //            },
-    //            complete: function () {
-    //                $('.loader').hide();
-    //            }
-    //        });
-    //
-    //    }));
-    //}
 
     function update_serv_sec(form, url, async_get) {
         $("#" + form).on('submit', (function (e) {
@@ -387,7 +399,6 @@ $(document).ready(function (e) {
                 processData: false,        // To send DOMDocument or non processed data file it is set to false
                 success: function (data)   // A function to be called if request succeeds
                 {
-                    alert(data);
                     var img_url = slides_img_url + data;
 
                     if (data != false) {
@@ -543,7 +554,6 @@ $(document).ready(function (e) {
             url = "php/fetch_vacancy.php";
             modal = "editVacancyModal";
         } else if (path == "departments.php") {
-            url = "php/fetch_department.php";
             modal = "editDepartmentModal";
         } else if (path == "BoDs.php") {
             url = "php/fetch_bod.php";
@@ -551,9 +561,21 @@ $(document).ready(function (e) {
         } else if (path == "resources.php") {
             url = "php/fetch_resource.php";
             modal = "editResourceModal";
+        } else if (path == "reports.php") {
+            url = "php/fetch_report.php";
+            modal = "editReportModal";
+        } else if (path == "faqs.php") {
+            url = "php/fetch_faq.php";
+            modal = "editFaqModal";
+        } else if (path == "workshops.php") {
+            url = "php/fetch_workshop.php";
+            modal = "editWorkshopModal";
         } else if (path == "index.php") {
             url = "php/fetch_slide.php";
             modal = "editSlideModal";
+        } else if (path == "users.php") {
+            url = "php/fetch_user_pages.php";
+            modal = "editPagesModal";
         }
         $.ajax({
             url: url, // Url to which the request is send
@@ -570,9 +592,12 @@ $(document).ready(function (e) {
                 }
                 else if (path == "vacancies.php") {
                     set_up_vacancy(data);
-                }
-                else if (path == "departments.php") {
-                    set_up_department(data);
+                }else if (path == "reports.php") {
+                    set_up_report(data);
+                }else if (path == "workshops.php") {
+                    set_up_workshop(data);
+                }else if (path == "faqs.php") {
+                    set_up_faq(data);
                 }
                 else if (path == "BoDs.php") {
                     set_up_BoD(data);
@@ -580,6 +605,8 @@ $(document).ready(function (e) {
                     set_up_resource(data);
                 } else if (path == "index.php") {
                     set_up_slide(data);
+                } else if (path == "users.php") {
+                    set_up_user_pages(data);
                 }
                 else {
                     data = data.split('-');
@@ -654,27 +681,51 @@ $(document).ready(function (e) {
         $('#id').val(id);
     }
 
-    function set_up_resource(data) {
+    function set_up_report(data) {
         data = data.split('*');
-        var name = data[0];
-        var expiry = adjust_date(data[1]);
-        var category = data[2];
+        var title = data[0];
+        var date = adjust_date(data[1]);
+        var desc = data[2];
         var id = data[4];
 
-        $('#edit-title').val(name);
-        $('#edit-datepicker').val(expiry);
-        $('#edit-category').val(category);
+        $('#edit-title').val(title);
+        $('#edit-date').val(date);
+        $('#edit-description').val(desc);
         $('#id').val(id);
     }
 
-    function set_up_department(data) {
+    function set_up_workshop(data) {
         data = data.split('*');
-        var name = data[0];
-        var title = data[1];
+        var title = data[0];
+        var date = adjust_date(data[1]);
+        var desc = data[2];
+        var id = data[3];
+
+        $('#edit-title').val(title);
+        $('#edit-date').val(date);
+        $('#edit-description').val(desc);
+        $('#id').val(id);
+    }
+
+    function set_up_faq(data) {
+        data = data.split('*');
+        var question = data[0];
+        var answer = data[1];
         var id = data[2];
 
-        $('#edit-name').val(name);
-        $('#edit-head').val(title);
+        $('#edit-question').val(question);
+        $('#edit-answer').val(answer);
+        $('#id').val(id);
+    }
+
+    function set_up_resource(data) {
+        data = data.split('*');
+        var name = data[0];
+        var category = data[1];
+        var id = data[3];
+
+        $('#edit-title').val(name);
+        $('#edit-category').val(category);
         $('#id').val(id);
     }
 
@@ -766,6 +817,11 @@ $(document).ready(function (e) {
     });
 
     $(".delete").on('click', function (e) {
+
+        if(!(confirm('Are you sure you want to delete this item'))){
+            return
+        }
+
         var id = $(this).attr('id');
         var td = this.parentNode;
         var tr = td.parentNode;

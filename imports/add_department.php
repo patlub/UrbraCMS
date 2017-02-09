@@ -13,12 +13,8 @@
                         <form id="add-department-form" role="form" enctype="multipart/form-data">
 
                             <div class="form-group">
-                                <label for="name">Title</label><input type="text" id="name" name="name"
-                                                                       class="form-control" required="">
-                            </div>
-                            <div class="form-group">
-                                <label for="head">Head of Department</label><input type="text" id="head" name="head"
-                                                                       class="form-control" required="">
+                                <label for="image">Image</label><input type="file" id="image" name="image"
+                                                                       class="form-control" required>
                             </div>
 
                             <div class="form-group">

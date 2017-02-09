@@ -84,7 +84,6 @@ class HomePage
             if ($result) {
                 return $image;
             }
-
         }
         // if no error occured, continue ....
         return $return_code;

@@ -69,7 +69,7 @@ class BoD
     public function add_Bod()
     {
         $return_code = false;
-        $doc = null;
+        $image = null;
         error_reporting(~E_NOTICE); // avoid notice
 
         $upload_dir = '../img/'; // upload directory
@@ -80,15 +80,16 @@ class BoD
         $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
 
         // rename uploading image
-        $doc = rand(1000, 1000000) . "." . $fileExt;
+        $image = rand(1000, 1000000) . "." . $fileExt;
 
         // allow valid image file formats
         if (in_array($fileExt, $valid_extensions)) {
             // Check file size '5MB'
             if ($this->size < 5000000) {
 
-//                    $img = resize_image();
-                move_uploaded_file($this->tmp_dir, $upload_dir . $doc);
+                $img = $this->resize_image($this->tmp_dir, 500, 400, true);
+                imagejpeg($img,$upload_dir . $image);
+
             } else {
                 $errMSG = "Sorry, your file is too large.";
             }
@@ -105,7 +106,7 @@ class BoD
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':name', $this->name);
             $stmt->bindParam(':details', $this->details);
-            $stmt->bindParam(':image', $doc);
+            $stmt->bindParam(':image', $image);
             $result = $stmt->execute();
 
             if ($result) {
@@ -119,7 +120,7 @@ class BoD
     public function edit_Bod($id)
     {
         $return_code = false;
-        $doc = null;
+        $image = null;
         error_reporting(~E_NOTICE); // avoid notice
 
         $upload_dir = '../img/'; // upload directory
@@ -132,7 +133,7 @@ class BoD
                 $stmt->bindParam(':id', $id);
                 $stmt->bindParam(':name', $this->name);
                 $stmt->bindParam(':details', $this->details);
-                $stmt->bindParam(':image', $doc);
+                $stmt->bindParam(':image', $image);
                 $result = $stmt->execute();
 
                 if ($result) {
@@ -147,15 +148,15 @@ class BoD
             $valid_extensions = array('jpeg', 'jpg', 'png', 'gif'); // valid extensions
 
             // rename uploading image
-            $doc = rand(1000, 1000000) . "." . $fileExt;
+            $image = rand(1000, 1000000) . "." . $fileExt;
 
             // allow valid image file formats
             if (in_array($fileExt, $valid_extensions)) {
                 // Check file size '5MB'
                 if ($this->size < 5000000) {
 
-//                    $img = resize_image();
-                    move_uploaded_file($this->tmp_dir, $upload_dir . $doc);
+                    $img = $this->resize_image($this->tmp_dir, 1196, 662);
+                    imagejpeg($img,$upload_dir . $image);
                 } else {
                     $errMSG = "Sorry, your file is too large.";
                 }
@@ -170,7 +171,7 @@ class BoD
                 $stmt->bindParam(':id', $id);
                 $stmt->bindParam(':name', $this->name);
                 $stmt->bindParam(':details', $this->details);
-                $stmt->bindParam(':image', $doc);
+                $stmt->bindParam(':image', $image);
                 $result = $stmt->execute();
 
                 if ($result) {
@@ -202,6 +203,35 @@ class BoD
         $result = $sth->execute();
         return $result;
     }
+
+    function resize_image($file, $w, $h, $crop = FALSE)
+    {
+        list($width, $height) = getimagesize($file);
+        $r = $width / $height;
+        if ($crop) {
+            if ($width > $height) {
+                $width = ceil($width - ($width * abs($r - $w / $h)));
+            } else {
+                $height = ceil($height - ($height * abs($r - $w / $h)));
+            }
+            $newwidth = $w;
+            $newheight = $h;
+        } else {
+            if ($w / $h > $r) {
+                $newwidth = $h * $r;
+                $newheight = $h;
+            } else {
+                $newheight = $w / $r;
+                $newwidth = $w;
+            }
+        }
+        $src = imagecreatefromjpeg($file);
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+        return $dst;
+    }
+
 
     public function connectDB()
     {

@@ -9,7 +9,6 @@ include('../classes/Resource.php');
 
 $id = $_POST['id'];
 $title = $_POST['title'];
-$expiry = $_POST['date'];
 $category = $_POST['category'];
 
 $resourceFile = null;
@@ -22,9 +21,6 @@ if(!empty($_FILES['resource'])) {
     $resourceSize = $_FILES['resource']['size'];
 }
 
-$date_array = explode('/', $expiry);
-$expiry = $date_array[2].'-'.$date_array[0].'-'.$date_array[1];
-
-$resource = Resource::new_resource($title, $expiry, $category, $resourceFile, $tmp_dir, $resourceSize);
+$resource = Resource::new_resource($title, $category, $resourceFile, $tmp_dir, $resourceSize);
 $result = $resource->edit_resource($id);
 echo $result;

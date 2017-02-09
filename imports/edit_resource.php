@@ -17,10 +17,6 @@
                                                                        class="form-control" required="">
                             </div>
                             <div class="form-group">
-                                <label for="edit-datepicker">Expiry</label><input type="text" id="edit-datepicker" name="date"
-                                                                           class="form-control" required="">
-                            </div>
-                            <div class="form-group">
                                 <label for="edit-category">Category</label>
                                 <select id="edit-category" name="category" class="form-control">
                                     <option value="act">Act</option>

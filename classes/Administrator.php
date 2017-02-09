@@ -145,6 +145,7 @@ class Administrator
         } catch (PDOException $e) {
             echo "Connection Error: " . $e->getMessage();
         }
+
     }
 
     public function admin_import($file)

@@ -1,6 +1,12 @@
 <?php
 require_once('classes/HomePage.php');
 require_once('classes/DatabaseHelper.php');
+session_start();
+if(!$_SESSION['loggedIn']){
+    header("location: signIn.html");
+}elseif(!in_array('index', $_SESSION['page_ids'])){
+    header("location: forbidden.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +41,6 @@ require_once('classes/DatabaseHelper.php');
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol id="indicators" class="carousel-indicators"></ol>
-
             <!-- Wrapper for slides -->
             <div id="carousel-inner" class="carousel-inner" role="listbox"></div>
         </div>
@@ -66,7 +71,7 @@ require_once('classes/DatabaseHelper.php');
         </div>
     </form>
 </div>
-<form id="slide-form" role="form" enctype="multipart/form-data">
+<form id="slide-form" role="form" enctype="multipart/form-data" method="post">
     <div id="table-box" class="row" align="center">
 
         <table id="table" cellpadding="0" cellspacing="0" border="0"
@@ -131,7 +136,7 @@ require_once('classes/DatabaseHelper.php');
                                 <input type="text" id="sub1" name="sub" class="form-control" required>
                             </div>
                             <div class="form-group col-md-12">
-                                <label for="sub-text">Text</label>
+                                <label for="sub-text1">Text</label>
                                 <textarea id="sub-text1" name="sub-text" class="form-control" required></textarea>
                                 <input type="hidden" value="1" name="position" id="position">
                             </div>

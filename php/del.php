@@ -9,8 +9,13 @@ include('../classes/DatabaseHelper.php');
 session_start();
 
 $path = $_POST['path'];
-$ids = explode('*',$_SESSION['del_ids']);
+$ids = explode('*', $_SESSION['del_ids']);
 
 $dbh = new DatabaseHelper();
 $result = $dbh->del($ids, $path);
+if ($path == 'users') {
+    if ($result) {
+        $result =$dbh->remove_page_allocs($ids);
+    }
+}
 echo $result;

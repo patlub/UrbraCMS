@@ -7,7 +7,6 @@
  */
 include('../classes/Vacancy.php');
 
-
 $id = $_POST['id'];
 $vacancy  = new Vacancy();
 $result = $vacancy->fetch_vacancy($id);

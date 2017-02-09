@@ -1,5 +1,11 @@
 <?php
 require_once 'classes/DatabaseHelper.php';
+session_start();
+if(!$_SESSION['loggedIn']){
+    header("location: signIn.html");
+}elseif(!in_array('fund_managers', $_SESSION['page_ids'])){
+    header("location: forbidden.php");
+}
 ?>
 <!DOCTYPE html>
 <html>

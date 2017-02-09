@@ -13,4 +13,9 @@ $ids = $_SESSION['del_multi_ids'];
 
 $dbh = new DatabaseHelper();
 $result = $dbh->del($ids, $path);
+if ($path == 'users') {
+    if ($result) {
+        $result =$dbh->remove_page_allocs($ids);
+    }
+}
 echo $result;

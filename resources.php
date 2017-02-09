@@ -1,5 +1,12 @@
 <?php
 require_once 'classes/DatabaseHelper.php';
+session_start();
+
+if(!$_SESSION['loggedIn']){
+    header("location: signIn.html");
+}elseif(!in_array('resources', $_SESSION['page_ids'])){
+    header("location: forbidden.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,15 +51,10 @@ require_once 'classes/DatabaseHelper.php';
         <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addResourceModal">
                 <button class="btn btn-primary btn-lg" value="">Add Resource +</button>
             </a></div>
-<!--        <form role="form" id="import-dep-form" enctype="multipart/form-data">-->
-<!--            <div class="col-md-3 form-group">-->
-<!--                <input type="file" value="import" id="csv_file" class="form-control col-md-6" name="csv_file" required="">-->
-<!--            </div>-->
-<!--            <div class="col-md-3 form-group">-->
-<!--                <input type="submit" value="import" class="btn btn-success btn-md col-md-6" name="submit" id="submit">-->
-<!--            </div>-->
-<!--        </form>-->
     </div>
+        <div class="row">
+            <button id="publish" class="btn btn-default btn-lg pull-right" value="">PUBLISH</button>
+        </div>
     <form id="resources-form" role="form" enctype="multipart/form-data">
 
         <div id="table-box" class="row" align="center">
@@ -66,7 +68,6 @@ require_once 'classes/DatabaseHelper.php';
                     <th></th>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Expiry</th>
                     <th>Resource</th>
                 </tr>
                 </thead>

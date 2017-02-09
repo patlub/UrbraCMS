@@ -1,5 +1,11 @@
 <?php
 require_once 'classes/DatabaseHelper.php';
+session_start();
+if(!$_SESSION['loggedIn']){
+    header("location: signIn.html");
+}elseif(!in_array('articles', $_SESSION['page_ids'])){
+    header("location: forbidden.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,6 +52,9 @@ require_once 'classes/DatabaseHelper.php';
                 <button class="btn btn-primary btn-lg" value="">Add Article +</button>
             </a></div>
     </div>
+        <div class="row">
+            <button id="publish" class="btn btn-default btn-lg pull-right" value="">PUBLISH</button>
+        </div>
     <form id="articles-form" role="form" enctype="multipart/form-data">
 
         <div id="table-box" class="row" align="center">

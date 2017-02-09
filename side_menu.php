@@ -56,13 +56,29 @@
                 onclick="location.href = 'departments.php'">
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Departments</a>
             </li>
+            <li data-toggle="collapse" data-target="#service" class="collapsed"
+                onclick="location.href = 'workshops.php'">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Workshops</a>
+            </li>
+            <li data-toggle="collapse" data-target="#service" class="collapsed"
+                onclick="location.href = 'reports.php'">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Reports</a>
+            </li>
+            <li data-toggle="collapse" data-target="#service" class="collapsed"
+                onclick="location.href = 'faqs.php'">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Faqs</a>
+            </li>
+            <li data-toggle="collapse" data-target="#service" class="collapsed"
+                onclick="location.href = 'media.php'">
+                <a href="#"><i class="fa fa-globe fa-lg"></i> Media</a>
+            </li>
 
-            <li>
+            <li onclick="location.href = 'users.php'">
                 <a href="#">
                     <i class="fa fa-users fa-lg"></i> Users
                 </a>
             </li>
-            <li>
+            <li onclick="location.href = 'php/sign_out.php'">
                 <a href="#">
                     <i class="fa fa-globe fa-lg"></i> Logout
                 </a>
