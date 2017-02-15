@@ -60,7 +60,7 @@ class HomePage
             // Check file size '5MB'
             if ($imgSize < 5000000) {
 
-                $img = $this->resize_image($tmp_dir, 1196, 662);
+                $img = $this->resize_image($tmp_dir, 1196, 662, true);
                 imagejpeg($img,$upload_dir . $image);
 
             } else {
@@ -217,7 +217,6 @@ class HomePage
                 $sth = $dbh->prepare('DELETE FROM tmp_slideshow');
                 $sth->execute();
             }
-            return $result;
         }
         return $result;
     }

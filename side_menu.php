@@ -1,3 +1,5 @@
+<?php require_once 'classes/Page.php';
+?>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="css/side_menu.css" rel="stylesheet">
 <div class="nav-side-menu">
@@ -35,6 +37,22 @@
                 <li class="active" onclick="location.href = 'fund_managers.php'"><a href="#">Fund Managers</a></li>
 
             </ul>
+
+
+            <li data-toggle="collapse" data-target="#laws" class="collapsed">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> Laws <span class="arrow"></span></a>
+            </li>
+
+            <ul class="sub-menu collapse" id="laws">
+                <li class="active" onclick="location.href = 'trustee_law.php'"><a href="#">Law of Trustees</a></li>
+                <li class="active" onclick="location.href = 'scheme_law.php'"><a href="#">Law of Schemes</a></li>
+                <li class="active" onclick="location.href = 'admin_law.php'"><a href="#">Law of Administrators</a></li>
+                <li class="active" onclick="location.href = 'custodian_law.php'"><a href="#">Law of Custodians</a></li>
+                <li class="active" onclick="location.href = 'fund_manager_law.php'"><a href="#">Law of Fund Managers</a></li>
+
+            </ul>
+
+
             <li data-toggle="collapse" data-target="#service" class="collapsed"
                 onclick="location.href = 'vacancies.php'">
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Vacancies</a>
@@ -49,6 +67,7 @@
                 onclick="location.href = 'articles.php'">
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Articles</a>
             </li>
+
             <li data-toggle="collapse" data-target="#service" class="collapsed" onclick="location.href = 'BoDs.php'">
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Board of Directors</a>
             </li>
@@ -68,11 +87,37 @@
                 onclick="location.href = 'faqs.php'">
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Faqs</a>
             </li>
-            <li data-toggle="collapse" data-target="#service" class="collapsed"
-                onclick="location.href = 'media.php'">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Media</a>
-            </li>
 
+            <li data-toggle="collapse" data-target="#about" class="collapsed">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> About <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="about">
+                <li class="active" onclick="location.href = 'who_we_are.php'"><a href="#">Who we are</a></li>
+                <li class="active" onclick="location.href = 'functions.php'"><a href="#">Functions</a></li>
+            </ul>
+
+
+            <li data-toggle="collapse" data-target="#media" class="collapsed">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> Media <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="media">
+                <li class="active" onclick="location.href = 'imedia.php'"><a href="#">Internal Media</a></li>
+                <li class="active" onclick="location.href = 'emedia.php'"><a href="#">External Media</a></li>
+            </ul>
+
+            <li data-toggle="collapse" data-target="#pages" class="collapsed">
+                <a href="#"><i class="fa fa-gift fa-lg"></i>Custom Pages <span class="arrow"></span></a>
+            </li>
+            <ul class="sub-menu collapse" id="pages">
+
+                <?php
+                $page = new Page();
+                $page->load_custom_pages_list();
+
+                ?>
+                <li class="active" onclick="location.href = 'add_page.php'"><a href="#">Add Page+</a></li>;
+
+            </ul>
             <li onclick="location.href = 'users.php'">
                 <a href="#">
                     <i class="fa fa-users fa-lg"></i> Users

@@ -35,8 +35,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -83,8 +83,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -129,7 +129,7 @@ class DatabaseHelper
                     </td>
 
                     <td align="center">
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -176,8 +176,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
                     </td>
                 </tr>
             <?php
@@ -222,8 +222,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -263,8 +263,8 @@ class DatabaseHelper
 
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -282,22 +282,22 @@ class DatabaseHelper
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
             $department = $statementHandler->fetch(PDO::FETCH_ASSOC);
-                $id = $department['id'];
-                $image = $department['image'];
+            $id = $department['id'];
+            $image = $department['image'];
 
-                ?>
-                <tr>
-                    <td align="center" width="10">
+            ?>
+            <tr>
+                <td align="center" width="10">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                    <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
-                    </td>
-                    <td>
-                        <img src="<?php echo 'img/'.$image; ?>" class="img-responsive">
-                    </td>
-                </tr>
-            <?php
+                </td>
+                <td>
+                    <img src="<?php echo 'img/' . $image; ?>" class="img-responsive">
+                </td>
+            </tr>
+        <?php
 
         } else {
             echo false;
@@ -337,8 +337,8 @@ class DatabaseHelper
 
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -384,8 +384,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -431,8 +431,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -491,8 +491,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -543,8 +543,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
                 </tr>
@@ -591,9 +591,104 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+    }
+
+    public function get_i_media()
+    {
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM internal_media");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($media = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $media['id'];
+                $title = $media['title'];
+                $date = $media['date_realesed'];
+                $source = $media['source'];
+                $attachment = $media['attachment'];
+
+                ?>
+                <tr>
+                    <td align="center">
+                        <label><input type="checkbox" name="media[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $title; ?>
+                    </td>
+                    <td>
+                        <?php echo $date; ?>
+                    </td>
+                    <td>
+                        <?php echo $source; ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo 'docs/' . $attachment ?>" target="_blank"><img src="img/pdf.png"></a>
+                    </td>
+                    <td align="center">
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
+
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+    }
+
+    public function get_e_media()
+    {
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM external_media");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($media = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $media['id'];
+                $title = $media['title'];
+                $date = $media['date_realesed'];
+                $source = $media['source'];
+                $link = $media['link'];
+
+                ?>
+                <tr>
+                    <td align="center">
+                        <label><input type="checkbox" name="media[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $title; ?>
+                    </td>
+                    <td>
+                        <?php echo $date; ?>
+                    </td>
+                    <td>
+                        <?php echo $source; ?>
+                    </td>
+                    <td>
+                        <?php echo $link; ?>
+                    </td>
+                    <td align="center">
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
                     </td>
                 </tr>
             <?php
@@ -616,7 +711,6 @@ class DatabaseHelper
                 $title = $workshops['title'];
                 $date = $workshops['dateheld'];
                 $description = $workshops['desc'];
-
 
 
                 $sth = $dbh->prepare("SELECT * FROM workshop_docs WHERE workshop_id = :id ");
@@ -642,7 +736,7 @@ class DatabaseHelper
                     </td>
                     <td>
                         <?php
-                        while($workshop_docs = $sth->fetch(PDO::FETCH_ASSOC)){
+                        while ($workshop_docs = $sth->fetch(PDO::FETCH_ASSOC)) {
                             $attachment = $workshop_docs['attachment'];
                             ?>
                             <a href="<?php echo 'docs/' . $attachment ?>" target="_blank"><img src="img/pdf.png"></a>
@@ -652,8 +746,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
                     </td>
                 </tr>
             <?php
@@ -662,7 +756,6 @@ class DatabaseHelper
             echo false;
         }
     }
-
 
 
     public function get_articles()
@@ -704,8 +797,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
 
@@ -746,8 +839,8 @@ class DatabaseHelper
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
-                                class="glyphicon glyphicon-pencil icon-edit" ></span></span>
-                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete" ></span>
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
                     </td>
 
@@ -774,7 +867,7 @@ class DatabaseHelper
                 ?>
 
                 <div class="form-group">
-                    <div class="col-md-3" style="padding-top: 2%;"><label for="pages"><?php echo $name;?></label></div>
+                    <div class="col-md-3" style="padding-top: 2%;"><label for="pages"><?php echo $name; ?></label></div>
                     <div class="col-md-3"><input type="checkbox" value="<?php echo $id; ?>" id="pages" name="pages[]"
                                                  class="form-control"></div>
                 </div>
@@ -981,39 +1074,43 @@ class DatabaseHelper
         $result = false;
         $dbh = $this->connectDB();
         $length = count($ids);
-        if($path == 'trustees') {
+        if ($path == 'trustees') {
             $sth = $dbh->prepare('DELETE FROM trustees WHERE id = :ids');
-        }elseif($path == 'custodians'){
+        } elseif ($path == 'custodians') {
             $sth = $dbh->prepare('DELETE FROM custodians WHERE id = :ids');
-        }elseif($path == 'schemes'){
+        } elseif ($path == 'schemes') {
             $sth = $dbh->prepare('DELETE FROM rbs WHERE id = :ids');
-        }elseif($path == 'custodians'){
+        } elseif ($path == 'custodians') {
             $sth = $dbh->prepare('DELETE FROM custodians WHERE id = :ids');
-        }elseif($path == 'administrators'){
+        } elseif ($path == 'administrators') {
             $sth = $dbh->prepare('DELETE FROM administrators WHERE id = :ids');
-        }elseif($path == 'fund_managers'){
+        } elseif ($path == 'fund_managers') {
             $sth = $dbh->prepare('DELETE FROM fund_managers WHERE id = :ids');
-        }elseif($path == 'vacancies'){
+        } elseif ($path == 'vacancies') {
             $sth = $dbh->prepare('DELETE FROM vacancies WHERE id = :ids');
-        }elseif($path == 'tenders'){
+        } elseif ($path == 'tenders') {
             $sth = $dbh->prepare('DELETE FROM tenders WHERE id = :ids');
-        }elseif($path == 'articles'){
+        } elseif ($path == 'articles') {
             $sth = $dbh->prepare('DELETE FROM articles WHERE id = :ids');
-        }elseif($path == 'resources'){
+        } elseif ($path == 'resources') {
             $sth = $dbh->prepare('DELETE FROM resources WHERE id = :ids');
-        }elseif($path == 'BoDs'){
+        } elseif ($path == 'BoDs') {
             $sth = $dbh->prepare('DELETE FROM bod WHERE id = :ids');
-        }elseif($path == 'departments'){
+        } elseif ($path == 'departments') {
             $sth = $dbh->prepare('DELETE FROM departments WHERE id = :ids');
-        }elseif($path == 'reports'){
+        } elseif ($path == 'reports') {
             $sth = $dbh->prepare('DELETE FROM reports WHERE id = :ids');
-        }elseif($path == 'workshops'){
+        } elseif ($path == 'workshops') {
             $sth = $dbh->prepare('DELETE FROM workshops WHERE id = :ids');
-        }elseif($path == 'faqs'){
+        } elseif ($path == 'faqs') {
             $sth = $dbh->prepare('DELETE FROM faqs WHERE id = :ids');
-        }elseif($path == 'users'){
+        } elseif ($path == 'imedia') {
+            $sth = $dbh->prepare('DELETE FROM internal_media WHERE id = :ids');
+        } elseif ($path == 'emedia') {
+            $sth = $dbh->prepare('DELETE FROM external_media WHERE id = :ids');
+        } elseif ($path == 'users') {
             $sth = $dbh->prepare('DELETE FROM users WHERE id = :ids');
-        }elseif($path == 'index'){
+        } elseif ($path == 'index') {
             $sth = $dbh->prepare('DELETE FROM slideshow WHERE id = :ids');
         }
 
@@ -1024,7 +1121,8 @@ class DatabaseHelper
         return $result;
     }
 
-    public function remove_page_allocs($ids){
+    public function remove_page_allocs($ids)
+    {
         $result = false;
         $length = count($ids);
         $dbh = $this->connectDB();
@@ -1035,6 +1133,7 @@ class DatabaseHelper
         }
         return $result;
     }
+
 
     public function connectDB()
     {
@@ -1049,4 +1148,40 @@ class DatabaseHelper
         }
     }
 
-} 
+    public function fetch_who_we_are()
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('SELECT * FROM who_we_are');
+        $stmt->execute();
+        $who_we_are = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $who_we_are;
+    }
+
+    public function fetch_functions()
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('SELECT * FROM functions');
+        $stmt->execute();
+        $functions = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $functions;
+    }
+
+    public function update_who_we_are($summary, $vision, $mission, $values, $sector_bg, $objectives, $bg, $mandate, $powers)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('UPDATE who_we_are SET summary = :summary, vision = :vision, mission = :mission, `values` = :_values, sector_bg = :sector_bg,
+                                objectives = :obj, bg = :bg, mandate = :mandate, powers = :powers');
+        $result = $stmt->execute(array('summary' => $summary, 'vision' => $vision, 'mission' => $mission, '_values' => $values, 'sector_bg' => $sector_bg,
+                                        'obj' => $objectives, 'bg' => $bg, 'mandate' => $mandate, 'powers' => $powers));
+        return $result;
+    }
+
+    public function update_functions($functions)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('UPDATE functions SET functions = :functions');
+        $result = $stmt->execute(array('functions' => $functions));
+        return $result;
+    }
+
+}

@@ -24,6 +24,14 @@ $(document).ready(function (e) {
     add('add-report-form', 'php/add_report.php');
     add('add-user-form', 'php/add_user.php');
     add('add-faq-form', 'php/add_faq.php');
+    add('add-i-media-form', 'php/add_imedia.php');
+    add('add-e-media-form', 'php/add_emedia.php');
+    add_page('add-page-form', 'php/add_page.php');
+    update_page('update-page-form', 'php/update_page.php');
+    update_law('update-trustee-form', 'php/update_trustee_law.php');
+    update_who_we_are('update-who-we-are-form', 'php/update_who_we_are.php');
+    update_functions('update-functions-form', 'php/update_functions.php');
+
 
     import_csv('import-dep-form', 'php/import_dep.php');
     import_csv('import-admin-form', 'php/import_admin.php');
@@ -48,6 +56,8 @@ $(document).ready(function (e) {
     tmp_muliti_del('reports-form','php/tmp_reports_del.php');
     tmp_muliti_del('faqs-form','php/tmp_faqs_del.php');
     tmp_muliti_del('workshops-form','php/tmp_workshops_del.php');
+    tmp_muliti_del('i-media-form','php/tmp_i_media_del.php');
+    tmp_muliti_del('e-media-form','php/tmp_e_media_del.php');
 
     edit('edit-admin-form', 'php/edit_admin.php');
     edit('edit-custodian-form', 'php/edit_custodian.php');
@@ -62,6 +72,8 @@ $(document).ready(function (e) {
     edit('edit-resource-form', 'php/edit_resource.php');
     edit('edit-faq-form', 'php/edit_faq.php');
     edit('edit-workshop-form', 'php/edit_workshop.php');
+    edit('edit-i-media-form', 'php/edit_imedia.php');
+    edit('edit-e-media-form', 'php/edit_emedia.php');
     edit('edit-report-form', 'php/edit_report.php');
     edit('edit-slide-form', 'php/edit_slide.php');
     sign_in('sign-in-form', 'php/sign_in.php');
@@ -106,10 +118,8 @@ $(document).ready(function (e) {
             {
                 $('.loader').hide();
                 if (data == true) {
-                    $('.success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    $('#update-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
                     //location.reload(true);
-                } else {
-                    $('.error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 }
             },
             error: function () {
@@ -181,7 +191,215 @@ $(document).ready(function (e) {
                 processData: false,        // To send DOMDocument or non processed data file it is set to false
                 success: function (data)   // A function to be called if request succeeds
                 {
-                    alert(data);
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+    function add_page(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var content = CKEDITOR.instances.content.getData();
+            var page_name = document.getElementById('page-name').value;
+
+            var data = {page_name: page_name, content:content};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+
+
+
+    function update_page(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var page_name = document.getElementById('page-name').value;
+            var content = CKEDITOR.instances.content.getData();
+
+            var data = {page_name: page_name, content:content};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+    function update_law(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var application = CKEDITOR.instances.application.getData();
+            var refusal = CKEDITOR.instances.refusal.getData();
+            var restrict = CKEDITOR.instances.restrict.getData();
+            var validity = CKEDITOR.instances.validity.getData();
+            var revocation = CKEDITOR.instances.revocation.getData();
+            var functions = CKEDITOR.instances.function.getData();
+
+            var data = {application: application, refusal:refusal, restrict:restrict, validity:validity, revocation:revocation, functions:functions};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+
+    function update_who_we_are(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var summary = CKEDITOR.instances.summary.getData();
+            var vision = CKEDITOR.instances.vision.getData();
+            var mission = CKEDITOR.instances.mission.getData();
+            var values = CKEDITOR.instances.values.getData();
+            var sector_bg = CKEDITOR.instances.sector_bg.getData();
+            var objectives = CKEDITOR.instances.objectives.getData();
+            var bg = CKEDITOR.instances.bg.getData();
+            var mandate = CKEDITOR.instances.mandate.getData();
+            var powers = CKEDITOR.instances.powers.getData();
+
+            var data = {summary: summary, vision:vision, mission:mission, values:values, sector_bg:sector_bg, objectives:objectives, bg:bg, mandate:mandate, powers:powers};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+    function update_functions(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var functions = CKEDITOR.instances.functions.getData();
+
+            var data = {functions: functions};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
                     $('.loader').hide();
                     if (data == true) {
                         $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
@@ -282,7 +500,6 @@ $(document).ready(function (e) {
                 processData: false,        // To send DOMDocument or non processed data file it is set to false
                 success: function (data)   // A function to be called if request succeeds
                 {
-                    alert(data);
                     $('.loader').hide();
                     if (data == true) {
                         $('#update-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
@@ -564,7 +781,13 @@ $(document).ready(function (e) {
         } else if (path == "reports.php") {
             url = "php/fetch_report.php";
             modal = "editReportModal";
-        } else if (path == "faqs.php") {
+        } else if (path == "imedia.php") {
+            url = "php/fetch_i_media.php";
+            modal = "editIMediaModal";
+        } else if (path == "emedia.php") {
+            url = "php/fetch_e_media.php";
+            modal = "editEMediaModal";
+        }else if (path == "faqs.php") {
             url = "php/fetch_faq.php";
             modal = "editFaqModal";
         } else if (path == "workshops.php") {
@@ -594,6 +817,10 @@ $(document).ready(function (e) {
                     set_up_vacancy(data);
                 }else if (path == "reports.php") {
                     set_up_report(data);
+                }else if (path == "imedia.php") {
+                    set_up_i_media(data);
+                }else if (path == "emedia.php") {
+                    set_up_e_media(data);
                 }else if (path == "workshops.php") {
                     set_up_workshop(data);
                 }else if (path == "faqs.php") {
@@ -691,6 +918,34 @@ $(document).ready(function (e) {
         $('#edit-title').val(title);
         $('#edit-date').val(date);
         $('#edit-description').val(desc);
+        $('#id').val(id);
+    }
+
+    function set_up_i_media(data) {
+        data = data.split('*');
+        var title = data[0];
+        var date = adjust_date(data[1]);
+        var desc = data[2];
+        var id = data[4];
+
+        $('#edit-title').val(title);
+        $('#edit-date').val(date);
+        $('#edit-description').val(desc);
+        $('#id').val(id);
+    }
+
+    function set_up_e_media(data) {
+        data = data.split('*');
+        var title = data[0];
+        var date = adjust_date(data[1]);
+        var desc = data[2];
+        var link = data[3];
+        var id = data[4];
+
+        $('#edit-title').val(title);
+        $('#edit-date').val(date);
+        $('#edit-description').val(desc);
+        $('#edit-link').val(link);
         $('#id').val(id);
     }
 

@@ -147,6 +147,34 @@ class Scheme {
     }
 
 
+    public function fetch_scheme_law(){
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('SELECT * FROM laws WHERE provider = :provider');
+        $provider = 'scheme';
+        $stmt->bindParam(':provider',$provider);
+        $stmt->execute();
+        $law = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $law;
+    }
+
+    public function update_scheme_law($app, $refusal, $restrict, $validity, $revocation, $function){
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('UPDATE laws SET application =  :app, refusal = :refusal, restriction = :restriction,
+                                validity = :validity, revocation = :revocation, `function` = :functions WHERE provider = :provider');
+
+        $provider = 'scheme';
+        $stmt->bindParam(':app', $app);
+        $stmt->bindParam(':refusal', $refusal);
+        $stmt->bindParam(':restriction', $restrict);
+        $stmt->bindParam(':validity', $validity);
+        $stmt->bindParam(':revocation', $revocation);
+        $stmt->bindParam(':functions', $function);
+        $stmt->bindParam(':provider', $provider);
+
+        $result = $stmt->execute();
+        return $result;
+    }
+
     public function connectDB()
     {
         $DB_HOST = "localhost";

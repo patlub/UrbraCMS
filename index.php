@@ -29,7 +29,7 @@ if(!$_SESSION['loggedIn']){
 <div class="col-md-9">
 <div class="col-md-12">
     <?php include_once 'menu.php'; ?>
-    <div class="success-alert row" align="center">Slide Image has been updated</div>
+    <div id="update-alert" class="success-alert row" align="center">Slide Image has been updated</div>
     <div id="deleted-alert" class=" row" align="center">Slides have been deleted</div>
     <div id="preview-alert" class="success-alert row" align="center">Preview Updated</div>
     <div class="error row" align="center">Network Error</div>
@@ -101,7 +101,7 @@ if(!$_SESSION['loggedIn']){
 
 <div id="lower-section" class="col-md-12">
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="row sec-box">
             <div class="sec-image" align="center">
                 <img id="sec_image1" src="" class="service-image img-responsive img-circle">
@@ -152,58 +152,7 @@ if(!$_SESSION['loggedIn']){
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="row sec-box">
-            <div class="sec-image" align="center">
-                <img id="sec_image2" src="" class="service-image img-responsive img-circle">
-            </div>
-
-            <div id="sec_head2" class="sec-head"></div>
-            <div id="sec_text2" class="sec_text"></div>
-            <div class="row service-btn">
-                <input id="sec_btn2" type="button" value="" class="btn btn-warning btn-lg">
-            </div>
-        </div>
-        <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="sectionTwo">
-                    <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"
-                           aria-expanded="true" aria-controls="collapseTwo">
-                            Edit Section 2
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
-                     aria-labelledby="sectionTwo">
-                    <div class="panel-body">
-                        <form id="update_serv_sec2" role="form" action="" method="post" enctype="multipart/form-data">
-                            <div class="form-group col-md-12">
-                                <label for="image">Image</label>
-                                <input type="file" id="image" name="image" class="form-control">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="sub2">Heading</label>
-                                <input type="text" id="sub2" name="sub" class="form-control" required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="sub-text2">Text</label>
-                                <textarea id="sub-text2" name="sub-text" class="form-control" required></textarea>
-                                <input type="hidden" value="2" name="position" id="position">
-                            </div>
-                            <div class="form-group col-md-12">
-                                <input type="submit" id="upsection" name="upsection" value="Update Section"
-                                       class="form-control btn btn-success"
-                                       required>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-4">
+    <div class="col-md-6">
         <div class="row sec-box">
             <div class="sec-image" align="center">
                 <img id="sec_image3" src="" class="service-image img-responsive img-circle">

@@ -205,8 +205,8 @@ class Report
         $sth->bindParam(':ids', $id);
         $sth->execute();
         if ($sth->rowCount() == 1) {
-            $vacancy = $sth->fetch(PDO::FETCH_ASSOC);
-            return $vacancy;
+            $report = $sth->fetch(PDO::FETCH_ASSOC);
+            return $report;
         }
         return null;
     }

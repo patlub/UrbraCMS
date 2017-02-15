@@ -63,7 +63,7 @@ if(!$_SESSION['loggedIn']){
                             <th></th>
                             <th>#</th>
                             <th>Title</th>
-                            <th>Date</th>
+                            <th>DateHeld</th>
                             <th>Description</th>
                             <th>Attachment</th>
                         </tr>
