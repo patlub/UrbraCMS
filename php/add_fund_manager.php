@@ -8,10 +8,10 @@
 include('../classes/FundManager.php');
 
 $name = $_POST['name'];
-$category = $_POST['category'];
 $address = $_POST['address'];
 $web_link = $_POST['link'];
+$tel = $_POST['tel'];
 
-$fund_manager = FundManager::new_fund_manager($name, $category, $address, $web_link);
+$fund_manager = FundManager::new_fund_manager($name, $address, $web_link, $tel);
 $result = $fund_manager->add_fund_manager();
 echo $result;

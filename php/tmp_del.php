@@ -8,7 +8,6 @@
 session_start();
 $id = $_POST['id'];
 
-
 if ($_SESSION['del_ids'] != null) {
     $_SESSION['del_ids'] = $_SESSION['del_ids'] . '*' . $id;
 }else{

@@ -7,13 +7,11 @@
  */
 include('../classes/Custodian.php');
 
-$app = $_POST['application'];
-$refusal = $_POST['refusal'];
-$restrict = $_POST['restrict'];
-$validity = $_POST['validity'];
-$revocation = $_POST['revocation'];
-$function = $_POST['functions'];
+$tabs = $_POST['tabs'];
+$details = $_POST['details'];
 
 $cust = new Custodian();
-$result = $cust->update_custodian_law($app, $refusal, $restrict, $validity, $revocation, $function);
-echo $result;
+$result = $cust->update_custodian_law($tabs, $details);
+if($result){
+    header('location:../custodian_law.php');
+}

@@ -7,16 +7,12 @@
  */
 include('../classes/DatabaseHelper.php');
 
-$summary = $_POST['summary'];
-$vision = $_POST['vision'];
-$mission = $_POST['mission'];
-$values = $_POST['values'];
-$sector_bg = $_POST['sector_bg'];
-$objectives = $_POST['objectives'];
-$bg = $_POST['bg'];
-$mandate = $_POST['mandate'];
-$powers = $_POST['powers'];
+
+$tabs = $_POST['tabs'];
+$details = $_POST['details'];
 
 $dbh = new DatabaseHelper();
-$result = $dbh->update_who_we_are($summary,$vision,$mission,$values,$sector_bg,$objectives,$bg,$mandate,$powers);
-echo $result;
+$result = $dbh->update_who_we_are($tabs, $details);
+if($result){
+    header('location:../who_we_are.php');
+}

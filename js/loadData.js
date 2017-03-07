@@ -10,12 +10,13 @@ $(document).ready(function (e) {
     preview_slide();
     add('add-article-form', 'php/add_article.php');
     add('add-article-form', 'php/add_article.php');
-    add('add-admin-form', 'php/add_administrator.php');
-    add('add-custodian-form', 'php/add_custodian.php');
-    add('add-fund-manager-form', 'php/add_fund_manager.php');
-    add('add-scheme-form', 'php/add_scheme.php');
+    add_admin('add-admin-form', 'php/add_administrator.php');
+    add_custodian('add-custodian-form', 'php/add_custodian.php');
+    add_fund_manager('add-fund-manager-form', 'php/add_fund_manager.php');
+    add_scheme('add-scheme-form', 'php/add_scheme.php');
     add('add-tender-form', 'php/add_tender.php');
-    add('add-trustee-form', 'php/add_trustee.php');
+    add('add-corporate-trustee-form', 'php/add_corporate_trustee.php');
+    add('add-individual-trustee-form', 'php/add_individual_trustee.php');
     add('add-vacancy-form', 'php/add_vacancy.php');
     add('add-department-form', 'php/add_department.php');
     add('add-resource-form', 'php/add_resource.php');
@@ -28,43 +29,47 @@ $(document).ready(function (e) {
     add('add-e-media-form', 'php/add_emedia.php');
     add_page('add-page-form', 'php/add_page.php');
     update_page('update-page-form', 'php/update_page.php');
-    update_law('update-trustee-form', 'php/update_trustee_law.php');
     update_who_we_are('update-who-we-are-form', 'php/update_who_we_are.php');
     update_functions('update-functions-form', 'php/update_functions.php');
 
 
     import_csv('import-dep-form', 'php/import_dep.php');
     import_csv('import-admin-form', 'php/import_admin.php');
-    import_csv('import-trustee-form', 'php/import_trustee.php');
+    import_csv('import-corporate-trustee-form', 'php/import_corporate_trustee.php');
+    import_csv('import-individual-trustee-form', 'php/import_individual_trustee.php');
     import_csv('import-scheme-form', 'php/import_scheme.php');
     import_csv('import-custodian-form', 'php/import_custodian.php');
     import_csv('import-fund-manager-form', 'php/import_custodian.php');
 
-    tmp_muliti_del('trustee-form','php/tmp_trustees_del.php');
-    tmp_muliti_del('articles-form','php/tmp_articles_del.php');
-    tmp_muliti_del('admins-form','php/tmp_admins_del.php');
-    tmp_muliti_del('custodians-form','php/tmp_custodians_del.php');
-    tmp_muliti_del('BoD-form','php/tmp_bods_del.php');
-    tmp_muliti_del('departments-form','php/tmp_departments_del.php');
-    tmp_muliti_del('fund_managers-form','php/tmp_fund_managers_del.php');
-    tmp_muliti_del('schemes-form','php/tmp_schemes_del.php');
-    tmp_muliti_del('tenders-form','php/tmp_tenders_del.php');
-    tmp_muliti_del('vacancies-form','php/tmp_vacancies_del.php');
-    tmp_muliti_del('resources-form','php/tmp_resources_del.php');
-    tmp_muliti_del('slide-form','php/tmp_slides_del.php');
-    tmp_muliti_del('users-form','php/tmp_users_del.php');
-    tmp_muliti_del('reports-form','php/tmp_reports_del.php');
-    tmp_muliti_del('faqs-form','php/tmp_faqs_del.php');
-    tmp_muliti_del('workshops-form','php/tmp_workshops_del.php');
-    tmp_muliti_del('i-media-form','php/tmp_i_media_del.php');
-    tmp_muliti_del('e-media-form','php/tmp_e_media_del.php');
+    tmp_muliti_del('corporate-trustee-form', 'php/tmp_trustees_del.php');
+    tmp_muliti_del('individual-trustee-form', 'php/tmp_trustees_del.php');
+    tmp_muliti_del('articles-form', 'php/tmp_articles_del.php');
+    tmp_muliti_del('admins-form', 'php/tmp_admins_del.php');
+    tmp_muliti_del('custodians-form', 'php/tmp_custodians_del.php');
+    tmp_muliti_del('BoD-form', 'php/tmp_bods_del.php');
+    tmp_muliti_del('departments-form', 'php/tmp_departments_del.php');
+    tmp_muliti_del('fund_managers-form', 'php/tmp_fund_managers_del.php');
+    tmp_muliti_del('schemes-form', 'php/tmp_schemes_del.php');
+    tmp_muliti_del('tenders-form', 'php/tmp_tenders_del.php');
+    tmp_muliti_del('vacancies-form', 'php/tmp_vacancies_del.php');
+    tmp_muliti_del('resources-form', 'php/tmp_resources_del.php');
+    tmp_muliti_del('slide-form', 'php/tmp_slides_del.php');
+    tmp_muliti_del('users-form', 'php/tmp_users_del.php');
+    tmp_muliti_del('reports-form', 'php/tmp_reports_del.php');
+    tmp_muliti_del('faqs-form', 'php/tmp_faqs_del.php');
+    tmp_muliti_del('workshops-form', 'php/tmp_workshops_del.php');
+    tmp_muliti_del('i-media-form', 'php/tmp_i_media_del.php');
+    tmp_muliti_del('e-media-form', 'php/tmp_e_media_del.php');
 
-    edit('edit-admin-form', 'php/edit_admin.php');
-    edit('edit-custodian-form', 'php/edit_custodian.php');
-    edit('edit-fund-manager-form', 'php/edit_fund_manager.php');
-    edit('edit-scheme-form', 'php/edit_scheme.php');
-    edit('edit-trustee-form', 'php/edit_trustee.php');
+    edit_service_provider('edit-admin-form', 'php/edit_admin.php');
+    edit_service_provider('edit-custodian-form', 'php/edit_custodian.php');
+    edit_service_provider('edit-fund-manager-form', 'php/edit_fund_manager.php');
+    edit_scheme('edit-scheme-form', 'php/edit_scheme.php');
+    edit('edit-corporate-trustee-form', 'php/edit_corporate_trustee.php');
+    edit('edit-individual-trustee-form', 'php/edit_individual_trustee.php');
+    edit('edit-individual-trustee-form', 'php/edit_individual_trustee.php');
     edit('edit-article-form', 'php/edit_article.php');
+    edit('edit-time-stamp-form', 'php/edit_time_stamp.php');
     edit('edit-vacancy-form', 'php/edit_vacancy.php');
     edit('edit-department-form', 'php/edit_department.php');
     edit('edit-tender-form', 'php/edit_tender.php');
@@ -100,7 +105,6 @@ $(document).ready(function (e) {
             contentType: false,       // The content type used when sending data to the server.
             cache: false,             // To unable request pages to be cached
             processData: false        // To send DOMDocument or non processed data file it is set to false
-
         });
     }
 
@@ -119,7 +123,7 @@ $(document).ready(function (e) {
                 $('.loader').hide();
                 if (data == true) {
                     $('#update-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
-                    //location.reload(true);
+                    location.reload(true);
                 }
             },
             error: function () {
@@ -170,7 +174,7 @@ $(document).ready(function (e) {
                 $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                 $('.loader').hide();
             },
-            complete: function () {
+                complete: function () {
                 $('.loader').hide();
             }
         });
@@ -219,7 +223,51 @@ $(document).ready(function (e) {
             var content = CKEDITOR.instances.content.getData();
             var page_name = document.getElementById('page-name').value;
 
-            var data = {page_name: page_name, content:content};
+            var data = {page_name: page_name, content: content};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    //alert(data);
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else if (data == 2) {
+                        $('#exist-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    }
+                    else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+    function add_scheme(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var name = CKEDITOR.instances.name.getData();
+            var address = document.getElementById('address').value;
+            var link = document.getElementById('link').value;
+
+            var data = {name: name, address: address, link: link};
 
             $.ajax({
                 url: url, // Url to which the request is send
@@ -234,7 +282,10 @@ $(document).ready(function (e) {
                     if (data == true) {
                         $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
                         location.reload();
-                    } else {
+                    } else if (data == 2) {
+                        $('#exist-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    }
+                    else {
                         $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                     }
                 },
@@ -251,6 +302,133 @@ $(document).ready(function (e) {
     }
 
 
+    function add_admin(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var name = document.getElementById('name').value;
+            var address = CKEDITOR.instances.address.getData();
+            var link = document.getElementById('link').value;
+
+            var data = {name: name, address: address, link: link};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else if (data == 2) {
+                        $('#exist-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    }
+                    else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+    function add_custodian(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var name = document.getElementById('name').value;
+            var address = CKEDITOR.instances.address.getData();
+            var link = document.getElementById('link').value;
+            var data = {name: name, address: address, link: link};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else if (data == 2) {
+                        $('#exist-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    }
+                    else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+    function add_fund_manager(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+            var name = document.getElementById('name').value;
+            var address = CKEDITOR.instances.address.getData();
+            var link = document.getElementById('link').value;
+
+            var data = {name: name, address: address, link: link};
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else if (data == 2) {
+                        $('#exist-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                    }
+                    else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
 
 
     function update_page(form, url) {
@@ -261,7 +439,7 @@ $(document).ready(function (e) {
             var page_name = document.getElementById('page-name').value;
             var content = CKEDITOR.instances.content.getData();
 
-            var data = {page_name: page_name, content:content};
+            var data = {page_name: page_name, content: content};
 
             $.ajax({
                 url: url, // Url to which the request is send
@@ -291,50 +469,6 @@ $(document).ready(function (e) {
 
         }));
     }
-
-    function update_law(form, url) {
-        $("#" + form).on('submit', (function (e) {
-            e.preventDefault();
-            $('.loader').show();
-
-            var application = CKEDITOR.instances.application.getData();
-            var refusal = CKEDITOR.instances.refusal.getData();
-            var restrict = CKEDITOR.instances.restrict.getData();
-            var validity = CKEDITOR.instances.validity.getData();
-            var revocation = CKEDITOR.instances.revocation.getData();
-            var functions = CKEDITOR.instances.function.getData();
-
-            var data = {application: application, refusal:refusal, restrict:restrict, validity:validity, revocation:revocation, functions:functions};
-
-            $.ajax({
-                url: url, // Url to which the request is send
-                type: "POST",             // Type of request to be send, called as method
-                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-                //contentType: false,       // The content type used when sending data to the server.
-                //cache: false,             // To unable request pages to be cached
-                //processData: false,        // To send DOMDocument or non processed data file it is set to false
-                success: function (data)   // A function to be called if request succeeds
-                {
-                    $('.loader').hide();
-                    if (data == true) {
-                        $('#success-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
-                        location.reload();
-                    } else {
-                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
-                    }
-                },
-                error: function () {
-                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
-                    $('.loader').hide();
-                },
-                complete: function () {
-                    $('.loader').hide();
-                }
-            });
-
-        }));
-    }
-
 
     function update_who_we_are(form, url) {
         $("#" + form).on('submit', (function (e) {
@@ -351,7 +485,17 @@ $(document).ready(function (e) {
             var mandate = CKEDITOR.instances.mandate.getData();
             var powers = CKEDITOR.instances.powers.getData();
 
-            var data = {summary: summary, vision:vision, mission:mission, values:values, sector_bg:sector_bg, objectives:objectives, bg:bg, mandate:mandate, powers:powers};
+            var data = {
+                summary: summary,
+                vision: vision,
+                mission: mission,
+                values: values,
+                sector_bg: sector_bg,
+                objectives: objectives,
+                bg: bg,
+                mandate: mandate,
+                powers: powers
+            };
 
             $.ajax({
                 url: url, // Url to which the request is send
@@ -500,6 +644,7 @@ $(document).ready(function (e) {
                 processData: false,        // To send DOMDocument or non processed data file it is set to false
                 success: function (data)   // A function to be called if request succeeds
                 {
+                    //alert(data);
                     $('.loader').hide();
                     if (data == true) {
                         $('#update-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
@@ -519,6 +664,95 @@ $(document).ready(function (e) {
 
         }));
     }
+
+    function edit_scheme(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+
+            var name = CKEDITOR.instances.edit_name.getData();
+            var address = document.getElementById('edit_address').value;
+            var link = document.getElementById('edit-link').value;
+            var id = document.getElementById('id').value;
+            var tel = document.getElementById('edit_tel').value;
+
+            var data = {edit_name: name, edit_address: address, edit_link: link, id:id, tel:tel};
+
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#update-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
+    function edit_service_provider(form, url) {
+        $("#" + form).on('submit', (function (e) {
+            e.preventDefault();
+            $('.loader').show();
+
+
+            var address = CKEDITOR.instances.edit_address.getData();
+            var name = document.getElementById('edit_name').value;
+            var link = document.getElementById('edit-link').value;
+            var id = document.getElementById('id').value;
+            var tel = document.getElementById('edit_tel').value;
+
+            var data = {edit_name: name, edit_address: address, edit_link: link, id:id, tel:tel};
+
+
+            $.ajax({
+                url: url, // Url to which the request is send
+                type: "POST",             // Type of request to be send, called as method
+                data: data, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+                //contentType: false,       // The content type used when sending data to the server.
+                //cache: false,             // To unable request pages to be cached
+                //processData: false,        // To send DOMDocument or non processed data file it is set to false
+                success: function (data)   // A function to be called if request succeeds
+                {
+                    $('.loader').hide();
+                    if (data == true) {
+                        $('#update-alert').fadeIn(400).delay(3000).fadeOut(300); //fade out after 3 seconds
+                        location.reload();
+                    } else {
+                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    }
+                },
+                error: function () {
+                    $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                    $('.loader').hide();
+                },
+                complete: function () {
+                    $('.loader').hide();
+                }
+            });
+
+        }));
+    }
+
 
     function update_serv_sec(form, url, async_get) {
         $("#" + form).on('submit', (function (e) {
@@ -583,7 +817,7 @@ $(document).ready(function (e) {
                 $('#carousel-inner').append('<div  class="item active">' +
                 '<a href="' + link + '"><img src="' + image_name + '" alt="Slide image"></a>' +
                 '<div class="carousel-caption">' +
-                '<span class="caption-text">' + caption + '</span>' +
+                '<span class="caption">' + caption + '</span>' +
                 '</div>' +
                 '</div>');
             }
@@ -592,7 +826,7 @@ $(document).ready(function (e) {
                 $('#carousel-inner').append('<div class="item">' +
                 '<a href="' + link + '"><img src="' + image_name + '" alt="slide image"></a>' +
                 '<div class="carousel-caption">' +
-                '<span class="caption-text">' + caption + '</span>' +
+                '<span class="caption">' + caption + '</span>' +
                 '</div>' +
                 '</div>');
             }
@@ -605,7 +839,7 @@ $(document).ready(function (e) {
             $('.loader').show();
 
             var caption = $('#caption').val();
-            var link = $('#link').val();
+            var link = $('#scheme').val();
 
             $.ajax({
                 url: "php/tmp_add_slide.php", // Url to which the request is send
@@ -755,9 +989,12 @@ $(document).ready(function (e) {
         } else if (path == "fund_managers.php") {
             url = "php/fetch_fund_manager.php";
             modal = "editFundManagerModal";
-        } else if (path == "trustees.php") {
-            url = "php/fetch_trustee.php";
-            modal = "editTrusteeModal";
+        } else if (path == "corporate_trustees.php") {
+            url = "php/fetch_corporate_trustee.php";
+            modal = "editCorporateTrusteeModal";
+        } else if (path == "individual_trustees.php") {
+            url = "php/fetch_individual_trustee.php";
+            modal = "editIndividualTrusteeModal";
         } else if (path == "schemes.php") {
             url = "php/fetch_scheme.php";
             modal = "editSchemeModal";
@@ -787,7 +1024,7 @@ $(document).ready(function (e) {
         } else if (path == "emedia.php") {
             url = "php/fetch_e_media.php";
             modal = "editEMediaModal";
-        }else if (path == "faqs.php") {
+        } else if (path == "faqs.php") {
             url = "php/fetch_faq.php";
             modal = "editFaqModal";
         } else if (path == "workshops.php") {
@@ -799,6 +1036,9 @@ $(document).ready(function (e) {
         } else if (path == "users.php") {
             url = "php/fetch_user_pages.php";
             modal = "editPagesModal";
+        } else if (path == "time_stamps.php") {
+            url = "php/fetch_time_stamp.php";
+            modal = "editTimeStampModal";
         }
         $.ajax({
             url: url, // Url to which the request is send
@@ -807,24 +1047,89 @@ $(document).ready(function (e) {
             cache: false,             // To unable request pages to be cached
             success: function (data)   // A function to be called if request succeeds
             {
+                function set_up_schemes(data) {
+                    data = data.split('-');
+                    var name = data[0];
+                    var address = data[1];
+                    var link = data[2];
+                    var id = data[3];
+                    var tel = data[4];
+
+                    CKEDITOR.instances['edit_name'].setData(name);
+                    $('#edit_address').val(address);
+                    $('#edit-link').val(link);
+                    $('#edit_tel').val(tel);
+                    $('#id').val(id);
+                }
+
+                function set_up_admins(data) {
+                    data = data.split('-');
+                    var name = data[0];
+                    var address = data[1];
+                    var link = data[2];
+                    var id = data[3];
+                    var tel = data[4];
+
+                    $('#edit_name').val(name);
+                    CKEDITOR.instances['edit_address'].setData(address);
+                    $('#edit-link').val(link);
+                    $('#edit_tel').val(tel);
+                    $('#id').val(id);
+                }
+
+                function set_up_custodian(data) {
+                    data = data.split('-');
+                    var name = data[0];
+                    var address = data[1];
+                    var link = data[2];
+                    var id = data[3];
+                    var tel = data[4];
+
+                    $('#edit_name').val(name);
+                    CKEDITOR.instances['edit_address'].setData(address);
+                    $('#edit-link').val(link);
+                    $('#edit_tel').val(tel);
+                    $('#id').val(id);
+                }
+
+                function set_up_fund_manager(data) {
+                    data = data.split('-');
+                    var name = data[0];
+                    var address = data[1];
+                    var link = data[2];
+                    var id = data[3];
+                    var tel = data[4];
+
+                    $('#edit_name').val(name);
+                    CKEDITOR.instances['edit_address'].setData(address);
+                    $('#edit-link').val(link);
+                    $('#edit_tel').val(tel);
+                    $('#id').val(id);
+                }
+
                 if (path == "articles.php") {
                     set_up_article(data);
+                }
+                else if (path == "time_stamps.php") {
+                    set_up_time_stamp(data);
                 }
                 else if (path == "tenders.php") {
                     set_up_tender(data);
                 }
                 else if (path == "vacancies.php") {
                     set_up_vacancy(data);
-                }else if (path == "reports.php") {
+                } else if (path == "reports.php") {
                     set_up_report(data);
-                }else if (path == "imedia.php") {
+                } else if (path == "imedia.php") {
                     set_up_i_media(data);
-                }else if (path == "emedia.php") {
+                } else if (path == "emedia.php") {
                     set_up_e_media(data);
-                }else if (path == "workshops.php") {
+                } else if (path == "workshops.php") {
                     set_up_workshop(data);
-                }else if (path == "faqs.php") {
+                } else if (path == "faqs.php") {
                     set_up_faq(data);
+                } else if (path == "individual_trustees.php") {
+                    set_up_i_trustee(data);
                 }
                 else if (path == "BoDs.php") {
                     set_up_BoD(data);
@@ -834,24 +1139,30 @@ $(document).ready(function (e) {
                     set_up_slide(data);
                 } else if (path == "users.php") {
                     set_up_user_pages(data);
+                }else if (path == "schemes.php") {
+                    set_up_schemes(data);
+                }else if (path == "administrators.php") {
+                    set_up_admins(data);
+                }else if (path == "custodians.php") {
+                    set_up_custodian(data);
+                }else if (path == "fund_managers.php") {
+                    set_up_fund_manager(data);
                 }
                 else {
                     data = data.split('-');
                     var name = data[0];
-                    var category = data[1];
-                    var address = data[2];
-                    var link = data[3];
-                    var id = data[4];
+                    var address = data[1];
+                    var link = data[2];
+                    var id = data[3];
+                    var tel = data[4];
 
                     $('#edit-name').val(name);
-                    $('#edit-category').val(category);
                     $('#edit-address').val(address);
                     $('#edit-link').val(link);
+                    $('#edit_tel').val(tel);
                     $('#id').val(id);
-
                 }
                 $('#' + modal).modal('show');
-
             },
             error: function () {
                 $('#error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
@@ -886,6 +1197,24 @@ $(document).ready(function (e) {
         $('#edit-article').val(article);
         $('#edit-title').val(title);
         $('#edit-expiry').val(expiry_date);
+        $('#id').val(id);
+    }
+
+    function set_up_time_stamp(data) {
+        data = data.split('*');
+
+        var expiry = data[0];
+        var id = data[2];
+
+        var expiry_array = expiry.split(' ');
+
+        var expiry_date = expiry_array[0];
+        expiry_date = adjust_date(expiry_array[0]);
+
+        var expiry_time = expiry_array[1];
+        adjust_time_stamp_time(expiry_time);
+
+        $('#edit-stamp').val(expiry_date);
         $('#id').val(id);
     }
 
@@ -973,6 +1302,17 @@ $(document).ready(function (e) {
         $('#id').val(id);
     }
 
+    function set_up_i_trustee(data) {
+        data = data.split('-');
+        var name = data[0];
+        var scheme = data[1];
+        var id = data[2];
+
+        $('#edit-name').val(name);
+        $('#edit-scheme').val(scheme);
+        $('#id').val(id);
+    }
+
     function set_up_resource(data) {
         data = data.split('*');
         var name = data[0];
@@ -1014,7 +1354,7 @@ $(document).ready(function (e) {
         var edate = data[2];
         var desc = data[3];
         var attachment = data[4];
-        var id = data[1];
+        var id = data[5];
 
         var date_array = sdate.split(' ');
         sdate = date_array[0];
@@ -1051,6 +1391,14 @@ $(document).ready(function (e) {
         $('#edit-minutes').val(minute);
     }
 
+    function adjust_time_stamp_time(raw_time) {
+        var time_array = raw_time.split(':');
+        var hour = time_array[0];
+        var minute = time_array[1];
+        $('#edit-hour').val(hour);
+        $('#edit-minutes').val(minute);
+    }
+
     function adjust_vacancy_start_time(raw_time) {
         var time_array = raw_time.split(':');
         var hour = time_array[0];
@@ -1073,10 +1421,11 @@ $(document).ready(function (e) {
 
     $(".delete").on('click', function (e) {
 
-        if(!(confirm('Are you sure you want to delete this item'))){
+        if (!(confirm('Are you sure you want to delete this item'))) {
             return
         }
 
+        //slides_changed = true;
         var id = $(this).attr('id');
         var td = this.parentNode;
         var tr = td.parentNode;
@@ -1157,9 +1506,89 @@ $(document).ready(function (e) {
 
     });
 
-    function tmp_muliti_del(form, url){
-        $("#"+form).on('submit', function (e) {
+    function is_checked(form) {
+        if (form == 'schemes-form') {
+            if (!document.getElementById('schemes[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'corporate-trustee-form') {
+            if (!document.getElementById('corporate-trustees[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'individual-trustee-form') {
+            if (!document.getElementById('individual-trustees[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'admins-form') {
+            if (!document.getElementById('administrators[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'custodians-form') {
+            if (!document.getElementById('custodians[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'fund_managers-form') {
+            if (!document.getElementById('fund_managers[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'articles-form') {
+            if (!document.getElementById('articles[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'BoD-form') {
+            if (!document.getElementById('BoDs[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'e-media-form') {
+            if (!document.getElementById('media[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'i-media-form') {
+            if (!document.getElementById('media[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'faqs-form') {
+            if (!document.getElementById('faqs[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'reports-form') {
+            if (!document.getElementById('reports[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'resources-form') {
+            if (!document.getElementById('resources[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'workshops-form') {
+            if (!document.getElementById('workshops[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        } else if (form == 'tenders-form') {
+            if (!document.getElementById('tenders[]').checked) {
+                //$('#checked-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                return false;
+            }
+        }
+    }
+
+    function tmp_muliti_del(form, url) {
+        $("#" + form).on('submit', function (e) {
             e.preventDefault();
+            //is_checked(form);
 
             $('.loader').show();
             $.ajax({
@@ -1175,7 +1604,7 @@ $(document).ready(function (e) {
                     if (data == true) {
                         deleteRows();
                     } else {
-                        $('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
+                        //$('#network-error').fadeIn(400).delay(3000).fadeOut(400); //fade out after 3 seconds
                     }
                 },
                 error: function () {
@@ -1189,7 +1618,7 @@ $(document).ready(function (e) {
         });
     }
 
-    function deleteRows(){
+    function deleteRows() {
         var table = document.getElementById("table");
         var tr = table.getElementsByTagName("tr");
         var td;
@@ -1198,7 +1627,7 @@ $(document).ready(function (e) {
             td = tr[i].getElementsByTagName("td")[0];
             if (td) {
                 var chkbox = td.getElementsByTagName('input')[0];
-                if('checkbox' == chkbox.type && true == chkbox.checked) {
+                if ('checkbox' == chkbox.type && true == chkbox.checked) {
                     tr[i].style.display = "none";
                 }
             }

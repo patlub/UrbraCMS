@@ -8,11 +8,11 @@
 include('../classes/Scheme.php');
 
 $id= $_POST['id'];
-$name = $_POST['edit-name'];
-$category = $_POST['edit-category'];
-$address = $_POST['edit-address'];
-$web_link = $_POST['edit-link'];
+$name = $_POST['edit_name'];
+$address = $_POST['edit_address'];
+$web_link = $_POST['edit_link'];
+$tel = $_POST['edit_tel'];
 
-$scheme = Scheme::new_scheme($name, $category, $address, $web_link);
+$scheme = Scheme::new_scheme($name, $address, $web_link, $tel);
 $result = $scheme->edit_scheme($id);
 echo $result;

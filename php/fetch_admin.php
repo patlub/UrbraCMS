@@ -11,4 +11,4 @@ include('../classes/Administrator.php');
 $id = $_POST['id'];
 $admin  = new Administrator();
 $result = $admin->fetch_admin($id);
-echo $result['name'].'-'.$result['category'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'];
+echo $result['name'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'].'-'.$result['tel'];

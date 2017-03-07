@@ -11,4 +11,4 @@ include('../classes/Scheme.php');
 $id = $_POST['id'];
 $scheme  = new Scheme();
 $result = $scheme->fetch_scheme($id);
-echo $result['name'].'-'.$result['category'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'];
+echo $result['name'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'].'-'.$result['tel'];

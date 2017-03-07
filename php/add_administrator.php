@@ -8,10 +8,10 @@
 include('../classes/Administrator.php');
 
 $name = $_POST['name'];
-$category = $_POST['category'];
 $address = $_POST['address'];
 $web_link = $_POST['link'];
+$tel = $_POST['tel'];
 
-$admin = Administrator::new_administrator($name, $category, $address, $web_link);
+$admin = Administrator::new_administrator($name, $address, $web_link, $tel);
 $result = $admin->add_administrator();
 echo $result;

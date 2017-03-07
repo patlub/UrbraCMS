@@ -8,11 +8,11 @@
 include('../classes/Custodian.php');
 
 $id= $_POST['id'];
-$name = $_POST['edit-name'];
-$category = $_POST['edit-category'];
-$address = $_POST['edit-address'];
-$web_link = $_POST['edit-link'];
+$name = $_POST['edit_name'];
+$address = $_POST['edit_address'];
+$web_link = $_POST['edit_link'];
+$tel = $_POST['edit_tel'];
 
-$custodian = Custodian::new_custodian($name, $category, $address, $web_link);
+$custodian = Custodian::new_custodian($name, $address, $web_link, $tel);
 $result = $custodian->edit_custodian($id);
 echo $result;

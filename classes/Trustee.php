@@ -1,74 +1,105 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: PATRICK
  * Date: 1/11/2017
  * Time: 5:14 PM
  */
-
-class Trustee {
+class Trustee
+{
     protected $name;
-    protected $category;
+    protected $scheme;
     protected $address;
     protected $web_link;
+    protected $tel;
 
-    public function __construct(){
+    public function __construct()
+    {
 
     }
 
-    public function get_name(){
+    public function get_name()
+    {
         return $this->name;
     }
-    public function get_category(){
-        return $this->category;
+
+    public function get_scheme()
+    {
+        return $this->scheme;
     }
-    public function get_address(){
+
+    public function get_address()
+    {
         return $this->address;
     }
-    public function get_web_link(){
+
+    public function get_web_link()
+    {
         return $this->web_link;
     }
 
-    public function set_name($name){
+    public function set_name($name)
+    {
         $this->name = $name;
     }
 
-    public function set_category($category){
-        $this->category = $category;
+    public function set_scheme($scheme)
+    {
+        $this->scheme = $scheme;
     }
 
-    public function set_address($address){
+    public function set_address($address)
+    {
         $this->address = $address;
     }
 
-    public function set_web_link($web_link){
+    public function set_web_link($web_link)
+    {
         $this->web_link = $web_link;
     }
 
-    public static function new_trustee($name, $category, $address, $web_link){
+    public static function new_corporate_trustee($name, $address, $web_link, $tel)
+    {
         $instance = new self();
-        $instance->load_new_trustee($name, $category, $address, $web_link);
+        $instance->load_new_corporate_trustee($name, $address, $web_link, $tel);
         return $instance;
     }
 
-    public function load_new_trustee($name, $category, $address, $web_link){
-        $this->name = $name;
-        $this->category = $category;
-        $this->address = $address;
-        $this->web_link = $web_link;
+    public static function new_individual_trustee($name, $scheme, $tel)
+    {
+        $instance = new self();
+        $instance->load_new_individual_trustee($name, $scheme, $tel);
+        return $instance;
     }
 
-    public function add_trustee(){
+    public function load_new_corporate_trustee($name, $address, $web_link, $tel)
+    {
+        $this->name = $name;
+        $this->address = $address;
+        $this->web_link = $web_link;
+        $this->tel = $tel;
+    }
+
+    public function load_new_individual_trustee($name, $scheme, $tel)
+    {
+        $this->name = $name;
+        $this->scheme = $scheme;
+        $this->tel = $tel;
+    }
+
+    public function add_corporate_trustee()
+    {
         $return_code = false;
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('INSERT INTO trustees VALUES(:id, :name, :category, :address, :web_link)');
+        $stmt = $dbh->prepare('INSERT INTO corporate_trustees VALUES(:id, :name, :address, :web_link, :tel)');
 
         $id = '';
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':category', $this->category);
         $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':web_link', $this->web_link);
+        $stmt->bindParam(':tel', $this->tel);
         $result = $stmt->execute();
 
         if ($result) {
@@ -77,13 +108,45 @@ class Trustee {
         return $return_code;
     }
 
-    public function fetch_trustee($id)
+    public function add_individual_trustee()
+    {
+        $return_code = false;
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('INSERT INTO individual_trustees VALUES(:id, :name, :scheme, :tel)');
+
+        $id = '';
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':scheme', $this->scheme);
+        $stmt->bindParam(':tel', $this->tel);
+        $result = $stmt->execute();
+
+        if ($result) {
+            $return_code = true;
+        }
+        return $return_code;
+    }
+
+    public function fetch_corporate_trustee($id)
     {
         $dbh = $this->connectDB();
-        $sth = $dbh->prepare('SELECT * FROM trustees WHERE id = :ids');
+        $sth = $dbh->prepare('SELECT * FROM corporate_trustees WHERE id = :ids');
         $sth->bindParam(':ids', $id);
         $sth->execute();
-        if($sth->rowCount() == 1){
+        if ($sth->rowCount() == 1) {
+            $trustee = $sth->fetch(PDO::FETCH_ASSOC);
+            return $trustee;
+        }
+        return null;
+    }
+
+    public function fetch_individual_trustee($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('SELECT * FROM individual_trustees WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $sth->execute();
+        if ($sth->rowCount() == 1) {
             $trustee = $sth->fetch(PDO::FETCH_ASSOC);
             return $trustee;
         }
@@ -99,17 +162,17 @@ class Trustee {
         return $result;
     }
 
-    public function edit_trustee($id)
+    public function edit_corporate_trustee($id)
     {
         $return_code = false;
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('UPDATE trustees SET name =  :name, category = :category, address = :address, web_link = :web_link WHERE id = :id');
+        $stmt = $dbh->prepare('UPDATE corporate_trustees SET name =  :name, address = :address, web_link = :web_link, tel = :tel WHERE id = :id');
 
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':category', $this->category);
         $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':web_link', $this->web_link);
+        $stmt->bindParam(':tel', $this->tel);
         $result = $stmt->execute();
 
         if ($result) {
@@ -118,7 +181,25 @@ class Trustee {
         return $return_code;
     }
 
-    public function trustee_import($file)
+    public function edit_individual_trustee($id)
+    {
+        $return_code = false;
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('UPDATE individual_trustees SET name =  :name, scheme = :scheme, tel = :tel WHERE id = :id');
+
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':name', $this->name);
+        $stmt->bindParam(':scheme', $this->scheme);
+        $stmt->bindParam(':tel', $this->tel);
+        $result = $stmt->execute();
+
+        if ($result) {
+            $return_code = true;
+        }
+        return $return_code;
+    }
+
+    public function corporate_trustee_import($file)
     {
         $return_code = false;
         $handle = fopen($file, "r");
@@ -126,18 +207,18 @@ class Trustee {
 
         while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
             $name = $filesop[0];
-            $category = $filesop[1];
-            $address = $filesop[2];
-            $web_link = $filesop[3];
+            $address = $filesop[1];
+            $web_link = $filesop[2];
+            $tel = $filesop[3];
 
-            $stmt = $dbh->prepare('INSERT INTO trustees VALUES (:id, :name, :category, :address, :web_link)');
+            $stmt = $dbh->prepare('INSERT INTO corporate_trustees VALUES (:id, :name, :address, :web_link, :tel)');
 
             $id = '';
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':category', $category);
             $stmt->bindParam(':address', $address);
             $stmt->bindParam(':web_link', $web_link);
+            $stmt->bindParam(':tel', $tel);
             $result = $stmt->execute();
 
             if ($result) {
@@ -147,32 +228,128 @@ class Trustee {
         return $return_code;
     }
 
-    public function update_trustee_law($app, $refusal, $restrict, $validity, $revocation, $function){
+    public function individual_trustee_import($file)
+    {
+        $return_code = false;
+        $handle = fopen($file, "r");
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('UPDATE laws SET application =  :app, refusal = :refusal, restriction = :restriction,
-                                validity = :validity, revocation = :revocation, `function` = :functions WHERE provider = :provider');
 
-        $provider = 'trustee';
-        $stmt->bindParam(':app', $app);
-        $stmt->bindParam(':refusal', $refusal);
-        $stmt->bindParam(':restriction', $restrict);
-        $stmt->bindParam(':validity', $validity);
-        $stmt->bindParam(':revocation', $revocation);
-        $stmt->bindParam(':functions', $function);
-        $stmt->bindParam(':provider', $provider);
+        while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
+            $name = $filesop[0];
+            $scheme = $filesop[1];
+            $tel = $filesop[2];
 
-        $result = $stmt->execute();
-        return $result;
+            $stmt = $dbh->prepare('INSERT INTO individual_trustees VALUES (:id, :name, :scheme, :tel)');
+
+            $id = '';
+            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':scheme', $scheme);
+            $stmt->bindParam(':tel', $tel);
+            $result = $stmt->execute();
+
+            if ($result) {
+                $return_code = true;
+            }
+        }
+        return $return_code;
     }
 
-    public function fetch_trustee_law(){
+    public function update_trustee_law($tabs, $details)
+    {
+        $result = null;
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('SELECT * FROM laws WHERE provider = :provider');
-        $provider = 'trustee';
-        $stmt->bindParam(':provider',$provider);
+        $stmt = $dbh->prepare('DELETE FROM trustee_law');
+        $result = $stmt->execute();
+        if ($result) {
+            $id = '';
+            for ($i = 0; $i < count($tabs); $i++) {
+                $stmt = $dbh->prepare('INSERT INTO trustee_law VALUES(:id, :tab, :details)');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':tab', $tabs[$i]);
+                $stmt->bindParam(':details', $details[$i]);
+                $result = $stmt->execute();
+            }
+            return $result;
+        }
+    }
+
+    public function add_trustee_law_item($title, $details)
+    {
+        $result = null;
+        $dbh = $this->connectDB();
+
+        $stmt = $dbh->prepare('INSERT INTO trustee_law VALUES(:id, :tab, :details)');
+        $id = '';
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':tab', $title);
+        $stmt->bindParam(':details', $details);
+        $result = $stmt->execute();
+        return $result;
+
+    }
+
+    public function fetch_trustee_law()
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('SELECT * FROM trustee_law');
         $stmt->execute();
-        $law = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $law;
+        while ($law = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div class="form-group col-md-12">
+                <input type="text" id="tab" name="tabs[]" value="<?php echo $law['tab']; ?>" class="form-control"
+                       style="font-weight: bold;" placeholder="">
+            </div>
+            <div class="form-group col-md-12">
+                <textarea
+                    id="detail" name="details[]"
+                    class="form-control ckeditor" placeholder=""><?php echo $law['details']; ?></textarea>
+            </div>
+        <?php
+
+        }
+    }
+
+    public function fetch_trustee_items()
+    {
+        {
+            $dbh = $this->connectDB();
+            $statementHandler = $dbh->prepare("SELECT * FROM trustee_law");
+            $statementHandler->execute();
+            if ($statementHandler->rowCount() > 0) {
+                $i = 1;
+                while ($item = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                    $id = $item['id'];
+                    $tab = $item['tab'];
+                    ?>
+                    <tr>
+
+                        <td>
+                            <?php echo $i++; ?>
+                        </td>
+                        <td>
+                            <?php echo $tab; ?>
+                        </td>
+                        <td align="center">
+                            <a href="php/delete_trustee_item.php?id=<?php echo $id; ?>" <span id=""
+                                                                                              class="delete glyphicon glyphicon-remove icon-delete"></span>
+                        </td>
+                    </tr>
+                <?php
+                }
+            } else {
+                echo false;
+            }
+        }
+    }
+
+    public function delete_trustee_item($id)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('DELETE FROM trustee_law WHERE id = :id');
+        $stmt->bindParam(':id', $id);
+        $result = $stmt->execute();
+        return $result;
     }
 
     public function connectDB()
@@ -187,4 +364,21 @@ class Trustee {
             echo "Connection Error: " . $e->getMessage();
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function get_tel()
+    {
+        return $this->tel;
+    }
+
+    /**
+     * @param mixed $tel
+     */
+    public function set_tel($tel)
+    {
+        $this->tel = $tel;
+    }
+
 } 

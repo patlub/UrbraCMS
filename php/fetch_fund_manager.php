@@ -11,4 +11,4 @@ include('../classes/FundManager.php');
 $id = $_POST['id'];
 $fund_manager  = new FundManager();
 $result = $fund_manager->fetch_fund_manager($id);
-echo $result['name'].'-'.$result['category'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'];
+echo $result['name'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'].'-'.$result['tel'];

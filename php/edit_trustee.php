@@ -9,10 +9,9 @@ include('../classes/Trustee.php');
 
 $id= $_POST['id'];
 $name = $_POST['edit-name'];
-$category = $_POST['edit-category'];
 $address = $_POST['edit-address'];
 $web_link = $_POST['edit-link'];
 
-$trustee = Trustee::new_trustee($name, $category, $address, $web_link);
-$result = $trustee->edit_trustee($id);
+$trustee = Trustee::new_corporate_trustee($name, $address, $web_link);
+$result = $trustee->edit_corporate_trustee($id);
 echo $result;

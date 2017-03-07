@@ -17,19 +17,21 @@
                                                                      required>
                             </div>
                             <div class="form-group">
-                                <label for="category">Category</label>
-                                <select id="category" name="category" class="form-control">
-                                    <option value="corporate">Corporate</option>
-                                    <option value="individual">Individual</option>
-                                </select>
+                                <label for="address">Address</label><textarea id="address" name="address"
+                                                                           class="form-control"></textarea>
                             </div>
-                            <div class="form-group">
-                                <label for="address">Address</label><input type="text" id="address" name="address"
-                                                                           class="form-control">
-                            </div>
+                            <script>
+                                // Replace the <textarea id="content"> with a CKEditor
+                                // instance, using default configuration.
+                                CKEDITOR.replace( 'address' );
+                            </script>
                             <div class="form-group">
                                 <label for="link">Web Link</label><input type="text" id="link" name="link"
                                                                          class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="tel">Tel</label><input type="text" id="tel" name="tel"
+                                                                   class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-success">

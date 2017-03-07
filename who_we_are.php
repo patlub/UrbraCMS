@@ -1,13 +1,10 @@
 <?php
+include_once 'time_out.php';
 require_once 'classes/DatabaseHelper.php';
-session_start();
 
 if (!$_SESSION['loggedIn']) {
     header("location:signgnIn.html");
 }
-
-$dbh = new DatabaseHelper();
-$who_we_are = $dbh->fetch_who_we_are();
 
 ?>
 <!DOCTYPE html>
@@ -16,7 +13,6 @@ $who_we_are = $dbh->fetch_who_we_are();
     <meta charset="UTF-8">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
-
     <link rel="stylesheet" href="css/main.css">
     <!--    <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -36,64 +32,44 @@ $who_we_are = $dbh->fetch_who_we_are();
             <div class="col-md-12">
                 <?php include_once 'menu.php'; ?>
             </div>
+            <div class="col-md-12 page-head">
+                Who we are
+            </div>
+            <div class="row">
+                <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addItemModal">
+                        <button class="btn btn-primary btn-lg" value="">Add Item +</button>
+                    </a></div>
+            </div>
+            <div class="row">
+                <table id="table" cellpadding="0" cellspacing="0" border="0"
+                       class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Items</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $dbh = new DatabaseHelper();
+                    $dbh->fetch_who_we_are_items();
+                    ?>
+                    </tbody>
+                </table>
+            </div>
             <form id="update-who-we-are-form" role="form" enctype="multipart/form-data">
-                <div class="form-group col-md-12">
-                    <label for="summary">Summary</label><textarea id="summary" name="summary"
-                                                                  class="form-control"><?php echo $who_we_are['summary']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="vision">Vision </label><textarea id="vision" name="vision"
-                                                                 class="form-control"><?php echo $who_we_are['vision']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="mission">Mission</label><textarea id="mission" name="mission"
-                                                                  class="form-control"><?php echo $who_we_are['mission']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="values">Values</label><textarea id="values" name="values"
-                                                                class="form-control"><?php echo $who_we_are['values']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="sector_bg">Sector Background</label><textarea id="sector_bg" name="sectoe_bg"
-                                                                              class="form-control"><?php echo $who_we_are['sector_bg']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="objectives">Objectives</label><textarea id="objectives" name="objectives"
-                                                                        class="form-control"><?php echo $who_we_are['objectives']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="bg">Background</label><textarea id="bg" name="bg"
-                                                                class="form-control"><?php echo $who_we_are['bg']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="mandate">Mandate</label><textarea id="mandate" name="manadate"
-                                                                  class="form-control"><?php echo $who_we_are['mandate']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="powers">Powers</label><textarea id="powers" name="powers"
-                                                                class="form-control"><?php echo $who_we_are['powers']; ?></textarea>
-                </div>
 
+                <?php
+                $dbh->fetch_who_we_are();
+                ?>
                 <div class="form-group col-md-3">
-                    <input type="submit" name="submit" value="UPDATE" class="form-control btn btn-success pull-right">
+                    <input type="submit" name="submit" value="UPDATE" class="form-control btn btn-success updatebtn">
                 </div>
-                <script>
-                    // Replace the <textarea id="content"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace('summary');
-                    CKEDITOR.replace('vision');
-                    CKEDITOR.replace('mission');
-                    CKEDITOR.replace('values');
-                    CKEDITOR.replace('sector_bg');
-                    CKEDITOR.replace('objectives');
-                    CKEDITOR.replace('bg');
-                    CKEDITOR.replace('mandate');
-                    CKEDITOR.replace('powers');
-                </script>
             </form>
         </div>
     </div>
     <div class="loader"><!-- Place at bottom of page --></div>
+    <?php include_once 'imports/add_trustee_item.php' ?>
 </div>
 </body>
 </html>

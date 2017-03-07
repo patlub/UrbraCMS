@@ -150,7 +150,8 @@ class Vacancy
         if ($this->attachment == null) {
             if (!isset($errMSG)) {
                 $dbh = $this->connectDB();
-                $stmt = $dbh->prepare('UPDATE vacancies SET title = :title, start_date = :start_date, end_date = :end_date, description = :description WHERE id = :id');
+                $stmt = $dbh->prepare('UPDATE vacancies SET title = :title, start_date = :start_date, end_date = :end_date,
+                                        description = :description WHERE id = :id');
                 $stmt->bindParam(':id', $id);
                 $stmt->bindParam(':title', $this->title);
                 $stmt->bindParam(':start_date', $this->start_date);

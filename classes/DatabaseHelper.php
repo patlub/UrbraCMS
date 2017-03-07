@@ -57,15 +57,15 @@ class DatabaseHelper
             while ($scheme = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $scheme['id'];
                 $name = $scheme['name'];
-                $category = $scheme['category'];
                 $address = $scheme['address'];
                 $web_link = $scheme['web_link'];
+                $tel = $scheme['tel'];
 
                 ?>
                 <tr>
 
                     <td align="center">
-                        <label><input type="checkbox" name="schemes[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="schemes[]" name="schemes[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -74,18 +74,53 @@ class DatabaseHelper
                         <?php echo $name; ?>
                     </td>
                     <td>
-                        <?php echo $category; ?></td>
-                    <td>
                         <?php echo $address; ?>
                     </td>
                     <td>
                         <?php echo $web_link; ?>
+                    </td>
+                    <td>
+                        <?php echo $tel; ?>
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
                                 class="glyphicon glyphicon-pencil icon-edit"></span></span>
                         <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
 
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+    }
+
+    public function get_time_stamps()
+    {
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM time_stamps");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($time_stamp = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $time_stamp['id'];
+                $last_updated = $time_stamp['last_updated'];
+                $license = $time_stamp['licences'];
+
+                ?>
+                <tr>
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $last_updated; ?>
+                    </td>
+                    <td>
+                        <?php echo $license; ?></td>
+                    <td align="center">
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
                     </td>
                 </tr>
             <?php
@@ -140,25 +175,25 @@ class DatabaseHelper
         }
     }
 
-    public function get_trustees()
+    public function get_corporate_trustees()
     {
         $dbh = $this->connectDB();
-        $statementHandler = $dbh->prepare("SELECT * FROM trustees");
+        $statementHandler = $dbh->prepare("SELECT * FROM corporate_trustees");
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
             $i = 1;
             while ($trustee = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $trustee['id'];
                 $name = $trustee['name'];
-                $category = $trustee['category'];
                 $address = $trustee['address'];
                 $web_link = $trustee['web_link'];
+                $tel = $trustee['tel'];
 
                 ?>
                 <tr>
 
                     <td align="center">
-                        <label><input type="checkbox" name="trustees[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="corporate-trustees[]" name="corporate-trustees[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -167,12 +202,57 @@ class DatabaseHelper
                         <?php echo $name; ?>
                     </td>
                     <td>
-                        <?php echo $category; ?></td>
-                    <td>
                         <?php echo $address; ?>
                     </td>
                     <td>
                         <?php echo $web_link; ?>
+                    </td>
+                    <td>
+                        <?php echo $tel; ?>
+                    </td>
+                    <td align="center">
+                        <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
+                                class="glyphicon glyphicon-pencil icon-edit"></span></span>
+                        <span id="<?php echo $id; ?>" class="delete glyphicon glyphicon-remove icon-delete"></span>
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+    }
+
+    public function get_individual_trustees()
+    {
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM individual_trustees");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($trustee = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $trustee['id'];
+                $name = $trustee['name'];
+                $scheme = $trustee['scheme'];
+                $tel = $trustee['tel'];
+
+                ?>
+                <tr>
+
+                    <td align="center">
+                        <label><input type="checkbox" id="individual-trustees[]" name="individual-trustees[]" value="<?php echo $id; ?>"></label>
+                    </td>
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $name; ?>
+                    </td>
+                    <td>
+                        <?php echo $scheme; ?>
+                    </td>
+                    <td>
+                        <?php echo $tel; ?>
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
@@ -197,14 +277,14 @@ class DatabaseHelper
             while ($custodian = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $custodian['id'];
                 $name = $custodian['name'];
-                $category = $custodian['category'];
                 $address = $custodian['address'];
                 $web_link = $custodian['web_link'];
+                $tel = $custodian['tel'];
 
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="custodians[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="custodians[]" name="custodians[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -213,12 +293,13 @@ class DatabaseHelper
                         <?php echo $name; ?>
                     </td>
                     <td>
-                        <?php echo $category; ?></td>
-                    <td>
                         <?php echo $address; ?>
                     </td>
                     <td>
                         <?php echo $web_link; ?>
+                    </td>
+                    <td>
+                        <?php echo $tel; ?>
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
@@ -249,7 +330,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="faqs[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="faqs[]" name="faqs[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -320,7 +401,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="BoDs[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="BoDs[]" name="BoDs[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -359,14 +440,14 @@ class DatabaseHelper
             while ($admin = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $admin['id'];
                 $name = $admin['name'];
-                $category = $admin['category'];
                 $address = $admin['address'];
                 $web_link = $admin['web_link'];
+                $tel = $admin['tel'];
 
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="administrators[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="administrators[]" name="administrators[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -375,12 +456,13 @@ class DatabaseHelper
                         <?php echo $name; ?>
                     </td>
                     <td>
-                        <?php echo $category; ?></td>
-                    <td>
                         <?php echo $address; ?>
                     </td>
                     <td>
                         <?php echo $web_link; ?>
+                    </td>
+                    <td>
+                        <?php echo $tel; ?>
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
@@ -406,14 +488,14 @@ class DatabaseHelper
             while ($fund_managers = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $fund_managers['id'];
                 $name = $fund_managers['name'];
-                $category = $fund_managers['category'];
                 $address = $fund_managers['address'];
                 $web_link = $fund_managers['web_link'];
+                $tel = $fund_managers['tel'];
 
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="fund_managers[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="fund_managers[]" name="fund_managers[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -422,12 +504,13 @@ class DatabaseHelper
                         <?php echo $name; ?>
                     </td>
                     <td>
-                        <?php echo $category; ?></td>
-                    <td>
                         <?php echo $address; ?>
                     </td>
                     <td>
                         <?php echo $web_link; ?>
+                    </td>
+                    <td>
+                        <?php echo $tel; ?>
                     </td>
                     <td align="center">
                         <span id="<?php echo $id; ?>" class="edit" style="margin-right: 10%;"><span
@@ -463,7 +546,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="tenders[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="tenders[]" name="tenders[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -521,7 +604,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="vacancies[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="vacancies[]" name="vacancies[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -572,7 +655,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="reports[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="reports[]" name="reports[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -620,7 +703,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="media[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="media[]" name="media[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -668,7 +751,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="media[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="media[]" name="media[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -720,7 +803,7 @@ class DatabaseHelper
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="workshops[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="workshops[]" name="workshops[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -770,13 +853,13 @@ class DatabaseHelper
                 $title = $article['title'];
                 $details = $article['article'];
                 $date = $article['date'];
-                $pdf = $article['resource'];
+                $pdf = $article['attachment'];
                 $expiry = $article['expiry'];
 
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="articles[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="articles[]" name="articles[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -821,12 +904,12 @@ class DatabaseHelper
             while ($resource = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
                 $id = $resource['id'];
                 $title = $resource['name'];
-                $pdf = $resource['pdf'];
+                $pdf = $resource['attachment'];
 
                 ?>
                 <tr>
                     <td align="center">
-                        <label><input type="checkbox" name="resources[]" value="<?php echo $id; ?>"></label>
+                        <label><input type="checkbox" id="resources[]" name="resources[]" value="<?php echo $id; ?>"></label>
                     </td>
                     <td>
                         <?php echo $i++; ?>
@@ -856,7 +939,9 @@ class DatabaseHelper
     public function get_pages()
     {
         $dbh = $this->connectDB();
-        $statementHandler = $dbh->prepare("SELECT * FROM pages");
+        $statementHandler = $dbh->prepare("SELECT * FROM pages WHERE type = :type");
+        $type = 'normal';
+        $statementHandler->bindParam(':type', $type);
         $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
             $i = 1;
@@ -996,6 +1081,29 @@ class DatabaseHelper
             $result = $sth->execute();
         }
         return $result;
+
+
+//        $result = false;
+//        $dbh = $this->connectDB();
+//        $length = count($slides);
+//        $statementHandler = $dbh->prepare('SELECT * FROM slideshow WHERE id = :ids');
+//        $sth = $dbh->prepare('DELETE FROM slideshow WHERE id = :ids');
+//
+//        for ($i = 0; $i < $length; $i++) {
+//            $result = $statementHandler->execute(array('ids' => $slides[$i]));
+//            if ($result) {
+//                $files = $statementHandler->fetch(PDO::FETCH_ASSOC);
+//                $file_path = realpath('../img/slideshowimgs/' . $files['imagename']);
+//                if (is_writable($file_path)) {
+//                    if (unlink($file_path)) {
+//                        $sth->bindParam(':ids', $slides[$i]);
+//                        $result = $sth->execute();
+//                    }
+//                }
+//            }
+//        }
+//        return $result;
+
     }
 
     public function del_tenders($tenders)
@@ -1071,52 +1179,128 @@ class DatabaseHelper
     public function del($ids, $path)
     {
         $sth = null;
+        $statementHandler = null;
         $result = false;
         $dbh = $this->connectDB();
         $length = count($ids);
-        if ($path == 'trustees') {
-            $sth = $dbh->prepare('DELETE FROM trustees WHERE id = :ids');
+        if ($path == 'index') {
+            $sth = $dbh->prepare('DELETE FROM slideshow WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM slideshow WHERE id = :ids');
+
+            for ($i = 0; $i < $length; $i++) {
+                $result = $statementHandler->execute(array('ids' => $ids[$i]));
+                if ($result) {
+                    $files = $statementHandler->fetch(PDO::FETCH_ASSOC);
+                    $file_path = realpath('../img/slideshowimgs/' . $files['imagename']);
+                    if (is_writable($file_path)) {
+                        if (unlink($file_path)) {
+                            $sth->bindParam(':ids', $ids[$i]);
+                            $result = $sth->execute();
+                        }
+                    }
+                }
+            }
+
+        } elseif ($path == 'workshops') {
+            $sth = $dbh->prepare('DELETE FROM workshops WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM workshops INNER JOIN workshop_docs
+                                                ON workshops.id = workshop_docs.workshop_id WHERE workshops.id = :ids');
+            for ($i = 0; $i < $length; $i++) {
+                $result = $statementHandler->execute(array('ids' => $ids[$i]));
+                if ($result) {
+                    $num_of_rows = $statementHandler->rowCount();
+                    for($j = 0;$j < $num_of_rows;$j++) {
+                        $files = $statementHandler->fetch(PDO::FETCH_ASSOC);
+                        $file_path = realpath('../docs/' . $files['attachment']);
+                        if (is_writable($file_path)) {
+                            if (unlink($file_path)) {
+                                $sth->bindParam(':ids', $ids[$i]);
+                                $result = $sth->execute();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        elseif ($path == 'corporate_trustees') {
+            $sth = $dbh->prepare('DELETE FROM corporate_trustees WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM corporate_trustees WHERE id = :ids');
+        } elseif ($path == 'individual_trustees') {
+            $sth = $dbh->prepare('DELETE FROM individual_trustees WHERE id = :ids');
         } elseif ($path == 'custodians') {
             $sth = $dbh->prepare('DELETE FROM custodians WHERE id = :ids');
         } elseif ($path == 'schemes') {
             $sth = $dbh->prepare('DELETE FROM rbs WHERE id = :ids');
-        } elseif ($path == 'custodians') {
-            $sth = $dbh->prepare('DELETE FROM custodians WHERE id = :ids');
         } elseif ($path == 'administrators') {
             $sth = $dbh->prepare('DELETE FROM administrators WHERE id = :ids');
         } elseif ($path == 'fund_managers') {
             $sth = $dbh->prepare('DELETE FROM fund_managers WHERE id = :ids');
         } elseif ($path == 'vacancies') {
             $sth = $dbh->prepare('DELETE FROM vacancies WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM vacancies WHERE id = :ids');
         } elseif ($path == 'tenders') {
             $sth = $dbh->prepare('DELETE FROM tenders WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM tenders WHERE id = :ids');
         } elseif ($path == 'articles') {
             $sth = $dbh->prepare('DELETE FROM articles WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM articles WHERE id = :ids');
         } elseif ($path == 'resources') {
             $sth = $dbh->prepare('DELETE FROM resources WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM resources WHERE id = :ids');
         } elseif ($path == 'BoDs') {
             $sth = $dbh->prepare('DELETE FROM bod WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM bod WHERE id = :ids');
         } elseif ($path == 'departments') {
             $sth = $dbh->prepare('DELETE FROM departments WHERE id = :ids');
         } elseif ($path == 'reports') {
             $sth = $dbh->prepare('DELETE FROM reports WHERE id = :ids');
-        } elseif ($path == 'workshops') {
-            $sth = $dbh->prepare('DELETE FROM workshops WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM reports WHERE id = :ids');
         } elseif ($path == 'faqs') {
             $sth = $dbh->prepare('DELETE FROM faqs WHERE id = :ids');
         } elseif ($path == 'imedia') {
             $sth = $dbh->prepare('DELETE FROM internal_media WHERE id = :ids');
+            $statementHandler = $dbh->prepare('SELECT * FROM internal_media WHERE id = :ids');
         } elseif ($path == 'emedia') {
             $sth = $dbh->prepare('DELETE FROM external_media WHERE id = :ids');
         } elseif ($path == 'users') {
             $sth = $dbh->prepare('DELETE FROM users WHERE id = :ids');
-        } elseif ($path == 'index') {
-            $sth = $dbh->prepare('DELETE FROM slideshow WHERE id = :ids');
         }
 
-        for ($i = 0; $i < $length; $i++) {
-            $sth->bindParam(':ids', $ids[$i]);
-            $result = $sth->execute();
+        if ($path == 'vacancies' || $path == 'tenders' || $path == 'resources' || $path == 'articles' || $path == 'reports' || $path == 'imedia') {
+            for ($i = 0; $i < $length; $i++) {
+                $result = $statementHandler->execute(array('ids' => $ids[$i]));
+                if ($result) {
+                    $files = $statementHandler->fetch(PDO::FETCH_ASSOC);
+                    $file_path = realpath('../docs/' . $files['attachment']);
+                    if (is_writable($file_path)) {
+                        if (unlink($file_path)) {
+                            $sth->bindParam(':ids', $ids[$i]);
+                            $result = $sth->execute();
+                        }
+                    }
+                }
+            }
+        } elseif ($path == 'BoDs') {
+            for ($i = 0; $i < $length; $i++) {
+                $result = $statementHandler->execute(array('ids' => $ids[$i]));
+                if ($result) {
+                    $files = $statementHandler->fetch(PDO::FETCH_ASSOC);
+                    $file_path = realpath('../img/' . $files['image']);
+                    if (is_writable($file_path)) {
+                        if (unlink($file_path)) {
+                            $sth->bindParam(':ids', $ids[$i]);
+                            $result = $sth->execute();
+                        }
+                    }
+                }
+            }
+
+        } else {
+            for ($i = 0; $i < $length; $i++) {
+                $sth->bindParam(':ids', $ids[$i]);
+                $result = $sth->execute();
+            }
         }
         return $result;
     }
@@ -1134,7 +1318,6 @@ class DatabaseHelper
         return $result;
     }
 
-
     public function connectDB()
     {
         $DB_HOST = "localhost";
@@ -1148,13 +1331,113 @@ class DatabaseHelper
         }
     }
 
-    public function fetch_who_we_are()
+    public function fetch_functions_items()
     {
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('SELECT * FROM who_we_are');
-        $stmt->execute();
-        $who_we_are = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $who_we_are;
+        $statementHandler = $dbh->prepare("SELECT * FROM functions");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($item = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $item['id'];
+                $tab = $item['tab'];
+                ?>
+                <tr>
+
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $tab; ?>
+                    </td>
+                    <td align="center">
+                        <a href="php/delete_function_item.php?id=<?php echo $id; ?>" <span id=""
+                                                                                           class="delete glyphicon glyphicon-remove icon-delete"></span>
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+
+    }
+
+    public function fetch_pages()
+    {
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM pages WHERE type = 'custom'");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($item = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $item['id'];
+                $name = $item['name'];
+                ?>
+                <tr>
+
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $name; ?>
+                    </td>
+                    <td align="center">
+                        <a href="php/delete_page.php?id=<?php echo $id; ?>" <span id=""
+                                                                                  class="delete glyphicon glyphicon-remove icon-delete"></span>
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+
+    }
+
+    public function fetch_time_stamp($id)
+    {
+        $dbh = $this->connectDB();
+        $sth = $dbh->prepare('SELECT * FROM time_stamps WHERE id = :ids');
+        $sth->bindParam(':ids', $id);
+        $sth->execute();
+        if ($sth->rowCount() == 1) {
+            $time_stamp = $sth->fetch(PDO::FETCH_ASSOC);
+            return $time_stamp;
+        }
+        return null;
+    }
+
+    public function fetch_who_we_are_items()
+    {
+        $dbh = $this->connectDB();
+        $statementHandler = $dbh->prepare("SELECT * FROM who_we_are");
+        $statementHandler->execute();
+        if ($statementHandler->rowCount() > 0) {
+            $i = 1;
+            while ($item = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                $id = $item['id'];
+                $tab = $item['tab'];
+                ?>
+                <tr>
+
+                    <td>
+                        <?php echo $i++; ?>
+                    </td>
+                    <td>
+                        <?php echo $tab; ?>
+                    </td>
+                    <td align="center">
+                        <a href="php/delete_who_we_are_item.php?id=<?php echo $id; ?>" <span id=""
+                                                                                             class="delete glyphicon glyphicon-remove icon-delete"></span>
+                    </td>
+                </tr>
+            <?php
+            }
+        } else {
+            echo false;
+        }
+
     }
 
     public function fetch_functions()
@@ -1162,26 +1445,154 @@ class DatabaseHelper
         $dbh = $this->connectDB();
         $stmt = $dbh->prepare('SELECT * FROM functions');
         $stmt->execute();
-        $functions = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $functions;
+        while ($law = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div class="form-group col-md-12">
+                <input type="text" id="tab" name="tabs[]" value="<?php echo $law['tab']; ?>" class="form-control"
+                       style="font-weight: bold;" placeholder="">
+            </div>
+            <div class="form-group col-md-12">
+                <textarea
+                    id="detail" name="details[]"
+                    class="form-control ckeditor" placeholder=""><?php echo $law['details']; ?></textarea>
+            </div>
+        <?php
+
+        }
     }
 
-    public function update_who_we_are($summary, $vision, $mission, $values, $sector_bg, $objectives, $bg, $mandate, $powers)
+    public function fetch_who_we_are()
     {
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('UPDATE who_we_are SET summary = :summary, vision = :vision, mission = :mission, `values` = :_values, sector_bg = :sector_bg,
-                                objectives = :obj, bg = :bg, mandate = :mandate, powers = :powers');
-        $result = $stmt->execute(array('summary' => $summary, 'vision' => $vision, 'mission' => $mission, '_values' => $values, 'sector_bg' => $sector_bg,
-                                        'obj' => $objectives, 'bg' => $bg, 'mandate' => $mandate, 'powers' => $powers));
+        $stmt = $dbh->prepare('SELECT * FROM who_we_are');
+        $stmt->execute();
+        while ($law = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div class="form-group col-md-12">
+                <input type="text" id="tab" name="tabs[]" value="<?php echo $law['tab']; ?>" class="form-control"
+                       style="font-weight: bold;" placeholder="">
+            </div>
+            <div class="form-group col-md-12">
+                <textarea
+                    id="detail" name="details[]"
+                    class="form-control ckeditor" placeholder=""><?php echo $law['details']; ?></textarea>
+            </div>
+        <?php
+
+        }
+    }
+
+    public function update_who_we_are($tabs, $details)
+    {
+        $result = null;
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('DELETE FROM who_we_are');
+        $result = $stmt->execute();
+        if ($result) {
+            $id = '';
+            for ($i = 0; $i < count($tabs); $i++) {
+                $stmt = $dbh->prepare('INSERT INTO who_we_are VALUES(:id, :tab, :details)');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':tab', $tabs[$i]);
+                $stmt->bindParam(':details', $details[$i]);
+                $result = $stmt->execute();
+            }
+            return $result;
+        }
+    }
+
+    public function update_functions($tabs, $details)
+    {
+        $result = null;
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('DELETE FROM functions');
+        $result = $stmt->execute();
+        if ($result) {
+            $id = '';
+            for ($i = 0; $i < count($tabs); $i++) {
+                $stmt = $dbh->prepare('INSERT INTO functions VALUES(:id, :tab, :details)');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':tab', $tabs[$i]);
+                $stmt->bindParam(':details', $details[$i]);
+                $result = $stmt->execute();
+            }
+            return $result;
+        }
+    }
+
+    public function delete_function_item($id)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('DELETE FROM functions WHERE id = :id');
+        $stmt->bindParam(':id', $id);
+        $result = $stmt->execute();
         return $result;
     }
 
-    public function update_functions($functions)
+    public function delete_page($id)
     {
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('UPDATE functions SET functions = :functions');
-        $result = $stmt->execute(array('functions' => $functions));
+        $stmt = $dbh->prepare('SELECT * FROM pages WHERE id = :id');
+        $result = $stmt->execute(array('id' => $id));
+        if ($result) {
+            $name = $stmt->fetch(PDO::FETCH_ASSOC);
+            $file_path = realpath('../img/slideshowimgs/' . $name['name']);
+            if (is_writable($file_path)) {
+                if (unlink($file_path)) {
+                    $stmt = $dbh->prepare('DELETE FROM pages WHERE id = :id');
+                    $stmt->bindParam(':id', $id);
+                    $result = $stmt->execute();
+                    if ($result) {
+                        $stmt = $dbh->prepare('DELETE FROM content WHERE page_id = :id');
+                        $stmt->bindParam(':id', $id);
+                        $result = $stmt->execute();
+                    }
+                    return $result;
+                }
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public function delete_who_we_are_item($id)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('DELETE FROM who_we_are WHERE id = :id');
+        $stmt->bindParam(':id', $id);
+        $result = $stmt->execute();
         return $result;
     }
 
+    public function edit_time_stamp($id, $time_stamp)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('UPDATE time_stamps SET last_updated = :time_stamp WHERE id = :id');
+        $result = $stmt->execute(array('time_stamp' => $time_stamp, 'id' => $id));
+        return $result;
+    }
+
+    public function get_you_tube()
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('SELECT * FROM youtube');
+        $result = $stmt->execute();
+        if($result){
+            $you_tube = $stmt->fetch(PDO::FETCH_ASSOC);
+            $link = $you_tube['link'];
+            return $link;
+        }
+        return false;
+    }
+
+    public function update_you_tube_link($link)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('UPDATE youtube SET link = :link');
+        $result = $stmt->execute(array('link' => $link));
+        if($result){
+            return true;
+        }
+        return false;
+    }
 }

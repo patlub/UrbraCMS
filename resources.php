@@ -1,6 +1,6 @@
 <?php
+include_once 'time_out.php';
 require_once 'classes/DatabaseHelper.php';
-session_start();
 
 if(!$_SESSION['loggedIn']){
     header("location: signIn.html");
@@ -46,7 +46,11 @@ if(!$_SESSION['loggedIn']){
         <div id="deleted-alert" class="error row" align="center">Resource have been deleted</div>
         <div id="update-alert" class="success-alert row" align="center">Resource has been updated</div>
         <div id="network-error" class="error row" align="center">Network Error</div>
+        <div id="checked-error" class="error row" align="center">No Item Checked</div>
     </div>
+        <div class="col-md-12 page-head">
+            Resources
+        </div>
     <div class="row">
         <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addResourceModal">
                 <button class="btn btn-primary btn-lg" value="">Add Resource +</button>

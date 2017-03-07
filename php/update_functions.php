@@ -7,8 +7,11 @@
  */
 include('../classes/DatabaseHelper.php');
 
-$functions = $_POST['functions'];
+$tabs = $_POST['tabs'];
+$details = $_POST['details'];
 
 $dbh = new DatabaseHelper();
-$result = $dbh->update_functions($functions);
-echo $result;
+$result = $dbh->update_functions($tabs, $details);
+if($result){
+    header('location:../functions.php');
+}

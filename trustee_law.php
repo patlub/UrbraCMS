@@ -1,14 +1,11 @@
 <?php
+include_once 'time_out.php';
 require_once 'classes/DatabaseHelper.php';
 require_once 'classes/Trustee.php';
-session_start();
 
-if(!$_SESSION['loggedIn']){
+if (!$_SESSION['loggedIn']) {
     header("location:signgnIn.html");
 }
-
-$trustee = new Trustee();
-$law = $trustee->fetch_trustee_law();
 
 ?>
 <!DOCTYPE html>
@@ -38,49 +35,42 @@ $law = $trustee->fetch_trustee_law();
                 <?php include_once 'menu.php'; ?>
                 <div class="success-alert row" align="center">Page has been added</div>
             </div>
-            <form id="update-trustee-form" role="form" enctype="multipart/form-data">
-                <div class="form-group col-md-12">
-                    <label for="application">Application and grant of licence of a trustee </label><textarea id="application" name="application"
-                                                                   class="form-control"><?php echo $law['application']; ?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="refusal">Refusal of licence of a trustee  </label><textarea id="refusal" name="refusal"
-                                                                                                                 class="form-control"><?php echo $law['refusal'];?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="restrict">Restrictions on licence of a trustee </label><textarea id="restrict" name="restrict"
-                                                                                                class="form-control"><?php echo $law['restriction'];?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="validity">Validity of licence of a trustee  </label><textarea id="validity" name="validity"
-                                                                                                     class="form-control"><?php echo $law['validity'];?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="revocation">Revocation of licence of a trustee </label><textarea id="revocation" name="revocation"
-                                                                                                  class="form-control"><?php echo $law['revocation'];?></textarea>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="function">Functions of an Administrator </label><textarea id="function" name="function"
-                                                                                                     class="form-control"><?php echo $law['function'];?></textarea>
-                </div>
-
+            <div class="row">
+                <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addTrusteeItemModal">
+                        <button class="btn btn-primary btn-lg" value="">Add Item +</button>
+                    </a></div>
+            </div>
+            <div class="row">
+                <table id="table" cellpadding="0" cellspacing="0" border="0"
+                       class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Items</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $trustee = new Trustee();
+                    $trustee->fetch_trustee_items();
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <form id="update-trustee-form" role="form" enctype="multipart/form-data" method="post"
+                  action="php/update_trustee_law.php">
+                <?php
+                $trustee = new Trustee();
+                $trustee->fetch_trustee_law();
+                ?>
                 <div class="form-group col-md-3">
-                    <input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-success pull-right">
+                    <input type="submit" name="submit" value="UPDATE" class="form-control btn btn-success updatebtn">
                 </div>
-                <script>
-                    // Replace the <textarea id="content"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace('application');
-                    CKEDITOR.replace('refusal');
-                    CKEDITOR.replace('restrict');
-                    CKEDITOR.replace('validity');
-                    CKEDITOR.replace('revocation');
-                    CKEDITOR.replace('function');
-                </script>
             </form>
         </div>
     </div>
     <div class="loader"><!-- Place at bottom of page --></div>
+    <?php include_once 'imports/add_trustee_item.php' ?>
 </div>
 </body>
 </html>

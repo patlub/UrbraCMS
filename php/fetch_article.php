@@ -11,4 +11,4 @@ include('../classes/Article.php');
 $id = $_POST['id'];
 $article  = new Article();
 $result = $article->fetch_article($id);
-echo $result['title'].'*'.$result['article'].'*'.$result['date'].'*'.$result['resource'].'*'.$result['expiry'].'*'.$result['id'];
+echo $result['title'].'*'.$result['article'].'*'.$result['date'].'*'.$result['attachment'].'*'.$result['expiry'].'*'.$result['id'];

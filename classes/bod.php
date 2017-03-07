@@ -87,7 +87,7 @@ class BoD
             // Check file size '5MB'
             if ($this->size < 5000000) {
 
-                $img = $this->resize_image($this->tmp_dir, 500, 400, true);
+                $img = $this->resize_image($this->tmp_dir, 186, 228, true);
                 imagejpeg($img,$upload_dir . $image);
 
             } else {
@@ -155,7 +155,7 @@ class BoD
                 // Check file size '5MB'
                 if ($this->size < 5000000) {
 
-                    $img = $this->resize_image($this->tmp_dir, 1196, 662);
+                    $img = $this->resize_image($this->tmp_dir, 186, 228);
                     imagejpeg($img,$upload_dir . $image);
                 } else {
                     $errMSG = "Sorry, your file is too large.";

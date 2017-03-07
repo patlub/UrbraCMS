@@ -60,7 +60,8 @@ class HomePage
             // Check file size '5MB'
             if ($imgSize < 5000000) {
 
-                $img = $this->resize_image($tmp_dir, 1196, 662, true);
+//                $img = $this->resize_image($tmp_dir, 1196, 662);
+                $img = $this->resize_image($tmp_dir, 1196, 500);
                 imagejpeg($img,$upload_dir . $image);
 
             } else {
@@ -164,7 +165,8 @@ class HomePage
                 // Check file size '5MB'
                 if ($imgSize < 5000000) {
 
-                    $img = $this->resize_image($tmp_dir, 1196, 662);
+//                    $img = $this->resize_image($tmp_dir, 1196, 662);
+                    $img = $this->resize_image($tmp_dir, 1896, 580);
                     imagejpeg($img,$upload_dir . $image);
                 } else {
                     $errMSG = "Sorry, your file is too large.";

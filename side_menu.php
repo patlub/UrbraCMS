@@ -20,10 +20,14 @@
                     <i class="fa fa-globe fa-lg"></i> Home
                 </a>
             </li>
-            <li data-toggle="collapse" data-target="#service" class="collapsed"
-                onclick="location.href = 'trustees.php'">
-                <a href="#"><i class="fa fa-globe fa-lg"></i> Trustees</a>
+
+            <li data-toggle="collapse" data-target="#trustees" class="collapsed">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> Trustees <span class="arrow"></span></a>
             </li>
+            <ul class="sub-menu collapse" id="trustees">
+                <li class="active" onclick="location.href = 'corporate_trustees.php'"><a href="#">Corporate Trustees</a></li>
+                <li class="active" onclick="location.href = 'individual_trustees.php'"><a href="#">Individual Trustees</a></li>
+            </ul>
             <li data-toggle="collapse" data-target="#service" class="collapsed" onclick="location.href = 'schemes.php'">
                 <a href="#"><i class="fa fa-globe fa-lg"></i> Retirement Benefit Schemes</a>
             </li>
@@ -109,23 +113,39 @@
                 <a href="#"><i class="fa fa-gift fa-lg"></i>Custom Pages <span class="arrow"></span></a>
             </li>
             <ul class="sub-menu collapse" id="pages">
+                <li class="active" onclick="location.href = 'pages.php'"><a href="#">Pages</a></li>
 
                 <?php
                 $page = new Page();
                 $page->load_custom_pages_list();
 
                 ?>
-                <li class="active" onclick="location.href = 'add_page.php'"><a href="#">Add Page+</a></li>;
+                <li class="active" onclick="location.href = 'add_page.php'"><a href="#">Add Page+</a></li>
 
             </ul>
-            <li onclick="location.href = 'users.php'">
-                <a href="#">
-                    <i class="fa fa-users fa-lg"></i> Users
-                </a>
+
+
+            <li data-toggle="collapse" data-target="#users" class="collapsed">
+                <a href="#"><i class="fa fa-gift fa-lg"></i> Users <span class="arrow"></span></a>
             </li>
+            <ul class="sub-menu collapse" id="users">
+                <li class="active" onclick="location.href = 'users.php'"><a href="#">Users</a></li>
+                <li class="active" onclick="location.href = 'change_pass.php'"><a href="#">Change Password</a></li>
+            </ul>
+
             <li onclick="location.href = 'php/sign_out.php'">
                 <a href="#">
                     <i class="fa fa-globe fa-lg"></i> Logout
+                </a>
+            </li>
+            <li onclick="location.href = 'time_stamps.php'">
+                <a href="#">
+                    <i class="fa fa-globe fa-lg"></i> Time Stamps
+                </a>
+            </li>
+            <li onclick="location.href = 'you_tube.php'">
+                <a href="#">
+                    <i class="fa fa-globe fa-lg"></i> YouTube Link
                 </a>
             </li>
         </ul>

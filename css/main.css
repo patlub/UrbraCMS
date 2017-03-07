@@ -218,3 +218,25 @@ div {
 .side-menu{
     padding-left: 0;
 }
+
+.updatebtn {
+    position: fixed;
+    bottom: 1%;
+    right: 0;
+    height: 40px;
+    width: 150px;
+}
+
+.page-head {
+    font-size: 160%;
+    background-color: #ecefef;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin-bottom: 2%;
+}
+
+.caption{
+    background-color: #000000;
+    color: #ffffff;
+    font-weight: bold;
+}

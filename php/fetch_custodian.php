@@ -11,4 +11,4 @@ include('../classes/Custodian.php');
 $id = $_POST['id'];
 $custodian  = new Custodian();
 $result = $custodian->fetch_custodian($id);
-echo $result['name'].'-'.$result['category'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'];
+echo $result['name'].'-'.$result['address'].'-'.$result['web_link'].'-'.$result['id'].'-'.$result['tel'];

@@ -7,13 +7,11 @@
  */
 include('../classes/Trustee.php');
 
-$app = $_POST['application'];
-$refusal = $_POST['refusal'];
-$restrict = $_POST['restrict'];
-$validity = $_POST['validity'];
-$revocation = $_POST['revocation'];
-$function = $_POST['functions'];
+$tabs = $_POST['tabs'];
+$details = $_POST['details'];
 
 $trustee = new Trustee();
-$result = $trustee->update_trustee_law($app, $refusal, $restrict, $validity, $revocation, $function);
-echo $result;
+$result = $trustee->update_trustee_law($tabs, $details);
+if($result){
+    header('location:../trustee_law.php');
+}

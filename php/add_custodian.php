@@ -8,11 +8,10 @@
 include('../classes/Custodian.php');
 
 $name = $_POST['name'];
-$category = $_POST['category'];
 $address = $_POST['address'];
 $web_link = $_POST['link'];
+$tel = $_POST['tel'];
 
-
-$custodian = Custodian::new_custodian($name, $category, $address, $web_link);
+$custodian = Custodian::new_custodian($name, $address, $web_link, $tel);
 $result = $custodian->add_custodian();
 echo $result;

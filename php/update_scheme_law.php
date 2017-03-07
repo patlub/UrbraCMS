@@ -7,13 +7,11 @@
  */
 include('../classes/Scheme.php');
 
-$app = $_POST['application'];
-$refusal = $_POST['refusal'];
-$restrict = $_POST['restrict'];
-$validity = $_POST['validity'];
-$revocation = $_POST['revocation'];
-$function = $_POST['functions'];
+$tabs = $_POST['tabs'];
+$details = $_POST['details'];
 
 $scheme = new Scheme();
-$result = $scheme->update_scheme_law($app, $refusal, $restrict, $validity, $revocation, $function);
-echo $result;
+$result = $scheme->update_scheme_law($tabs, $details);
+if($result){
+    header('location:../scheme_law.php');
+}

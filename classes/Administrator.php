@@ -9,9 +9,9 @@
 class Administrator
 {
     protected $name;
-    protected $category;
     protected $address;
     protected $web_link;
+    protected $tel;
 
     public function __construct()
     {
@@ -23,9 +23,9 @@ class Administrator
         return $this->name;
     }
 
-    public function get_category()
+    public function get_tel()
     {
-        return $this->category;
+        return $this->tel;
     }
 
     public function get_address()
@@ -43,11 +43,6 @@ class Administrator
         $this->name = $name;
     }
 
-    public function set_category($category)
-    {
-        $this->category = $category;
-    }
-
     public function set_address($address)
     {
         $this->address = $address;
@@ -58,33 +53,38 @@ class Administrator
         $this->web_link = $web_link;
     }
 
-    public static function new_administrator($name, $category, $address, $web_link)
+    public function set_tel($tel)
+    {
+        $this->tel = $tel;
+    }
+
+    public static function new_administrator($name, $address, $web_link, $tel)
     {
         $instance = new self();
-        $instance->load_new_administrator($name, $category, $address, $web_link);
+        $instance->load_new_administrator($name, $address, $web_link, $tel);
         return $instance;
     }
 
-    public function load_new_administrator($name, $category, $address, $web_link)
+    public function load_new_administrator($name, $address, $web_link, $tel)
     {
         $this->name = $name;
-        $this->category = $category;
         $this->address = $address;
         $this->web_link = $web_link;
+        $this->web_link = $tel;
     }
 
     public function add_administrator()
     {
         $return_code = false;
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('INSERT INTO administrators VALUES(:id, :name, :category, :address, :web_link)');
+        $stmt = $dbh->prepare('INSERT INTO administrators VALUES(:id, :name, :address, :web_link, :tel)');
 
         $id = '';
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':category', $this->category);
         $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':web_link', $this->web_link);
+        $stmt->bindParam(':tel', $this->tel);
         $result = $stmt->execute();
 
         if ($result) {
@@ -119,13 +119,13 @@ class Administrator
     {
         $return_code = false;
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('UPDATE administrators SET name =  :name, category = :category, address = :address, web_link = :web_link WHERE id = :id');
+        $stmt = $dbh->prepare('UPDATE administrators SET name =  :name, address = :address, web_link = :web_link, tel = :tel WHERE id = :id');
 
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $this->name);
-        $stmt->bindParam(':category', $this->category);
         $stmt->bindParam(':address', $this->address);
         $stmt->bindParam(':web_link', $this->web_link);
+        $stmt->bindParam(':tel', $this->tel);
         $result = $stmt->execute();
 
         if ($result) {
@@ -148,32 +148,41 @@ class Administrator
 
     }
 
-    public function update_admin_law($app, $refusal, $restrict, $validity, $revocation, $function){
+    public function update_admin_law($tabs, $details){
+        $result = null;
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('UPDATE laws SET application =  :app, refusal = :refusal, restriction = :restriction,
-                                validity = :validity, revocation = :revocation, `function` = :functions WHERE provider = :provider');
-
-        $provider = 'admin';
-        $stmt->bindParam(':app', $app);
-        $stmt->bindParam(':refusal', $refusal);
-        $stmt->bindParam(':restriction', $restrict);
-        $stmt->bindParam(':validity', $validity);
-        $stmt->bindParam(':revocation', $revocation);
-        $stmt->bindParam(':functions', $function);
-        $stmt->bindParam(':provider', $provider);
-
+        $stmt = $dbh->prepare('DELETE FROM admin_law');
         $result = $stmt->execute();
-        return $result;
+        if($result) {
+            $id = '';
+            for ($i = 0; $i < count($tabs); $i++) {
+                $stmt = $dbh->prepare('INSERT INTO admin_law VALUES(:id, :tab, :details)');
+                $stmt->bindParam(':id', $id);
+                $stmt->bindParam(':tab', $tabs[$i]);
+                $stmt->bindParam(':details', $details[$i]);
+                $result = $stmt->execute();
+            }
+            return $result;
+        }
     }
 
     public function fetch_admin_law(){
         $dbh = $this->connectDB();
-        $stmt = $dbh->prepare('SELECT * FROM laws WHERE provider = :provider');
-        $provider = 'admin';
-        $stmt->bindParam(':provider',$provider);
+        $stmt = $dbh->prepare('SELECT * FROM admin_law');
         $stmt->execute();
-        $law = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $law;
+        while ($law = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div class="form-group col-md-12">
+                <input type="text" id="tab" name="tabs[]" value="<?php echo $law['tab']; ?>" class="form-control" style="font-weight: bold;" placeholder="">
+            </div>
+            <div class="form-group col-md-12">
+                <textarea
+                    id="detail" name="details[]"
+                    class="form-control ckeditor" placeholder=""><?php echo $law['details']; ?></textarea>
+            </div>
+        <?php
+
+        }
     }
 
     public function admin_import($file)
@@ -184,18 +193,18 @@ class Administrator
 
         while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
             $name = $filesop[0];
-            $category = $filesop[1];
-            $address = $filesop[2];
-            $web_link = $filesop[3];
+            $address = $filesop[1];
+            $web_link = $filesop[2];
+            $tel = $filesop[3];
 
-            $stmt = $dbh->prepare('INSERT INTO administrators VALUES (:id, :name, :category, :address, :web_link)');
+            $stmt = $dbh->prepare('INSERT INTO administrators VALUES (:id, :name, :address, :web_link, :tel)');
 
             $id = '';
             $stmt->bindParam(':id', $id);
             $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':category', $category);
             $stmt->bindParam(':address', $address);
             $stmt->bindParam(':web_link', $web_link);
+            $stmt->bindParam(':tel', $tel);
             $result = $stmt->execute();
 
             if ($result) {
@@ -205,5 +214,59 @@ class Administrator
         return $return_code;
     }
 
+    public function fetch_admin_items()
+    {
+        {
+            $dbh = $this->connectDB();
+            $statementHandler = $dbh->prepare("SELECT * FROM admin_law");
+            $statementHandler->execute();
+            if ($statementHandler->rowCount() > 0) {
+                $i = 1;
+                while ($item = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                    $id = $item['id'];
+                    $tab = $item['tab'];
+                    ?>
+                    <tr>
+
+                        <td>
+                            <?php echo $i++; ?>
+                        </td>
+                        <td>
+                            <?php echo $tab; ?>
+                        </td>
+                        <td align="center">
+                            <a href="php/delete_admin_item.php?id=<?php echo $id; ?>" <span id="" class="delete glyphicon glyphicon-remove icon-delete"></span>
+                        </td>
+                    </tr>
+                <?php
+                }
+            } else {
+                echo false;
+            }
+        }
+    }
+
+    public function delete_admin_item($id)
+    {
+        $dbh = $this->connectDB();
+        $stmt = $dbh->prepare('DELETE FROM admin_law WHERE id = :id');
+        $stmt->bindParam(':id', $id);
+        $result = $stmt->execute();
+        return $result;
+    }
+
+    public function add_admin_law_item($title, $details)
+    {
+        $result = null;
+        $dbh = $this->connectDB();
+
+        $stmt = $dbh->prepare('INSERT INTO admin_law VALUES(:id, :tab, :details)');
+        $id = '';
+        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':tab', $title);
+        $stmt->bindParam(':details', $details);
+        $result = $stmt->execute();
+        return $result;
+    }
 
 } 

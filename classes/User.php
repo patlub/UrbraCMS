@@ -217,7 +217,7 @@ class User
         $statementHandler = $dbh->prepare('INSERT INTO page_alloc VALUES (:id, :page_id, :uid)');
         $id = '';
 
-        for($i = 0;$i < count($pages); $i++){
+        for ($i = 0; $i < count($pages); $i++) {
             $statementHandler->bindParam(':id', $id);
             $statementHandler->bindParam(':page_id', $pages[$i]);
             $statementHandler->bindParam(':uid', $_SESSION['user_id']);
@@ -227,19 +227,19 @@ class User
         return $result;
     }
 
-    public function get_permissions(){
+    public function get_permissions()
+    {
         $dbh = $this->connectDB();
-//        $statementHandler = $dbh->prepare('SELECT page_id FROM page_alloc WHERE uid = :uid');
-        $statementHandler = $dbh->prepare('SELECT pages.name as page_name FROM pages INNER JOIN page_alloc ON pages.id = page_alloc.page_id WHERE page_alloc.uid = :uid');
+        $statementHandler = $dbh->prepare('SELECT pages.name AS page_name FROM pages INNER JOIN page_alloc ON pages.id = page_alloc.page_id WHERE page_alloc.uid = :uid');
         $statementHandler->bindParam(':uid', $_SESSION['user_id']);
         $result = $statementHandler->execute();
         if ($statementHandler->rowCount() > 0) {
             $i = 0;
-            while($page_id =$statementHandler->fetch(PDO::FETCH_ASSOC)){
-                if($i == 0){
+            while ($page_id = $statementHandler->fetch(PDO::FETCH_ASSOC)) {
+                if ($i == 0) {
                     $_SESSION['page_ids'] = $page_id['page_name'];
-                }else {
-                    $_SESSION['page_ids'] = $_SESSION['page_ids'].' '.$page_id['page_name'];
+                } else {
+                    $_SESSION['page_ids'] = $_SESSION['page_ids'] . ' ' . $page_id['page_name'];
                 }
                 $i++;
             }
@@ -248,19 +248,19 @@ class User
         return $result;
     }
 
-    public function changePassword($newPassword)
+    public function changePassword($oldPassword, $newPassword)
     {
-        if ($this->_password == $_SESSION['password']) {
+        if(md5($oldPassword) == $_SESSION['password']) {
+            $newPassword = md5($newPassword);
             $dbh = $this->connectDB();
-            $statementHandler = $dbh->prepare('UPDATE users SET `password` = :password WHERE id = :id');
+            $statementHandler = $dbh->prepare('UPDATE users SET `password` = :new_password WHERE id = :id');
             $statementHandler->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
-            $statementHandler->bindParam(':password', $newPassword, PDO::PARAM_STR);
+            $statementHandler->bindParam(':new_password', $newPassword, PDO::PARAM_STR);
             $result = $statementHandler->execute();
             if ($result) {
                 $_SESSION['password'] = $newPassword;
-                return $result;
             }
-            return false;
+            return $result;
         }
         return false;
     }

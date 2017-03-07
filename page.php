@@ -29,7 +29,7 @@
                     <p class="">Service Providers</p>
                 </div>
             </a>
-            <a href="trustees.php" target="_blank">
+            <a href="corporate_trustees.php" target="_blank">
                 <div id="trustees-box" class="col-md-6 col-sm-6 short-tab-box">
                     <img src="img/trustee.png">
 

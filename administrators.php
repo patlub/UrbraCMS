@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once 'time_out.php';
 require_once 'classes/DatabaseHelper.php';
 if(!$_SESSION['loggedIn']){
     header("location: signIn.html");
@@ -15,6 +15,7 @@ if(!$_SESSION['loggedIn']){
     <link rel="stylesheet" href="css/main.css">
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
     <title>Administrators</title>
 </head>
 <body>
@@ -31,6 +32,10 @@ if(!$_SESSION['loggedIn']){
                 <div id="deleted-alert" class="error row" align="center">Administrators have been deleted</div>
                 <div id="update-alert" class="success-alert row" align="center">Administrator has been updated</div>
                 <div id="network-error" class="error row" align="center">Network Error</div>
+                <div id="checked-error" class="error row" align="center">No Item Checked</div>
+            </div>
+            <div class="col-md-12 page-head">
+                Administrators
             </div>
             <div class="row">
                 <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addAdministratorModal">
@@ -61,9 +66,9 @@ if(!$_SESSION['loggedIn']){
                             <th></th>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Category</th>
                             <th>Address</th>
                             <th>Web link</th>
+                            <th>Tel</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -11,4 +11,4 @@ include('../classes/Resource.php');
 $id = $_POST['id'];
 $resource  = new Resource();
 $result = $resource->fetch_resource($id);
-echo $result['name'].'*'.$result['category'].'*'.$result['pdf'].'*'.$result['id'];
+echo $result['name'].'*'.$result['category'].'*'.$result['attachment'].'*'.$result['id'];

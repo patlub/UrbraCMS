@@ -8,15 +8,15 @@
 include('../classes/Vacancy.php');
 
 $id = $_POST['id'];
-$title = $_POST['title'];
-$start_date = $_POST['start_date'];
-$end_date = $_POST['end_date'];
-$description = $_POST['description'];
+$title = $_POST['edit-title'];
+$start_date = $_POST['edit-start_date'];
+$end_date = $_POST['edit-end_date'];
+$description = $_POST['edit-description'];
 
-$s_hour = $_POST['s-hour'];
-$s_minute = $_POST['s-minute'];
-$e_hour = $_POST['e-hour'];
-$e_minute = $_POST['e-minute'];
+$s_hour = $_POST['edit-s-hour'];
+$s_minute = $_POST['edit-s-minute'];
+$e_hour = $_POST['edit-e-hour'];
+$e_minute = $_POST['edit-e-minute'];
 
 $attachmentFile = null;
 $tmp_dir = null;

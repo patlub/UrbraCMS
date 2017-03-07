@@ -7,13 +7,11 @@
  */
 include('../classes/Administrator.php');
 
-$app = $_POST['application'];
-$refusal = $_POST['refusal'];
-$restrict = $_POST['restrict'];
-$validity = $_POST['validity'];
-$revocation = $_POST['revocation'];
-$function = $_POST['functions'];
+$tabs = $_POST['tabs'];
+$details = $_POST['details'];
 
 $admin = new Administrator();
-$result = $admin->update_admin_law($app, $refusal, $restrict, $validity, $revocation, $function);
-echo $result;
+$result = $admin->update_admin_law($tabs, $details);
+if($result){
+    header('location:../admin_law.php');
+}

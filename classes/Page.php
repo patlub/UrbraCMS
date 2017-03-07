@@ -10,6 +10,7 @@ class Page
 {
     protected $_name;
     protected $_content;
+    protected $_add_page_url;
 
     function __construct()
     {
@@ -53,18 +54,32 @@ class Page
     {
         $page_id = null;
         $dbh = $this->connectDB();
-        $sth = $dbh->prepare('INSERT INTO pages VALUES (:id, :pagename, :type)');
-        $result = $sth->execute(array('id' => '', 'pagename' => $this->_name, 'type' => 'custom'));
+        $sth = $dbh->prepare('SELECT `name` FROM pages');
+        if ($sth->execute()) {
+            while ($result = $sth->fetch(PDO::FETCH_ASSOC)) {
+                if ($result['name'] == $this->_name) {
+                    return 2;
+                }
+            }
 
-        if ($result) {
-            $statementHandler = $dbh->prepare('SELECT LAST_INSERT_ID()');
-            $statementHandler->execute();
-            $LastRow = $statementHandler->fetch(PDO::FETCH_ASSOC);
-            $page_id = $LastRow['LAST_INSERT_ID()'];
+            $file_name = '../' . $this->_name . '.php';
+            if (copy('../custom_page.php', $file_name)) {
 
-            $sth = $dbh->prepare('INSERT INTO content VALUES (:id, :content, :page_id)');
-            $result = $sth->execute(array('id' => '', 'content' => $this->_content, 'page_id' => $page_id));
-            return $result;
+                $sth = $dbh->prepare('INSERT INTO pages VALUES (:id, :pagename, :type)');
+                $result = $sth->execute(array('id' => '', 'pagename' => $this->_name, 'type' => 'custom'));
+
+                if ($result) {
+                    $statementHandler = $dbh->prepare('SELECT LAST_INSERT_ID()');
+                    $statementHandler->execute();
+                    $LastRow = $statementHandler->fetch(PDO::FETCH_ASSOC);
+                    $page_id = $LastRow['LAST_INSERT_ID()'];
+
+                    $sth = $dbh->prepare('INSERT INTO content VALUES (:id, :content, :page_id)');
+                    $result = $sth->execute(array('id' => '', 'content' => $this->_content, 'page_id' => $page_id));
+                    return $result;
+                }
+            }
+            return false;
         }
         return false;
     }
@@ -77,7 +92,6 @@ class Page
         $result = $sth->execute(array('pagename' => $this->_name, 'id' => $id));
 
         if ($result) {
-
             $sth = $dbh->prepare('UPDATE content SET content = :content WHERE page_id = :id');
             $result = $sth->execute(array('content' => $this->_content, 'page_id' => $id));
             return $result;
@@ -114,7 +128,7 @@ class Page
         $statementHandler->bindParam(':id', $id);
         $result = $statementHandler->execute();
 
-        if($result){
+        if ($result) {
             $page = $statementHandler->fetch(PDO::FETCH_ASSOC);
 
             $this->_name = $page['pname'];

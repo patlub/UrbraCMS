@@ -1,6 +1,7 @@
 <?php
+include_once 'time_out.php';
 require_once 'classes/DatabaseHelper.php';
-session_start();
+
 if(!$_SESSION['loggedIn']){
     header("location: signIn.html");
 }elseif(!in_array('fund_managers', $_SESSION['page_ids'])){
@@ -15,6 +16,7 @@ if(!$_SESSION['loggedIn']){
     <link rel="stylesheet" href="css/main.css">
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
     <title>Fund Managers</title>
 </head>
 <body>
@@ -31,6 +33,10 @@ if(!$_SESSION['loggedIn']){
                 <div id="deleted-alert" class="error row" align="center">Fund managers have been deleted</div>
                 <div id="update-alert" class="success-alert row" align="center">Fund Manager has been deleted</div>
                 <div id="network-error" class="error row" align="center">Network Error</div>
+                <div id="checked-error" class="error row" align="center">No Item Checked</div>
+            </div>
+            <div class="col-md-12 page-head">
+                Fund Managers
             </div>
             <div class="row">
                 <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addFundManagerModal">
@@ -45,6 +51,9 @@ if(!$_SESSION['loggedIn']){
                     </div>
                 </form>
             </div>
+            <div class="row">
+                <button id="publish" class="btn btn-default btn-lg pull-right" value="">PUBLISH</button>
+            </div>
             <form id="fund_managers-form" role="form" enctype="multipart/form-data">
 
                 <div id="table-box" class="row" align="center">
@@ -58,9 +67,9 @@ if(!$_SESSION['loggedIn']){
                             <th></th>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Category</th>
                             <th>Address</th>
                             <th>Web link</th>
+                            <th>Tel</th>
                         </tr>
                         </thead>
                         <tbody>

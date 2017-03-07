@@ -1,3 +1,4 @@
+<link rel="icon" href="img/logo_pic.png">
 <style type="text/css">
     #sub-heading {
         margin-top: 2%;

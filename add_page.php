@@ -1,7 +1,6 @@
 <?php
+include_once 'time_out.php';
 require_once 'classes/DatabaseHelper.php';
-session_start();
-
 if(!$_SESSION['loggedIn']){
     header("location: signIn.html");
 }
@@ -32,6 +31,7 @@ if(!$_SESSION['loggedIn']){
             <div class="col-md-12">
                 <?php include_once 'menu.php'; ?>
                 <div class="success-alert row" align="center">Page has been added</div>
+                <div id="exist-alert" class="error row" align="center">Page name already exists</div>
             </div>
             <form id="add-page-form" role="form" enctype="multipart/form-data">
                 <div class="form-group col-md-4">

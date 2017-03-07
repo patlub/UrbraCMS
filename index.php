@@ -1,7 +1,7 @@
 <?php
+include_once 'time_out.php';
 require_once('classes/HomePage.php');
 require_once('classes/DatabaseHelper.php');
-session_start();
 if(!$_SESSION['loggedIn']){
     header("location: signIn.html");
 }elseif(!in_array('index', $_SESSION['page_ids'])){
@@ -104,7 +104,7 @@ if(!$_SESSION['loggedIn']){
     <div class="col-md-6">
         <div class="row sec-box">
             <div class="sec-image" align="center">
-                <img id="sec_image1" src="" class="service-image img-responsive img-circle">
+                <img id="sec_image1" src="" class="service-image img-responsive">
             </div>
 
             <div id="sec_head1" class="sec-head"></div>
@@ -155,7 +155,7 @@ if(!$_SESSION['loggedIn']){
     <div class="col-md-6">
         <div class="row sec-box">
             <div class="sec-image" align="center">
-                <img id="sec_image3" src="" class="service-image img-responsive img-circle">
+                <img id="sec_image3" src="" class="service-image img-responsive">
             </div>
 
             <div id="sec_head3" class="sec-head"></div>

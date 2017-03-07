@@ -13,17 +13,17 @@
                         <form id="edit-vacancy-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="hidden" id="id" name="id">
-                                <label for="edit-title">Title</label><input type="text" id="edit-title" name="title"
+                                <label for="edit-title">Title</label><input type="text" id="edit-title" name="edit-title"
                                                                      class="form-control"
                                                                      required>
                             </div>
                             <div class="form-group">
-                                <label for="edit-start_date">Start Date</label><input type="text" id="edit-start_date" name="start_date"
+                                <label for="edit-start_date">Start Date</label><input type="text" id="edit-start_date" name="edit-start_date"
                                                                            class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="edit-s-hour">Hours</label>
-                                <select id="edit-s-hour" name="s-hour" class="form-control">
+                                <select id="edit-s-hour" name="edit-s-hour" class="form-control">
                                     <?php
                                     $dbh = new DatabaseHelper();
                                     $dbh->load_hours();
@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="edit-s-minute">Minutes</label>
-                                <select id="edit-s-minute" name="s-minute" class="form-control">
+                                <select id="edit-s-minute" name="edit-s-minute" class="form-control">
                                     <?php
                                     $dbh = new DatabaseHelper();
                                     $dbh->load_minutes();
@@ -40,12 +40,12 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="edit-end_date">End Date</label><input type="text" id="edit-end_date" name="end_date"
+                                <label for="edit-end_date">End Date</label><input type="text" id="edit-end_date" name="edit-end_date"
                                                                                  class="form-control">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="edit-e-hour">Hours</label>
-                                <select id="edit-e-hour" name="e-hour" class="form-control">
+                                <select id="edit-e-hour" name="edit-e-hour" class="form-control">
                                     <?php
                                     $dbh = new DatabaseHelper();
                                     $dbh->load_hours();
@@ -54,7 +54,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="edit-e-minute">Minutes</label>
-                                <select id="edit-e-minute" name="e-minute" class="form-control">
+                                <select id="edit-e-minute" name="edit-e-minute" class="form-control">
                                     <?php
                                     $dbh = new DatabaseHelper();
                                     $dbh->load_minutes();
@@ -62,7 +62,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="edit-description">Description</label><textarea id="edit-description" name="description"
+                                <label for="edit-description">Description</label><textarea id="edit-description" name="edit-description"
                                                                            class="form-control"></textarea>
                             </div>
                             <div class="form-group">

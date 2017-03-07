@@ -13,19 +13,17 @@
                         <form id="edit-scheme-form" role="form" enctype="multipart/form-data">
                             <div class="form-group">
                                 <input type="hidden" id="id" name="id">
-                                <label for="edit-name">Name</label><input type="text" id="edit-name" name="edit-name"
+                                <label for="edit_name">Name</label><textarea id="edit_name" name="edit-name"
                                                                           class="form-control"
-                                                                          required>
+                                                                          required></textarea>
                             </div>
+                            <script>
+                                // Replace the <textarea id="content"> with a CKEditor
+                                // instance, using default configuration.
+                                CKEDITOR.replace( 'edit_name' );
+                            </script>
                             <div class="form-group">
-                                <label for="edit-category">Category</label>
-                                <select id="edit-category" name="edit-category" class="form-control">
-                                    <option value="corporate">Corporate</option>
-                                    <option value="individual">Individual</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-address">Address</label><input type="text" id="edit-address"
+                                <label for="edit_address">Address</label><input type="text" id="edit_address"
                                                                                 name="edit-address"
                                                                                 class="form-control">
                             </div>
@@ -33,6 +31,10 @@
                                 <label for="edit-link">Web Link</label><input type="text" id="edit-link"
                                                                               name="edit-link"
                                                                               class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_tel">Tel</label><input type="text" id="edit_tel" name="edit-tel"
+                                                                        class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" name="update" value="UPDATE" class="form-control btn btn-success">

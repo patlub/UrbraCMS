@@ -1,13 +1,12 @@
 <?php
+include_once 'time_out.php';
 require_once 'classes/DatabaseHelper.php';
-session_start();
+require_once 'classes/Administrator.php';
 
-if(!$_SESSION['loggedIn']){
-    header("location: signIn.html");
+if (!$_SESSION['loggedIn']) {
+    header("location:signIn.html");
 }
 
-$dbh = new DatabaseHelper();
-$functions = $dbh->fetch_functions();
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,23 +35,44 @@ $functions = $dbh->fetch_functions();
                 <?php include_once 'menu.php'; ?>
                 <div class="success-alert row" align="center">Page has been added</div>
             </div>
-            <form id="update-functions-form" role="form" enctype="multipart/form-data">
-                <div class="form-group col-md-12">
-                    <label for="functions">Functions</label><textarea id="functions" name="functions"
-                                                                   class="form-control"><?php echo $functions['functions'];?></textarea>
-                </div>
+            <div class="col-md-12 page-head">
+                Functions
+            </div>
+            <div class="row">
+                <div class="col-md-6 add-btn-box"><a href="#" data-toggle="modal" data-target="#addItemModal">
+                        <button class="btn btn-primary btn-lg" value="">Add Item +</button>
+                    </a></div>
+            </div>
+            <div class="row">
+                <table id="table" cellpadding="0" cellspacing="0" border="0"
+                       class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Items</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $dbh = new DatabaseHelper();
+                    $dbh->fetch_functions_items();
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            <form id="update-admin-form" role="form" enctype="multipart/form-data" method="post" action="php/update_funtions.php">
+                <?php
+                $dbh = new DatabaseHelper();
+                $dbh->fetch_functions();
+                ?>
                 <div class="form-group col-md-3">
-                    <input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-success pull-right">
+                    <input type="submit" name="submit" value="SUBMIT" class="form-control btn btn-success updatebtn">
                 </div>
-                <script>
-                    // Replace the <textarea id="content"> with a CKEditor
-                    // instance, using default configuration.
-                    CKEDITOR.replace( 'functions' );
-                </script>
             </form>
         </div>
     </div>
     <div class="loader"><!-- Place at bottom of page --></div>
+    <?php include_once 'imports/add_trustee_item.php' ?>
 </div>
 </body>
 </html>

@@ -6,6 +6,6 @@
  * Time: 3:37 PM
  */
 session_start();
-$trustees = $_POST['trustees'];
-$_SESSION['del_multi_ids'] = $trustees;
+$funders = $_POST['trustees'];
+$_SESSION['del_multi_ids'] = $funders;
 echo true;
